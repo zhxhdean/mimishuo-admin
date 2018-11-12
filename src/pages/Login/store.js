@@ -8,6 +8,15 @@ class LoginStore {
     passWord: ''
   }
 
+  @observable
+  userInfo ={ //用户信息
+    userName: '',
+    phone: '',
+    company: '',
+    creditCode: '',
+    email: ''
+  }
+
   @action
   setValue(name, value) {
     this.user[name] = value
@@ -20,6 +29,15 @@ class LoginStore {
       url: '/user/login',
       data: { username: this.user.userName, password: this.user.passWord }
     })
+    if(rsp.code === 0){
+      this.userInfo = rsp.data
+    }
+    return rsp
+  }
+
+  @action
+  async logout (){
+    const rsp = await post({url: '/user/logout'})
     return rsp
   }
 }

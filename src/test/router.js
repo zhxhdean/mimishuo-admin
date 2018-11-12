@@ -5,7 +5,14 @@ module.exports = (app) => {
     const req = ctx.request.body;
     console.log(req)
     ctx.response.body = {
-      code: 0
+      code: 0,
+      data: {
+        userName: 'zhxh',
+        phone: '13917552082',
+        company: '点融信息科技有限公司',
+        creditCode: '10001',
+        email: 'zhangxiaohu@dianrong.com'
+      }
     }
   })
 
