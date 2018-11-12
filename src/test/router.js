@@ -11,7 +11,7 @@ module.exports = (app) => {
 
   router.get('/user/status', async(ctx) => {
     ctx.response.body = {
-      code: 1
+      code: 0
     }
   })
 

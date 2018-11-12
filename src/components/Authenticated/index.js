@@ -13,6 +13,7 @@ export default class index extends Component {
     this.props.authenticateStore.getStatus()
   }
 
+
   render() {
     const status = this.props.authenticateStore.status
     if(status === STATUS.LOGINED){

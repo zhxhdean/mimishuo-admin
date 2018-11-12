@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import {Button, Input, message} from 'antd'
 import {observer,inject} from 'mobx-react'
+import {STATUS} from '../../common/constant'
 
-@inject('loginStore','rootStore')
+@inject('loginStore','rootStore','authenticateStore')
 @observer
 export default class index extends Component {
 
@@ -16,6 +17,7 @@ export default class index extends Component {
     this.props.loginStore.login().then(rsp => {
       if(rsp.code === 0){
         message.success('登录成功')
+        this.props.authenticateStore.setStatus(STATUS.LOGINED)
         this.props.history.push({pathname: '/'})
       }
       this.props.rootStore.hideLoading()

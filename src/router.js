@@ -32,7 +32,6 @@ export const rootRouter = (
 )
 
 export const router = (
-  <Provider {...stores}>
   <Authenticated>
   <Router>
     <Switch>
@@ -41,5 +40,4 @@ export const router = (
     </Switch>
   </Router>
   </Authenticated>
-  </Provider>
 )
