@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import {Button, Input} from 'antd'
+import {Button, Input, message} from 'antd'
 import {observer,inject} from 'mobx-react'
 
 @inject('loginStore','rootStore')
 @observer
 export default class index extends Component {
 
+  
   handleInputChange = (name, e) => {
     this.props.loginStore.setValue(name, e.target.value)
   }
@@ -13,7 +14,10 @@ export default class index extends Component {
   handleLogin = () => {
     this.props.rootStore.showLoading()
     this.props.loginStore.login().then(rsp => {
-      console.log(rsp)
+      if(rsp.code === 0){
+        message.success('登录成功')
+        this.props.history.push({pathname: '/'})
+      }
       this.props.rootStore.hideLoading()
     }).catch(err => {
       this.props.rootStore.hideLoading()
@@ -24,7 +28,8 @@ export default class index extends Component {
     const {loading} = this.props.rootStore
     return (
       <div>
-        我是登录页面<br/>
+        {this.props.history.location.pathname}
+        登录页面<br/>
         用户名：<Input value={user.userName} onChange={this.handleInputChange.bind(this, 'userName')}/>
         密码：<Input type="passWord" value={user.passWord} onChange={this.handleInputChange.bind(this, 'passWord')}/>
         <Button onClick={this.handleLogin} loading={loading}>登录</Button>

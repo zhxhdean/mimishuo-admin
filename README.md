@@ -21,5 +21,6 @@
 ### |--------index.css 页面css
 ### |--------store.js 业务逻辑文件
 ### |----/service 调用restful
+### |----/test 本地测试服务
 ### |----index.js 主入口文件
 ### |----router.js 路由文件

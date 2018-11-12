@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 const instance = axios.create({
-  baseURL: 'https://baas-console-dev.dianrong.com/baas', // 'https://api.mimishuo.com',
+  baseURL: 'http://localhost:3000', // 'https://api.mimishuo.com',
   withCredentials: true,
   timeout: 5000
 })
@@ -21,7 +21,9 @@ instance.interceptors.request.use(function(config){
 // 响应拦截器
 instance.interceptors.response.use(function(response){
   // todo 统一判断是否登录后，做跳转登录页面
-
+  if(response.status === 200){
+    return response.data
+  }
   return response
 },function(err){
   return Promise.reject(err)

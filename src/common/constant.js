@@ -1,0 +1,5 @@
+export const STATUS = {
+  CHECKING: 'CHECKING',
+  UNLOGIN: 'UNLOGIN',
+  LOGINED: 'LOGINED',
+}

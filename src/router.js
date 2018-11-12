@@ -9,9 +9,11 @@ import Login from './pages/Login'
 
 import loginStore from './pages/Login/store'
 import rootStore from './store'
+import authenticateStore from './components/Authenticated/store'
 const stores = {
   rootStore,
-  loginStore
+  loginStore,
+  authenticateStore
 }
 
 // for debug
@@ -30,6 +32,7 @@ export const rootRouter = (
 )
 
 export const router = (
+  <Provider {...stores}>
   <Authenticated>
   <Router>
     <Switch>
@@ -38,4 +41,5 @@ export const router = (
     </Switch>
   </Router>
   </Authenticated>
+  </Provider>
 )
