@@ -8,7 +8,7 @@ module.exports = function override(config, env) {
   )
   //less
   config = rewireLess.withLoaderOptions({
-    modifyVars: { '@primary-color': '#1DA57A', // 全局主色
+    modifyVars: { '@primary-color': '#1890ff', // 全局主色
     '@link-color': '#1890ff', // 链接色
     '@font-size-base': '14px',// 主字号
     '@text-color': 'rgba(0, 0, 0, .65)'// 主文本色
@@ -16,10 +16,12 @@ module.exports = function override(config, env) {
     javascriptEnabled: true
   })(config, env)
 
-  // decorators
-  config = injectBabelPlugin(
-    ['@babel/plugin-proposal-decorators', { legacy: true }],
-    config
-  )
+  // decorators(配置)
+  // config = injectBabelPlugin(
+  //   ['@babel/plugin-proposal-decorators', { legacy: true}],
+  //   config
+  // )
+
+  injectBabelPlugin('transform-decorators-legacy', config);
   return config
 }
