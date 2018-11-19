@@ -7,3 +7,5 @@ export const LOGOUT = '/user/logout'
 export const USER_STATUS = '/user/status'
 
 export const USER_INFORMATION = '/user/info'
+
+export const USER_CHANGE_PASSWORD = '/user/changepassword'

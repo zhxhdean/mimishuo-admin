@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Menu, Icon } from 'antd'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 const SubMenu = Menu.SubMenu
 export default class index extends Component {
   render() {
@@ -8,19 +8,21 @@ export default class index extends Component {
       <Menu
         theme="dark"
         mode="inline"
-        defaultOpenKeys={['sub1','sub2', 'sub3', 'sub4']}
-        defaultSelectedKeys={['1']}
+        defaultOpenKeys={['sub1', 'sub2', 'sub3', 'sub4']}
+        
       >
-       <SubMenu
+        <SubMenu
           key="sub1"
           title={
             <span>
               <Icon type="home" />
-              <span><Link to="/index">首页</Link></span>
+              <span>
+                首页
+              </span>
             </span>
           }
         >
-
+          <Menu.Item key="11"><Link to="/index">我的面板</Link></Menu.Item>
         </SubMenu>
         <SubMenu
           key="sub2"
@@ -44,8 +46,10 @@ export default class index extends Component {
             </span>
           }
         >
-          <Menu.Item key="31"><Link to="userinfo">用户信息</Link></Menu.Item>
-          <Menu.Item key="32">密码修改</Menu.Item>
+          <Menu.Item key="31">
+            <Link to="userinfo">用户信息</Link>
+          </Menu.Item>
+          <Menu.Item key="32"><Link to="changepassword">密码修改</Link></Menu.Item>
           <Menu.Item key="33">在线充值</Menu.Item>
           <Menu.Item key="34">充值记录</Menu.Item>
         </SubMenu>
