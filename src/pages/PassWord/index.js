@@ -3,7 +3,7 @@ import { Divider, Input, Button,message } from 'antd'
 import './index.less'
 import { inject, observer } from 'mobx-react'
 import util from '../../common/util'
-@inject('passWordStore')
+@inject('passWordStore','rootStore')
 @observer
 export default class index extends Component {
   handleInputChange = (name, e) => {
@@ -13,12 +13,17 @@ export default class index extends Component {
   handleSubmit = () => {
     console.log(this.props.passWordStore)
     if(this.valid()){
+      this.props.rootStore.showLoading()
       this.props.passWordStore.changePassWord().then(rsp => {
         if(rsp.code === 0){
           message.success('密码修改成功')
         }else{
           message.error(rsp.content)
         }
+        this.props.rootStore.hideLoading()
+      }).catch(err => {
+        message.error('遇到错误')
+        this.props.rootStore.hideLoading()
       })
     }
   }
@@ -52,6 +57,7 @@ export default class index extends Component {
   }
 
   render() {
+    const {loading} = this.props.rootStore
     return (
       <div className="change-password">
         <h2>修改密码</h2>
@@ -82,7 +88,7 @@ export default class index extends Component {
             />
           </li>
           <li>
-            <Button type="primary" onClick={this.handleSubmit}>
+            <Button type="primary" onClick={this.handleSubmit} loading={loading}>
               确定修改
             </Button>
           </li>
