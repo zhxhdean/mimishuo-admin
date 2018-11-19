@@ -9,7 +9,7 @@ export default class index extends Component {
   render() {
     const {userInfo} = this.props.authenticateStore
     return (
-      <div>
+      <div className="header-right">
         {userInfo.company}
         <Icon type="logout" onClick={this.props.loginStore.logout}/>
       </div>

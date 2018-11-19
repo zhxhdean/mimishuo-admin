@@ -6,14 +6,16 @@ import Layout from './Layout'
 import Index from './pages/Index'
 import Authenticated from './components/Authenticated'
 import Login from './pages/Login'
-
+import UserInformation from './pages/UserInformation'
 import loginStore from './pages/Login/store'
 import rootStore from './store'
 import authenticateStore from './components/Authenticated/store'
+import userInformationStore from './pages/UserInformation/store'
 const stores = {
   rootStore,
   loginStore,
-  authenticateStore
+  authenticateStore,
+  userInformationStore
 }
 
 // for debug
@@ -36,6 +38,7 @@ export const router = (
   <Router>
     <Switch>
       <Route path="/index" component={Index} />
+      <Route path="/userinfo" component={UserInformation} />
       <Route component={Index} />
     </Switch>
   </Router>

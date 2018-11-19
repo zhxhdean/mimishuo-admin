@@ -30,7 +30,12 @@ instance.interceptors.response.use(function(response){
 })
 
 function get (options){
-  const {url, params} = options
+  const {url, data} = options
+  const params = {
+    params: {
+      ...data
+    }
+  }
   return instance.get(url, params)
 }
 

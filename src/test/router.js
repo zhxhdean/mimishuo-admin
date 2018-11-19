@@ -28,6 +28,21 @@ module.exports = (app) => {
     }
   })
 
+  router.get('/user/info', async(ctx) => {
+    const req = ctx.query; //get 获取参数 ; ctx.request.body 获取post参数
+    ctx.response.body = {
+      code: 0,
+      data: {
+        uid: req.uid,
+        userName: 'zhxh',
+        phone: '13917552082',
+        company: '点融信息科技有限公司',
+        creditCode: '10001',
+        email: 'zhangxiaohu@dianrong.com'
+      }
+    }
+  })
+
   app
     .use(router.routes())
     .use(router.allowedMethods());
