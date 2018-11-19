@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Menu, Icon } from 'antd'
+import {Link} from 'react-router-dom'
 const SubMenu = Menu.SubMenu
 export default class index extends Component {
   render() {
@@ -15,7 +16,7 @@ export default class index extends Component {
           title={
             <span>
               <Icon type="home" />
-              <span>首页</span>
+              <span><Link to="/index">首页</Link></span>
             </span>
           }
         >

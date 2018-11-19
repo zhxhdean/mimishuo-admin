@@ -5,6 +5,12 @@ module.exports = (app) => {
     const req = ctx.request.body;
     console.log(req)
     ctx.response.body = {
+      code: 0
+    }
+  })
+
+  router.get('/user/status', async(ctx) => {
+    ctx.response.body = {
       code: 0,
       data: {
         userName: 'zhxh',
@@ -16,7 +22,7 @@ module.exports = (app) => {
     }
   })
 
-  router.get('/user/status', async(ctx) => {
+  router.post('/user/logout', async(ctx) => {
     ctx.response.body = {
       code: 0
     }

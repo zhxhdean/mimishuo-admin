@@ -3,11 +3,11 @@ import {Icon} from 'antd'
 import './index.less'
 import {observer,inject} from 'mobx-react'
 
-@inject('loginStore')
+@inject('loginStore','authenticateStore')
 @observer
 export default class index extends Component {
   render() {
-    const {userInfo} = this.props.loginStore
+    const {userInfo} = this.props.authenticateStore
     return (
       <div>
         {userInfo.company}
