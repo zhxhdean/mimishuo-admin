@@ -9,7 +9,7 @@ import Authenticated from './components/Authenticated'
 import Login from './pages/Login'
 import UserInformation from './pages/UserInformation'
 import PassWord from './pages/PassWord'
-
+import SecretList from './pages/SecretList'
 
 // store
 import loginStore from './pages/Login/store'
@@ -17,12 +17,15 @@ import rootStore from './store'
 import authenticateStore from './components/Authenticated/store'
 import userInformationStore from './pages/UserInformation/store'
 import passWordStore from './pages/PassWord/store'
+import secretListStore from './pages/SecretList/store'
+
 const stores = {
   rootStore,
   loginStore,
   authenticateStore,
   userInformationStore,
-  passWordStore
+  passWordStore,
+  secretListStore
 }
 
 // for debug
@@ -47,6 +50,7 @@ export const router = (
       <Route path="/index" component={Index} />
       <Route path="/userinfo" component={UserInformation} />
       <Route path="/changepassword" component={PassWord} />
+      <Route path="/serect" component={SecretList} />
       <Route component={Index} />
     </Switch>
   </Router>

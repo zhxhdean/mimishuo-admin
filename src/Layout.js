@@ -3,6 +3,7 @@ import {Layout, Icon, Tooltip} from 'antd'
 import {router} from './router'
 import LeftMenu from './components/Menu'
 import MyHeader from './components/Header'
+import Logo from './logo.svg'
 const { Header, Sider, Content } = Layout
 export default class Index extends Component {
   constructor(props){
@@ -26,7 +27,7 @@ export default class Index extends Component {
           collapsible
           collapsed={this.state.collapsed}
         >
-          <div className="logo">此处应有Logo</div>
+          <div className="logo"><img src={Logo} alt="秘密说管理系统"/></div>
           <LeftMenu/>
         </Sider>
         <Layout>
