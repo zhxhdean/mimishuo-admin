@@ -64,63 +64,104 @@ module.exports = app => {
     }
   })
 
-  router.post('/serect/list', async ctx => {
+  router.post('/secret/list', async ctx => {
     const req = ctx.request.body //get 获取参数 ; ctx.request.body 获取post参数
     ctx.response.body = {
       code: 0,
       content: '',
-      data: [{
-        id: 1,
-        title: '测试标题',
-        createTime: '2018-11-19 12:00:01',
-        viewCount: 3,
-        voteCount: 2,
-        reply: false,
-        status: 1,
-        remove: false
-      },{
-        id: 2,
-        title: '测试标题2',
-        createTime: '2018-11-19 12:00:11',
-        viewCount: 3,
-        voteCount: 2,
-        reply: true,
-        status: 2,
-        remove: false
-      },{
-        id: 3,
-        title: '测试标题3',
-        createTime: '2018-11-19 12:10:11',
-        viewCount: 3,
-        voteCount: 2,
-        reply: true,
-        status: 3,
-        remove: false
-      },{
-        id: 4,
-        title: '测试标题4',
-        createTime: '2018-11-19 12:20:11',
-        viewCount: 3,
-        voteCount: 2,
-        reply: true,
-        status: 4,
-        remove: true
-      }]
+      data: [
+        {
+          id: 1,
+          title: '测试标题',
+          createTime: '2018-11-19 12:00:01',
+          viewCount: 3,
+          voteCount: 2,
+          reply: false,
+          status: 1,
+          remove: false
+        },
+        {
+          id: 2,
+          title: '测试标题2',
+          createTime: '2018-11-19 12:00:11',
+          viewCount: 3,
+          voteCount: 2,
+          reply: true,
+          status: 2,
+          remove: false
+        },
+        {
+          id: 3,
+          title: '测试标题3',
+          createTime: '2018-11-19 12:10:11',
+          viewCount: 3,
+          voteCount: 2,
+          reply: true,
+          status: 3,
+          remove: false
+        },
+        {
+          id: 4,
+          title: '测试标题4',
+          createTime: '2018-11-19 12:20:11',
+          viewCount: 3,
+          voteCount: 2,
+          reply: true,
+          status: 4,
+          remove: true
+        }
+      ]
     }
-
   })
 
-  router.post('/serect/reply', async ctx => {
+  router.post('/secret/reply', async ctx => {
     const req = ctx.request.body
-    if(req.id && req.content){
+    if (req.id && req.content) {
       ctx.response.body = {
         code: 0,
         content: `提交的数据id:${req.id},提交的内容${req.content}`
       }
-    }else{
+    } else {
       ctx.response.body = {
         code: 1,
         content: `提交的数据id:${req.id},提交的内容${req.content}`
+      }
+    }
+  })
+
+  router.post('/secret/detail', async ctx => {
+    const req = ctx.request.body
+    if (req.id) {
+      ctx.response.body = {
+        code: 0,
+        data: {
+          id: req.id,
+          title: '公司反馈意见标题',
+          author: '张三',
+          uid: 101,
+          viewCount: 3,
+          voteCount: 1,
+          content:
+            '我对公司的卫生情况有很大意见，很多员工桌上有大量未吃完零食。时间长了导致有蟑螂滋生，特别恶心！希望尽快处理！',
+          createTime: '2018-11-19 10:23:22',
+          status: 1,
+          remove: req.id === 4 ? true : false,
+          img: [
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711249406&di=ba9f9bfe9bd7aaf61309aa06ee0ca5fd&imgtype=0&src=http%3A%2F%2Fimg3.myhsw.cn%2F2018-03-22%2Fcp4yy0x9.jpg%3F86i',
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711249408&di=3b8c09e57a6d0938e807ed4c9057f47e&imgtype=0&src=http%3A%2F%2Fpic.shejiben.com%2Fcase%2F2015%2F06%2F13%2F20150613075420-236250cd.jpg',
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711248924&di=d447728206a39e7d8ae292ea8b735a37&imgtype=0&src=http%3A%2F%2Fwww.yw2005.com%2Fbaike%2Fuploads%2Fallimg%2F160604%2F1-160604155221243.jpg'
+          ,'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711249406&di=ba9f9bfe9bd7aaf61309aa06ee0ca5fd&imgtype=0&src=http%3A%2F%2Fimg3.myhsw.cn%2F2018-03-22%2Fcp4yy0x9.jpg%3F86i',
+          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711249408&di=3b8c09e57a6d0938e807ed4c9057f47e&imgtype=0&src=http%3A%2F%2Fpic.shejiben.com%2Fcase%2F2015%2F06%2F13%2F20150613075420-236250cd.jpg',
+          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711248924&di=d447728206a39e7d8ae292ea8b735a37&imgtype=0&src=http%3A%2F%2Fwww.yw2005.com%2Fbaike%2Fuploads%2Fallimg%2F160604%2F1-160604155221243.jpg'
+          ,'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711249406&di=ba9f9bfe9bd7aaf61309aa06ee0ca5fd&imgtype=0&src=http%3A%2F%2Fimg3.myhsw.cn%2F2018-03-22%2Fcp4yy0x9.jpg%3F86i',
+          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711249408&di=3b8c09e57a6d0938e807ed4c9057f47e&imgtype=0&src=http%3A%2F%2Fpic.shejiben.com%2Fcase%2F2015%2F06%2F13%2F20150613075420-236250cd.jpg'
+        ]
+        }
+      }
+    } else {
+      ctx.response.body = {
+        code: 1,
+        content: '请求参数错误'
       }
     }
   })

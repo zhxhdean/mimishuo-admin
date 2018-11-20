@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 import { Divider, Input, Table, message } from 'antd'
 import './index.less'
 import { inject, observer } from 'mobx-react'
@@ -134,7 +135,7 @@ export default class index extends Component {
         render: (text, record) => {
           return (
             <span>
-              <a href="javascript:void(0);">详情</a>
+              <Link to={{pathname: `secret/detail/${record.id}`}}>详情</Link>
               <Divider type="vertical" />
               <a
                 href="javascript:void(0);"

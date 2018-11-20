@@ -33,7 +33,7 @@ export default class index extends Component {
             </span>
           }
         >
-          <Menu.Item key="21"><Link to="serect">秘密列表</Link></Menu.Item>
+          <Menu.Item key="21"><Link to="/secret">秘密列表</Link></Menu.Item>
           <Menu.Item key="22">搜索</Menu.Item>
           <Menu.Item key="23">newsletter</Menu.Item>
         </SubMenu>
