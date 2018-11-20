@@ -110,5 +110,20 @@ module.exports = app => {
 
   })
 
+  router.post('/serect/reply', async ctx => {
+    const req = ctx.request.body
+    if(req.id && req.content){
+      ctx.response.body = {
+        code: 0,
+        content: `提交的数据id:${req.id},提交的内容${req.content}`
+      }
+    }else{
+      ctx.response.body = {
+        code: 1,
+        content: `提交的数据id:${req.id},提交的内容${req.content}`
+      }
+    }
+  })
+
   app.use(router.routes()).use(router.allowedMethods())
 }

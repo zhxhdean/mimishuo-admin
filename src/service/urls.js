@@ -11,3 +11,5 @@ export const USER_INFORMATION = '/user/info'
 export const USER_CHANGE_PASSWORD = '/user/changepassword'
 
 export const SECRET_LIST = '/serect/list'
+
+export const SECRET_REPLY_CONTENT = '/serect/reply'
