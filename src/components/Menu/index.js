@@ -47,9 +47,9 @@ export default class index extends Component {
           }
         >
           <Menu.Item key="31">
-            <Link to="userinfo">用户信息</Link>
+            <Link to="/userinfo">用户信息</Link>
           </Menu.Item>
-          <Menu.Item key="32"><Link to="changepassword">密码修改</Link></Menu.Item>
+          <Menu.Item key="32"><Link to="/changepassword">密码修改</Link></Menu.Item>
           <Menu.Item key="33">在线充值</Menu.Item>
           <Menu.Item key="34">充值记录</Menu.Item>
         </SubMenu>

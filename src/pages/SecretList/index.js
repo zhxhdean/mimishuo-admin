@@ -14,7 +14,7 @@ export default class index extends Component {
   componentDidMount() {
     this.props.rootStore.showLoading()
     this.props.secretListStore
-      .getList(DEFAULT_PAGEINDEX, DEFAULT_PAGESIZE)
+      .getList(this.props.secretListStore.current || DEFAULT_PAGEINDEX, DEFAULT_PAGESIZE)
       .then(rsp => {
         this.props.rootStore.hideLoading()
       })
@@ -138,7 +138,7 @@ export default class index extends Component {
               <Link to={{pathname: `secret/detail/${record.id}`}}>详情</Link>
               <Divider type="vertical" />
               <a
-                href="javascript:void(0);"
+                href="javascript:;"
                 onClick={this.props.secretListStore.showQuickReply.bind(
                   this,
                   true,

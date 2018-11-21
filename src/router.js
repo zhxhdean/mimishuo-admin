@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, HashRouter as Router, Switch } from 'react-router-dom'
-import {Provider} from 'mobx-react'
+import { Provider } from 'mobx-react'
 
 // component
 import Layout from './Layout'
@@ -19,6 +19,7 @@ import userInformationStore from './pages/UserInformation/store'
 import passWordStore from './pages/PassWord/store'
 import secretListStore from './pages/SecretList/store'
 import secretDetailStore from './pages/SecretDetail/store'
+import { BackTop } from 'antd'
 const stores = {
   rootStore,
   loginStore,
@@ -35,26 +36,27 @@ window.__APP_STATE__ = stores
 // 路由
 export const rootRouter = (
   <Provider {...stores}>
-  <Router>
-    <Switch>
-      <Route path="/login" component={Login}/>
-      <Route path="/" component={Layout} />
-    </Switch>
-  </Router>
+    <Router>
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/" component={Layout} />
+      </Switch>
+    </Router>
   </Provider>
 )
 
 export const router = (
   <Authenticated>
-  <Router>
-    <Switch>
-      <Route path="/index" component={Index} />
-      <Route path="/userinfo" component={UserInformation} />
-      <Route path="/changepassword" component={PassWord} />
-      <Route path="/secret/detail/:id" component={SecretDetail}/>
-      <Route path="/secret" component={SecretList} />
-      <Route component={Index} />
-    </Switch>
-  </Router>
+    <BackTop />
+    <Router>
+      <Switch>
+        <Route path="/index" component={Index} />
+        <Route path="/userinfo" component={UserInformation} />
+        <Route path="/changepassword" component={PassWord} />
+        <Route path="/secret/detail/:id" component={SecretDetail} />
+        <Route path="/secret" component={SecretList} />
+        <Route component={Index} />
+      </Switch>
+    </Router>
   </Authenticated>
 )

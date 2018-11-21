@@ -144,6 +144,9 @@ module.exports = app => {
           content:
             '我对公司的卫生情况有很大意见，很多员工桌上有大量未吃完零食。时间长了导致有蟑螂滋生，特别恶心！希望尽快处理！',
           createTime: '2018-11-19 10:23:22',
+          removeTime: '2018-11-21 17:00:00',
+          replyContent: '',
+          tags: [1,2,3],
           status: 1,
           remove: req.id === 4 ? true : false,
           img: [
@@ -163,6 +166,13 @@ module.exports = app => {
         code: 1,
         content: '请求参数错误'
       }
+    }
+  })
+
+  router.post('/secret/detail/edit', async ctx => {
+    ctx.response.body ={
+      code: 0,
+      data: ctx.request.body
     }
   })
 
