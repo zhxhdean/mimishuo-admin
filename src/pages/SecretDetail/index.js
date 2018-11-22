@@ -6,13 +6,26 @@ import {SECRET_TAGS} from '../../common/constant'
 import PreviewImage from '../../components/PreviewImage'
 import './index.less'
 import CountDown from '../../components/CountDown'
+import NewsLetterPendingList from '../../components/NewsLetterPendingList'
+
 const CheckboxGroup = Checkbox.Group
 const TextArea = Input.TextArea
-@inject('secretDetailStore', 'rootStore')
+@inject('secretDetailStore', 'rootStore', 'pendingListStore')
 @observer
 export default class index extends Component {
+
   componentDidMount() {
     const id = this.props.match.params.id
+    this.loadData(+id)
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(+nextProps.match.params.id !== +this.props.match.params.id){
+      this.loadData(+nextProps.match.params.id)
+    }
+  }
+
+  loadData(id){
     this.props.rootStore.showLoading()
     this.props.secretDetailStore
       .getDetail(+id)
@@ -53,6 +66,11 @@ export default class index extends Component {
       }
     })
   }
+
+  handleJoinNewsLetter = (obj, e) => {
+    // this.props.rootStore.showNewsLetter()
+    this.props.pendingListStore.join(obj)
+  }
   render() {
     const { loading } = this.props.rootStore
     const { secretDetail } = this.props.secretDetailStore
@@ -64,6 +82,7 @@ export default class index extends Component {
           <ul>
             <li>
               <h3>{secretDetail.remove ? <span className="red"><CountDown endTime ={secretDetail.removeTime}/>【阅后即焚】</span>: ''}{secretDetail.title}</h3>
+              <Button type="primary" onClick={this.handleJoinNewsLetter.bind(this, secretDetail)}>加入发布清单</Button>
             </li>
             <li>
               <Row>
@@ -99,6 +118,7 @@ export default class index extends Component {
           </ul>
 
           <PreviewImage img={secretDetail.img}/>
+          <NewsLetterPendingList/>
         </Spin>
       </div>
     )

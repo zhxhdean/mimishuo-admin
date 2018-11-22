@@ -109,6 +109,46 @@ module.exports = app => {
           reply: true,
           status: 4,
           remove: true
+        },
+        {
+          id: 5,
+          title: '测试标题',
+          createTime: '2018-11-19 12:00:01',
+          viewCount: 3,
+          voteCount: 2,
+          reply: false,
+          status: 1,
+          remove: false
+        },
+        {
+          id: 6,
+          title: '测试标题2',
+          createTime: '2018-11-19 12:00:11',
+          viewCount: 3,
+          voteCount: 2,
+          reply: true,
+          status: 2,
+          remove: false
+        },
+        {
+          id: 7,
+          title: '测试标题3',
+          createTime: '2018-11-19 12:10:11',
+          viewCount: 3,
+          voteCount: 2,
+          reply: true,
+          status: 3,
+          remove: false
+        },
+        {
+          id: 8,
+          title: '测试标题4',
+          createTime: '2018-11-19 12:20:11',
+          viewCount: 3,
+          voteCount: 2,
+          reply: true,
+          status: 4,
+          remove: true
         }
       ]
     }
@@ -136,7 +176,7 @@ module.exports = app => {
         code: 0,
         data: {
           id: req.id,
-          title: '公司反馈意见标题',
+          title: '公司反馈意见标题' + req.id,
           author: '张三',
           uid: 101,
           viewCount: 3,

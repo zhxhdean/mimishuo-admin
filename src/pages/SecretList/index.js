@@ -1,20 +1,31 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
-import { Divider, Input, Table, message } from 'antd'
+import { Link } from 'react-router-dom'
+import { Divider, Input, Table, message, Tooltip, Button } from 'antd'
 import './index.less'
 import { inject, observer } from 'mobx-react'
 import { DEFAULT_PAGESIZE, DEFAULT_PAGEINDEX } from '../../common/constant'
 import ReplySecret from '../../components/ReplySecret'
-
+import NewsLetterPendingList from '../../components/NewsLetterPendingList'
+import downLoad from '../../common/js2execl'
+import {SECRET_STATUS, getSecretStatus} from '../../common/constant'
 const Search = Input.Search
 
-@inject('secretListStore', 'rootStore')
+@inject('secretListStore', 'rootStore', 'pendingListStore')
 @observer
 export default class index extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      selectedNewsLetters: []
+    }
+  }
   componentDidMount() {
     this.props.rootStore.showLoading()
     this.props.secretListStore
-      .getList(this.props.secretListStore.current || DEFAULT_PAGEINDEX, DEFAULT_PAGESIZE)
+      .getList(
+        this.props.secretListStore.current || DEFAULT_PAGEINDEX,
+        DEFAULT_PAGESIZE
+      )
       .then(rsp => {
         this.props.rootStore.hideLoading()
       })
@@ -24,8 +35,7 @@ export default class index extends Component {
       })
   }
 
-
-
+  // 搜索
   handleSearch = value => {
     this.props.secretListStore.setKeyword(value)
     this.props.rootStore.showLoading()
@@ -40,11 +50,17 @@ export default class index extends Component {
       })
   }
 
+  // 表格分页、筛选、排序
   handleChange = (pagination, filters, sorter) => {
-    const {status} = filters
+    const { status } = filters
     this.props.rootStore.showLoading()
     this.props.secretListStore
-      .getList(pagination.current, DEFAULT_PAGESIZE, this.props.secretListStore.keyword, {status: status})
+      .getList(
+        pagination.current,
+        DEFAULT_PAGESIZE,
+        this.props.secretListStore.keyword,
+        { status: status }
+      )
       .then(rsp => {
         this.props.rootStore.hideLoading()
       })
@@ -52,6 +68,39 @@ export default class index extends Component {
         message.error('数据加载失败')
         this.props.rootStore.hideLoading()
       })
+  }
+
+  // 单条加入清单
+  handleJoinNewsLetter = (obj, e) => {
+    // this.props.rootStore.showNewsLetter()
+    this.props.pendingListStore.join(obj)
+  }
+
+  // 批量加入清单
+  handleBatchJoin = () => {
+    if(this.state.selectedNewsLetters.length === 0){
+      message.error('请选择要加入清单的数据项！')
+      return
+    }
+    this.props.pendingListStore.batchJoin(this.state.selectedNewsLetters)
+
+    console.log(this.state.selectedNewsLetters)
+  }
+
+  // 导出数据
+  handleExport = () => {
+    // todo 全集导出
+    const data = this.props.secretListStore.secretList.map(item => {
+      return {
+        '主题': item.title,
+        '创建时间': item.createTime,
+        '点击阅读量': item.viewCount,
+        '点赞人数': item.voteCount,
+        '发布状态': getSecretStatus(item.status),
+        '阅后即焚': item.remove ? '是' : '否'
+      }
+    })
+    downLoad(data)
   }
 
   render() {
@@ -64,7 +113,10 @@ export default class index extends Component {
       {
         dataIndex: 'title',
         title: '主题',
-        key: 'title'
+        key: 'title',
+        render: (text,record) => {
+          return (<Link to={{ pathname: `secret/detail/${record.id}` }}>{text}</Link>)
+        }
       },
       {
         dataIndex: 'createTime',
@@ -98,23 +150,13 @@ export default class index extends Component {
         key: 'status',
         title: '发布状态',
         render: text => {
-          if (text === 1) {
-            return '初始'
-          } else if (text === 2) {
-            return '待发布'
-          } else if (text === 3) {
-            return '发布中'
-          } else if (text === 4) {
-            return '已发布'
-          } else {
-            return '未知'
-          }
+          return getSecretStatus(text)
         },
         filters: [
-          { text: '初始', value: 1 },
-          { text: '待发布', value: 2 },
-          { text: '发布中', value: 3 },
-          { text: '已发布', value: 4 }
+          { text: '初始', value: SECRET_STATUS.INIT },
+          { text: '待发布', value: SECRET_STATUS.PRE_PUBLISH },
+          { text: '发布中', value: SECRET_STATUS.PUBLISHING },
+          { text: '已发布', value: SECRET_STATUS.PUBLISHED }
         ]
       },
       {
@@ -134,9 +176,7 @@ export default class index extends Component {
         key: 'action',
         render: (text, record) => {
           return (
-            <span>
-              <Link to={{pathname: `secret/detail/${record.id}`}}>详情</Link>
-              <Divider type="vertical" />
+            <span><Tooltip title="快速回复问题">
               <a
                 href="javascript:;"
                 onClick={this.props.secretListStore.showQuickReply.bind(
@@ -146,7 +186,15 @@ export default class index extends Component {
                 )}
               >
                 回复
-              </a>
+              </a></Tooltip>
+              <Divider type="vertical" />
+              <Tooltip title="加入发布清单">
+              <a
+                href="javascript:;"
+                onClick={this.handleJoinNewsLetter.bind(this, record)}
+              >
+                加入
+              </a></Tooltip>
             </span>
           )
         }
@@ -158,11 +206,12 @@ export default class index extends Component {
     const { loading } = this.props.rootStore
     const rowSelection = {
       onChange: (selectedRowKeys, selectedRows) => {
-        console.log(
-          `selectedRowKeys: ${selectedRowKeys}`,
-          'selectedRows: ',
-          selectedRows
-        )
+        this.setState({selectedNewsLetters: selectedRows})
+        // console.log(
+        //   `selectedRowKeys: ${selectedRowKeys}`,
+        //   'selectedRows: ',
+        //   selectedRows
+        // )
       }
     }
     return (
@@ -176,7 +225,12 @@ export default class index extends Component {
             onSearch={this.handleSearch}
             enterButton
           />
-
+          <Button type="primary" className="ml20" onClick={this.handleBatchJoin}>批量加入清单</Button>
+          <Button className="ml20" onClick={this.props.rootStore.showNewsLetter}>清单</Button>
+          <Button className="ml20" onClick={this.handleExport}>导出</Button>
+          <a href="" download="秘密列表.xlsx" id="hf">
+                {" "}
+              </a>
           <Table
             rowKey="id"
             loading={loading}
@@ -194,6 +248,7 @@ export default class index extends Component {
         </div>
 
         <ReplySecret />
+        <NewsLetterPendingList/>
       </div>
     )
   }

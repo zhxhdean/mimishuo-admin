@@ -13,17 +13,16 @@ export default class index extends Component {
   componentDidMount() {
     // 截止时间戳
     const endTime = new Date(this.state.endTime)
-    const self = this
     interval = setInterval(() => {
        // 当前时间戳
        const now = Date.now()
       let subTime = endTime - now
       if (subTime > 0) {
-        const format = `${new Date(subTime).getMinutes()}:${(new Date(subTime).getSeconds()+'').padStart(2, '0')}`
-        self.setState({countDown: format})
+        const format = `${(new Date(subTime).getMinutes()+'').padStart(2, '0')}:${(new Date(subTime).getSeconds()+'').padStart(2, '0')}`
+        this.setState({countDown: format})
       } else {
         clearInterval(interval)
-        self.setState({ countDown: '已过期' })
+        this.setState({ countDown: '已过期' })
       }
     }, 1000)
   }

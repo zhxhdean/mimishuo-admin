@@ -19,6 +19,7 @@ import userInformationStore from './pages/UserInformation/store'
 import passWordStore from './pages/PassWord/store'
 import secretListStore from './pages/SecretList/store'
 import secretDetailStore from './pages/SecretDetail/store'
+import pendingListStore from './components/NewsLetterPendingList/store'
 import { BackTop } from 'antd'
 const stores = {
   rootStore,
@@ -27,7 +28,8 @@ const stores = {
   userInformationStore,
   passWordStore,
   secretListStore,
-  secretDetailStore
+  secretDetailStore,
+  pendingListStore
 }
 
 // for debug
