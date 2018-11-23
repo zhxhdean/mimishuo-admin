@@ -23,7 +23,33 @@ export default class index extends Component {
         message.success('已清除全部')
       }
     })
-    
+  }
+
+  handleInputChange = (name, e) => {
+    this.props.pendingListStore.setValue(name, e.target.value)
+  }
+
+  handleSubmit = () => {
+    if(!this.props.pendingListStore.title){
+      message.error('请输入newsletter的标题')
+      return
+    }
+    if(!this.props.pendingListStore.content){
+      message.error('请输入newsletter的内容')
+      return
+    }
+    if(this.props.pendingListStore.pendingList.length === 0){
+      message.error('请添加秘密到清单中')
+      return
+    }
+    this.props.pendingListStore.publish().then(rsp => {
+      if(rsp.code === 0){
+        message.success('清单已发布成功，将在周五推送到关注用户')
+      }else{
+        message.error(rsp.content)
+      }
+    })
+
   }
 
 
@@ -62,10 +88,10 @@ export default class index extends Component {
         onClose={this.props.rootStore.hideNewsLetter}
       >
         <div className="news-letter-pending-list">
-          <Button type="primary">确定发布</Button><Button className="clear" onClick={this.handleClearAll}>清除全部</Button>
+          <Button type="primary" onClick={this.handleSubmit}>确定发布</Button><Button className="clear" onClick={this.handleClearAll}>清除全部</Button>
           <Divider/>
-          <Input placeholder="请输入newsletter的标题"/>
-          <TextArea rows={3} placeholder="请输入newsletter内容,200字以内"></TextArea>
+          <Input placeholder="请输入newsletter的标题" onChange={this.handleInputChange.bind(this, 'title')}/>
+          <TextArea rows={3} placeholder="请输入newsletter内容,200字以内" onChange={this.handleInputChange.bind(this, 'content')}></TextArea>
           <Table
             dataSource={dataSource}
             columns={columns}

@@ -216,5 +216,12 @@ module.exports = app => {
     }
   })
 
+  router.post('/newsletter/publish' ,async ctx => {
+    ctx.response.body ={
+      code: 0,
+      data: ctx.request.body
+    }
+  })
+
   app.use(router.routes()).use(router.allowedMethods())
 }
