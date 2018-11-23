@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
 import { Divider, Spin, message,Row,Col,Checkbox,Icon,Input,Button } from 'antd'
 import { inject, observer } from 'mobx-react'
 import {SECRET_TAGS} from '../../common/constant'
@@ -76,7 +75,8 @@ export default class index extends Component {
     const { secretDetail } = this.props.secretDetailStore
     return (
       <div className="secret-detail-page">
-        <h2>秘密详情 <Link to="/secret"><Icon type="caret-left" />返回</Link></h2>
+       {/*eslint-disable no-script-url*/}
+        <h2>秘密详情 <a href="javascript:void(0);" onClick={() => this.props.history.goBack()}><Icon type="caret-left" />返回</a></h2>
         <Divider />
         <Spin spinning={loading}>
           <ul>

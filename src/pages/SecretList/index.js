@@ -6,7 +6,7 @@ import { inject, observer } from 'mobx-react'
 import { DEFAULT_PAGESIZE, DEFAULT_PAGEINDEX } from '../../common/constant'
 import ReplySecret from '../../components/ReplySecret'
 import NewsLetterPendingList from '../../components/NewsLetterPendingList'
-import downLoad from '../../common/js2execl'
+import jsxlxs from '../../common/js2execl'
 import {SECRET_STATUS, getSecretStatus} from '../../common/constant'
 const Search = Input.Search
 
@@ -100,7 +100,7 @@ export default class index extends Component {
         '阅后即焚': item.remove ? '是' : '否'
       }
     })
-    downLoad(data)
+    jsxlxs.exportFile(data)
   }
 
   render() {
@@ -176,6 +176,7 @@ export default class index extends Component {
         key: 'action',
         render: (text, record) => {
           return (
+             /*eslint-disable no-script-url*/
             <span><Tooltip title="快速回复问题">
               <a
                 href="javascript:;"

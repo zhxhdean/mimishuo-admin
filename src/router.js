@@ -12,6 +12,8 @@ import PassWord from './pages/PassWord'
 import SecretList from './pages/SecretList'
 import SecretDetail from './pages/SecretDetail'
 import NewsLetterList from './pages/NewsLetterList'
+import NewsLetterDetail from './pages/NewsLetterDetail'
+import ShieldedWordList from './pages/ShieldedWordList'
 // store
 import loginStore from './pages/Login/store'
 import rootStore from './store'
@@ -22,6 +24,8 @@ import secretListStore from './pages/SecretList/store'
 import secretDetailStore from './pages/SecretDetail/store'
 import pendingListStore from './components/NewsLetterPendingList/store'
 import newsLetterStore from './pages/NewsLetterList/store'
+import newsLetterDetailStore from './pages/NewsLetterDetail/store'
+import shieledWordStore from './pages/ShieldedWordList/store'
 import { BackTop } from 'antd'
 const stores = {
   rootStore,
@@ -32,7 +36,9 @@ const stores = {
   secretListStore,
   secretDetailStore,
   pendingListStore,
-  newsLetterStore
+  newsLetterStore,
+  newsLetterDetailStore,
+  shieledWordStore
 }
 
 // for debug
@@ -56,11 +62,13 @@ export const router = (
     <Router>
       <Switch>
         <Route path="/index" component={Index} />
-        <Route path="/userinfo" component={UserInformation} />
-        <Route path="/changepassword" component={PassWord} />
+        <Route path="/userinfo" exact component={UserInformation} />
+        <Route path="/changepassword" exact component={PassWord} />
         <Route path="/secret/detail/:id" component={SecretDetail} />
-        <Route path="/secret" component={SecretList} />
-        <Route path='/newsletter' component={NewsLetterList}/>
+        <Route path="/secret" exact component={SecretList} />
+        <Route path="/newsletter/detail/:id" component={NewsLetterDetail}/>
+        <Route path='/newsletter' exact component={NewsLetterList}/>
+        <Route path="/shieldedword" component={ShieldedWordList} />
         <Route component={Index} />
       </Switch>
     </Router>

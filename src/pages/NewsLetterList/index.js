@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { message, Input, Table, Divider, Tooltip } from 'antd'
+import {Link} from 'react-router-dom'
 import {
   DEFAULT_PAGEINDEX,
   DEFAULT_PAGESIZE,
@@ -53,6 +54,10 @@ export default class index extends Component {
         this.props.rootStore.hideLoading()
       })
   }
+
+  handleRecall = record => {
+    //todo 撤回
+  }
   render() {
     const { loading } = this.props.rootStore
     const { current, total, newsLetterList } = this.props.newsLetterStore
@@ -64,9 +69,9 @@ export default class index extends Component {
       {
         dataIndex: 'title',
         title: '标题',
-        render: text => (
+        render: (text,record) => (
           <div className="word-hide wd150">
-            <Tooltip title={text}>{text}</Tooltip>
+            <Tooltip title={text}><Link to={`/newsletter/detail/${record.id}`}>{record.title}</Link></Tooltip>
           </div>
         )
       },
@@ -93,13 +98,15 @@ export default class index extends Component {
         title: '操作',
         render: (text, record) => {
           return (
+            // todo 撤回
             <span>
               <Tooltip title="查看详情">
-                <a href="javascript:;">详情</a>
+                <Link to={`/newsletter/detail/${record.id}`}>详情</Link>
               </Tooltip>
               <Divider type="vertical" />
               <Tooltip title="撤回">
-                <a href="javascript:;">撤回</a>
+              { /*eslint-disable no-script-url*/}
+                <a href="javascript:void(0);" onClick={this.handleRecall.bind(this, record)}>撤回</a> 
               </Tooltip>
             </span>
           )

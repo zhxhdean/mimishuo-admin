@@ -40,3 +40,16 @@ export const getSecretStatus = (status) =>{
     return '未知'
   }
 }
+
+export const CATEGORY = {
+  VULGAR: 1, //粗话
+  EROTIC: 2 // 色情
+}
+
+export const getCategory = category => {
+  if(category === CATEGORY.VULGAR){
+    return '粗言秽语'
+  }else if(category === CATEGORY.EROTIC){
+    return '低俗色情'
+  }
+}

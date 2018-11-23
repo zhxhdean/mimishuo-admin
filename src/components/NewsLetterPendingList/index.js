@@ -70,6 +70,7 @@ export default class index extends Component {
       {
         title: '操作',
         render: (text, record) => {
+           /*eslint-disable no-script-url*/
           return(<span>
             <Link to={{ pathname: `/secret/detail/${record.id}` }}>详情</Link>
             <Divider type="vertical" />
