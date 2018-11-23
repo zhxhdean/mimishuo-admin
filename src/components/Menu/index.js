@@ -19,6 +19,9 @@ export default withRouter(class index extends Component {
       case '/secret':
         key = '21'
         break
+      case '/newsletter':
+        key = '23'
+        break
       default:
         key = '11'
         break
@@ -58,7 +61,7 @@ export default withRouter(class index extends Component {
         >
           <Menu.Item key="21"><Link to="/secret">秘密列表</Link></Menu.Item>
           <Menu.Item key="22">搜索</Menu.Item>
-          <Menu.Item key="23">newsletter</Menu.Item>
+          <Menu.Item key="23"><Link to="/newsletter">newsletter</Link></Menu.Item>
         </SubMenu>
         <SubMenu
           key="sub3"

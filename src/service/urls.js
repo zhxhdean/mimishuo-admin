@@ -19,3 +19,5 @@ export const SECRET_DETAIL = '/secret/detail'
 export const SECRET_DETAIL_EDIT = '/secret/detail/edit'
 
 export const NEWS_LETTER_PUBLISH = '/newsletter/publish'
+
+export const NEWS_LETTER_LIST = '/newsletter/list'
