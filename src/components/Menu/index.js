@@ -1,15 +1,38 @@
 import React, { Component } from 'react'
 import { Menu, Icon } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link,withRouter } from 'react-router-dom'
 const SubMenu = Menu.SubMenu
-export default class index extends Component {
+export default withRouter(class index extends Component {
   render() {
+    const path = this.props.history.location.pathname
+    let key = '11'
+    switch(path){
+      case '/index':
+        key = '11'
+        break
+      case '/userinfo':
+        key = '31'
+        break
+      case '/changepassword':
+        key = '32'
+        break
+      case '/secret':
+        key = '21'
+        break
+      default:
+        key = '11'
+        break
+    }
+    if(path.includes('/secret/detail')){
+      key = '21'
+    }
+    console.log(path)
     return (
       <Menu
         theme="dark"
         mode="inline"
         defaultOpenKeys={['sub1', 'sub2', 'sub3', 'sub4']}
-        
+        selectedKeys={[key]}
       >
         <SubMenu
           key="sub1"
@@ -68,4 +91,4 @@ export default class index extends Component {
       </Menu>
     )
   }
-}
+})

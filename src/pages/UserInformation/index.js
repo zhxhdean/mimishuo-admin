@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import {Divider} from 'antd'
+import {Divider,Row,Col} from 'antd'
 @inject('userInformationStore')
 @observer
 export default class index extends Component {
@@ -13,14 +13,23 @@ export default class index extends Component {
       <div>
         <h2>用户信息</h2>
         <Divider/>
-        <ul>
-          <li>UID：{userInformation.uid}</li>
-          <li>登录账号：{userInformation.userName}</li>
-          <li>手机号：{userInformation.phone}</li>
-          <li>企业名称：{userInformation.company}</li>
-          <li>统一社会信用代码：{userInformation.creditCode}</li>
-          <li>注册二维码</li>
-        </ul>
+        <Row>
+          <Col span={3}>登录账号：</Col>
+          <Col span={8}>{userInformation.userName}</Col>
+        </Row>
+        <Row>
+          <Col span={3}>手机号码：</Col>
+          <Col span={8}>{userInformation.phone}</Col>
+        </Row>
+        <Row>
+          <Col span={3}>企业名称：</Col>
+          <Col span={8}>{userInformation.company}</Col>
+        </Row>
+        <Row>
+          <Col span={3}>社会信用代码：</Col>
+          <Col span={8}>{userInformation.creditCode}</Col>
+        </Row>
+      
         
       </div>
     )
