@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Divider, Tooltip, Input, Button, Table, message } from 'antd'
+import { Divider, Tooltip, Input, Button, Table, message,Modal } from 'antd'
 import { inject, observer } from 'mobx-react'
 import {
   DEFAULT_PAGEINDEX,
@@ -67,6 +67,56 @@ export default class index extends Component {
     jsxlxs.exportFile(data)
   }
 
+  // 删除当前行
+  handleDelete = id => {
+    const self = this
+    Modal.confirm({
+      title: '提示',
+      content: '请确定要删除当前行数据？',
+      onOk(){
+        self.props.rootStore.showLoading()
+        self.props.shieledWordStore.delete(id).then(rsp => {
+          if(rsp.code === 0){
+            message.success('删除成功')
+          }else{
+            message.error(rsp.content)
+          }
+          self.props.rootStore.hideLoading()
+        }).catch(err => {
+          message.error('删除错误')
+          self.props.rootStore.hideLoading()
+        })
+      }
+    })
+  }
+
+  //批量删除
+  handleBatchDelete = () => {
+    const self = this
+    if(this.state.selectedRows.length === 0){
+      message.error('请选择要删除的数据')
+      return
+    }
+    Modal.confirm({
+      title: '提示',
+      content: '请确定要删除当前选择的数据？',
+      onOk(){
+        self.props.rootStore.showLoading()
+        self.props.shieledWordStore.batchDelete(self.state.selectedRows).then(rsp => {
+          if(rsp.code === 0){
+            message.success('删除成功')
+          }else{
+            message.error(rsp.content)
+          }
+          self.props.rootStore.hideLoading()
+        }).catch(err => {
+          message.error('删除错误')
+          self.props.rootStore.hideLoading()
+        })
+      }
+    })
+  }
+
   render() {
     const columns = [
       {
@@ -95,7 +145,7 @@ export default class index extends Component {
           return (
             <span>
               <Tooltip title="删除当前行">
-                <a href="javascript:;">删除</a>
+                <a href="javascript:;" onClick={this.handleDelete.bind(this, record.id)}>删除</a>
               </Tooltip>
             </span>
           )
@@ -108,7 +158,7 @@ export default class index extends Component {
     const { loading } = this.props.rootStore
     const rowSelection = {
       onChange: (selectedRowKeys, selectedRows) => {
-        this.setState({ selectedRows: selectedRows })
+        this.setState({ selectedRows: selectedRows.map(item => +item.id) })
       }
     }
     return (
@@ -122,7 +172,7 @@ export default class index extends Component {
             onSearch={this.handleSearch}
             enterButton
           />
-          <Button type="primary" className="ml20">
+          <Button type="primary" className="ml20" onClick={this.handleBatchDelete}>
             批量删除
           </Button>
           <Button className="ml20">新增</Button>

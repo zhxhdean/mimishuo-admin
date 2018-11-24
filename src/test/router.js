@@ -174,6 +174,33 @@ module.exports = app => {
         createTime: '2018-11-19 12:00:01',
         similar: '傻逼,sb',
         category: 2
+      },{
+        id: 3,
+        title: '王八',
+        createTime: '2018-11-19 12:00:01',
+        similar: '王八蛋',
+        category: 1
+      },
+      {
+        id: 4,
+        title: 'SB',
+        createTime: '2018-11-19 12:00:01',
+        similar: '傻逼,sb',
+        category: 2
+      },
+      {
+        id: 5,
+        title: '王八',
+        createTime: '2018-11-19 12:00:01',
+        similar: '王八蛋',
+        category: 1
+      },
+      {
+        id: 6,
+        title: 'SB',
+        createTime: '2018-11-19 12:00:01',
+        similar: '傻逼,sb',
+        category: 2
       }
     ]
     if(req.keyword!== ''){
@@ -461,6 +488,37 @@ module.exports = app => {
       data: ctx.request.body
     }
   })
+
+  router.post('/shieldedword/delete', async ctx => {
+    const req = ctx.request.body
+    if(req.id){
+      ctx.response.body = {
+        code: 0,
+        content: req.id
+      }
+    }else{
+      ctx.response.body ={
+        code: 1,
+        content: '请求参数错误'
+      }
+    }
+  })
+
+  router.post('/shieldedwrod/batchdelete', async ctx => {
+    const req = ctx.request.body
+    if(req.ids){
+      ctx.response.body = {
+        code: 0,
+        content: req.ids
+      }
+    }else{
+      ctx.response.body ={
+        code: 1,
+        content: '请求参数错误'
+      }
+    }
+  })
+  
 
   app.use(router.routes()).use(router.allowedMethods())
 }

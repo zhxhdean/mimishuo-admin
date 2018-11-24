@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx'
-import { SHIELDED_WORD_LIST } from '../../service/urls'
+import { SHIELDED_WORD_LIST, SHIELDED_WORD_DELETE,SHIELDED_WORD_BATCH_DELETE } from '../../service/urls'
 import { post } from '../../service/request'
 class ShieldedWordStore {
   @observable
@@ -31,8 +31,38 @@ class ShieldedWordStore {
   }
 
   @action
-  setKeyWord(value){
+  setKeyWord(value) {
     this.keyword = value
+  }
+
+  // 删除单条
+  @action
+  async delete(id) {
+    // todo 调接口
+    const rsp = await post({ url: SHIELDED_WORD_DELETE, data: { id: id } })
+    if (rsp.code === 0) {
+      const index = this.shieldedWordList.findIndex(item => item.id === id)
+      if (index > -1) {
+        this.shieldedWordList.splice(index, 1)
+      }
+    }
+    return rsp
+  }
+
+  // 批量删除
+  @action
+  async batchDelete(ids) {
+    // todo 调接口
+    const rsp = await post({ url: SHIELDED_WORD_BATCH_DELETE, data: { ids: ids } })
+    if (rsp.code === 0) {
+      ids.forEach(id => {
+        const index = this.shieldedWordList.findIndex(item => item.id === id)
+        if (index > -1) {
+          this.shieldedWordList.splice(index, 1)
+        }
+      })
+    }
+    return rsp
   }
 }
 export default new ShieldedWordStore()
