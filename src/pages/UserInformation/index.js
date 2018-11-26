@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
-import { Divider, Row, Col,message, Modal, Input,Button } from 'antd'
+import { Divider, Row, Col,message, Modal, Input } from 'antd'
+import VerifyCode from '../../components/VerifyCode'
+
 @inject('userInformationStore','rootStore')
 @observer
 export default class index extends Component {
@@ -63,6 +65,9 @@ export default class index extends Component {
       <div>
         <h2>用户信息</h2>
         <Divider />
+        <Row>
+          <Col><img src={userInformation.avatar} width="150px" alt="用户头像"/></Col>
+        </Row>
         <Row className="pdtb10">
           <Col span={3}>登录账号：</Col>
           <Col span={8} className="black">
@@ -145,19 +150,7 @@ export default class index extends Component {
               />
             </Col>
           </Row>
-          <Row>
-            <Col>验证码：</Col>
-          </Row>
-          <Row className="pdtb10">
-            <Col>
-              <Input
-                placeholder="请输入验证码"
-                onChange={this.handleInputChange.bind(this, 'verify')}
-                style={{width: '200px'}}
-              />
-              <Button>发送验证码（60）</Button>
-            </Col>
-          </Row>
+        <VerifyCode handleInputChange={this.handleInputChange}/>
         </Modal>
       </div>
     )

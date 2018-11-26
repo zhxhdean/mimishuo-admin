@@ -34,6 +34,7 @@ module.exports = app => {
       code: 0,
       data: {
         uid: req.uid,
+        avatar: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543234545176&di=b62cbe04556420714126f0b75cf5e575&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F8601a18b87d6277f954d070523381f30e924fcab.jpg',
         userName: 'zhxh',
         phone: '13917552082',
         company: '点融信息科技有限公司',
