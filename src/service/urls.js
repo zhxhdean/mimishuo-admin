@@ -43,3 +43,7 @@ export const TAGS_ADD = '/tags/add'
 export const TAGS_LIST = '/tags/list'
 
 export const TAGS_DELETE= '/tags/delete'
+
+export const SYSTEM_CONFIG = '/systemconfig'
+
+export const SYSTEM_CONFIG_EDIT = '/systemconfig/edit'

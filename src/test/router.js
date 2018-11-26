@@ -655,5 +655,27 @@ module.exports = app => {
     }
   })
 
+  let systemconfig = { email: 'gaoyi@benlai.com', phone: '' }
+  router.post('/systemconfig', async ctx => {
+    ctx.response.body = {
+      code: 0,
+      data: systemconfig
+    }
+  })
+
+  router.post('/systemconfig/edit', async ctx => {
+    const req = ctx.request.body
+    if (req.email) {
+      systemconfig.email = req.email
+    }
+    if (req.phone) {
+      systemconfig.phone = req.phone
+    }
+    ctx.response.body = {
+      code: 0,
+      data: systemconfig
+    }
+  })
+
   app.use(router.routes()).use(router.allowedMethods())
 }

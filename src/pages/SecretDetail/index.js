@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Divider, Spin, message,Row,Col,Checkbox,Icon,Input,Button } from 'antd'
 import { inject, observer } from 'mobx-react'
-
+import {getSecretStatus} from '../../common/constant'
 import PreviewImage from '../../components/PreviewImage'
 import './index.less'
 import CountDown from '../../components/CountDown'
@@ -83,7 +83,7 @@ export default class index extends Component {
         <Spin spinning={loading}>
           <ul>
             <li>
-              <h3>{secretDetail.remove ? <span className="red"><CountDown endTime ={secretDetail.removeTime}/>【阅后即焚】</span>: ''}{secretDetail.title}</h3>
+    <h3>{secretDetail.remove ? <span className="red"><CountDown endTime ={secretDetail.removeTime}/>【阅后即焚】</span>: ''}<span className="orange">【{getSecretStatus(secretDetail.status)}】</span>{secretDetail.title}</h3>
               <Button type="primary" onClick={this.handleJoinNewsLetter.bind(this, secretDetail)}>加入发布清单</Button>
             </li>
             <li>

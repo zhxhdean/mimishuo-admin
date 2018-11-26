@@ -11,7 +11,7 @@ export default class index extends Component {
     const {userInfo} = this.props.authenticateStore
     return (
       <div className="header-right">
-        <Link to="/userinfo">{userInfo.company}</Link>
+        <Link to="/userinfo"><Icon type="idcard" style={{fontSize: '14px'}}/> {userInfo.company}</Link>
         <Tooltip title="退出系统">
         <Icon type="logout" onClick={this.props.loginStore.logout}/>
         </Tooltip>

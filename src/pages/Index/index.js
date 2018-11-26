@@ -71,11 +71,11 @@ export default class index extends Component {
             <div className="main">
               <Row>
                 <Col span={24}>
-                  <span className="orangle">您好，{userInfo.userName}</span>{' '}
+                  <span className="orange">您好，{userInfo.userName}</span>{' '}
                   您已使用31天，还可以继续使用12天。<Link to="#">去充值</Link>
                 </Col>
               </Row>
-              <Row>
+              <Row style={{paddingTop: '15px'}}>
                 <Col span={8}>
                   今日意见：<span className="red">12</span>
                 </Col>
@@ -111,7 +111,7 @@ export default class index extends Component {
                   </Link>
                 </Col>
                 <Col span={8} className="center">
-                  <Link to="/system">
+                  <Link to="/shieldedword">
                     <Icon type="setting" />
                     <br /> 系统设置
                   </Link>
