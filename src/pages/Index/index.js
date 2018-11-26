@@ -27,12 +27,13 @@ export default class index extends Component {
             <Link to="/newsletter">newsletter</Link>
             <br />
             <Link to="/newsletter/detail/1">newsletter详情</Link><br/>
+            <Link to="/shieldedword">关键字屏蔽（列表、搜索、新增）</Link><br/>
           </Col>
           <Col span={12}>
          
           <Link to="/#">在线充值</Link><br/>
           <Link to="/#">充值记录</Link><br/>
-          <Link to="/#">关键字屏蔽（列表、搜索、新增）</Link><br/>
+          
           <Link to="/#">标签设置（列表、搜索、新增）</Link><br/>
           <Link to="/#">系统配置（通知手机、邮箱）</Link><br/>
           <Link to="/#">公司地址管理</Link><br/>

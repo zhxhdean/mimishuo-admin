@@ -15,6 +15,7 @@ import NewsLetterList from './pages/NewsLetterList'
 import NewsLetterDetail from './pages/NewsLetterDetail'
 import ShieldedWordList from './pages/ShieldedWordList'
 import WordLibrary from './pages/WordLibrary'
+import TagsList from './pages/Tags'
 // store
 import loginStore from './pages/Login/store'
 import rootStore from './store'
@@ -28,6 +29,7 @@ import newsLetterStore from './pages/NewsLetterList/store'
 import newsLetterDetailStore from './pages/NewsLetterDetail/store'
 import shieldedWordStore from './pages/ShieldedWordList/store'
 import wordLibraryStore from './pages/WordLibrary/store'
+import tagsStore from './pages/Tags/store'
 import { BackTop } from 'antd'
 const stores = {
   rootStore,
@@ -41,7 +43,8 @@ const stores = {
   newsLetterStore,
   newsLetterDetailStore,
   shieldedWordStore,
-  wordLibraryStore
+  wordLibraryStore,
+  tagsStore
 }
 
 // for debug
@@ -73,6 +76,7 @@ export const router = (
         <Route path='/newsletter' exact component={NewsLetterList}/>
         <Route path="/shieldedword" component={ShieldedWordList} />
         <Route path="/wordlibrary" component={WordLibrary}/>
+        <Route path="/tags" component={TagsList} />
         <Route component={Index} />
       </Switch>
     </Router>

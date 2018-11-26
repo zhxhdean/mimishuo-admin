@@ -29,6 +29,9 @@ export default withRouter(
         case '/wordlibrary':
           key = '41'
           break
+        case '/tags':
+          key = '42'
+          break
         default:
           key = '11'
           break
@@ -107,7 +110,7 @@ export default withRouter(
             <Menu.Item key="41">
               <Link to="/shieldedword">屏蔽词管理</Link>
             </Menu.Item>
-            <Menu.Item key="42">标签设置</Menu.Item>
+            <Menu.Item key="42"><Link to="/tags">标签设置</Link></Menu.Item>
           </SubMenu>
         </Menu>
       )

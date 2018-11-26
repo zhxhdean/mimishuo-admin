@@ -37,3 +37,9 @@ export const WORD_LIBRARY_LIST = '/wordlibrary/list'
 export const WORD_LIBRARY_IMPORT = '/wordlibrary/import'
 
 export const WORD_LIBRARY_BATCH_IMPORT = '/wordlibrary/batchimport'
+
+export const TAGS_ADD = '/tags/add'
+
+export const TAGS_LIST = '/tags/list'
+
+export const TAGS_DELETE= '/tags/delete'

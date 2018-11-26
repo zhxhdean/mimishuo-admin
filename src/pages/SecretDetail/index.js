@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Divider, Spin, message,Row,Col,Checkbox,Icon,Input,Button } from 'antd'
 import { inject, observer } from 'mobx-react'
-import {SECRET_TAGS} from '../../common/constant'
+
 import PreviewImage from '../../components/PreviewImage'
 import './index.less'
 import CountDown from '../../components/CountDown'
@@ -9,12 +9,13 @@ import NewsLetterPendingList from '../../components/NewsLetterPendingList'
 
 const CheckboxGroup = Checkbox.Group
 const TextArea = Input.TextArea
-@inject('secretDetailStore', 'rootStore', 'pendingListStore')
+@inject('secretDetailStore', 'rootStore', 'pendingListStore','tagsStore')
 @observer
 export default class index extends Component {
 
   componentDidMount() {
     const id = this.props.match.params.id
+    this.props.tagsStore.formatTags()
     this.loadData(+id)
   }
 
@@ -73,6 +74,7 @@ export default class index extends Component {
   render() {
     const { loading } = this.props.rootStore
     const { secretDetail } = this.props.secretDetailStore
+    const {tagsForSecret} = this.props.tagsStore
     return (
       <div className="secret-detail-page">
        {/*eslint-disable no-script-url*/}
@@ -90,7 +92,7 @@ export default class index extends Component {
                 <Col span={12}><label className="label">发布时间：</label>{secretDetail.createTime}</Col>
               </Row>
               <Row>
-                <Col span={24}><label className="label">标签：</label><CheckboxGroup value={secretDetail.tags} options={SECRET_TAGS} onChange={this.handleTagsChange}></CheckboxGroup></Col>
+                <Col span={24}><label className="label">标签：</label><CheckboxGroup value={secretDetail.tags} options={tagsForSecret} onChange={this.handleTagsChange}></CheckboxGroup></Col>
               </Row>
               <Row>
                 <Col span={10}><label className="label">阅读数量：</label>{secretDetail.viewCount}</Col>

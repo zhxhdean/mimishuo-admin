@@ -148,13 +148,13 @@ module.exports = app => {
         remove: true
       }
     ]
-    if(req.keyword!== ''){
+    if (req.keyword !== '') {
       data = data.filter(item => item.title.includes(req.keyword))
     }
     ctx.response.body = {
       code: 0,
       content: '',
-      data: data 
+      data: data
     }
   })
 
@@ -174,7 +174,8 @@ module.exports = app => {
         createTime: '2018-11-19 12:00:01',
         similar: '傻逼,sb',
         category: 2
-      },{
+      },
+      {
         id: 3,
         title: '王八',
         createTime: '2018-11-19 12:00:01',
@@ -203,13 +204,13 @@ module.exports = app => {
         category: 2
       }
     ]
-    if(req.keyword!== ''){
+    if (req.keyword !== '') {
       data = data.filter(item => item.title.includes(req.keyword))
     }
     ctx.response.body = {
       code: 0,
       content: '',
-      data: data 
+      data: data
     }
   })
   router.post('/wordlibrary/list', async ctx => {
@@ -228,7 +229,8 @@ module.exports = app => {
         createTime: '2018-11-19 12:00:01',
         similar: '傻逼,sb',
         category: 2
-      },{
+      },
+      {
         id: 3,
         title: '王八',
         createTime: '2018-11-19 12:00:01',
@@ -257,16 +259,15 @@ module.exports = app => {
         category: 2
       }
     ]
-    if(req.keyword!== ''){
+    if (req.keyword !== '') {
       data = data.filter(item => item.title.includes(req.keyword))
     }
     ctx.response.body = {
       code: 0,
       content: '',
-      data: data 
+      data: data
     }
   })
- 
 
   router.post('/newsletter/list', async ctx => {
     const req = ctx.request.body //get 获取参数 ; ctx.request.body 获取post参数
@@ -283,26 +284,28 @@ module.exports = app => {
         title: '测试标题2',
         createTime: '2018-11-19 12:00:01',
         content: '测试内容2',
-        status: 2,
-      },{
+        status: 2
+      },
+      {
         id: 3,
         title: '测试标题3',
         createTime: '2018-11-19 12:00:01',
         content: '测试内容',
-        status: 3,
-      },{
+        status: 3
+      },
+      {
         id: 4,
         title: '测试标题3',
         createTime: '2018-11-19 12:00:01',
         content: '测试内容',
-        status: 4,
+        status: 4
       }
     ]
 
-    if(req.keyword!== ''){
+    if (req.keyword !== '') {
       data = data.filter(item => item.title.includes(req.keyword))
     }
-    
+
     ctx.response.body = {
       code: 0,
       content: '',
@@ -342,19 +345,19 @@ module.exports = app => {
           createTime: '2018-11-19 10:23:22',
           removeTime: '2018-11-21 17:00:00',
           replyContent: '',
-          tags: [1,2,3],
+          tags: [1, 2, 3],
           status: 1,
           remove: req.id === 4 ? true : false,
           img: [
             'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711249406&di=ba9f9bfe9bd7aaf61309aa06ee0ca5fd&imgtype=0&src=http%3A%2F%2Fimg3.myhsw.cn%2F2018-03-22%2Fcp4yy0x9.jpg%3F86i',
             'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711249408&di=3b8c09e57a6d0938e807ed4c9057f47e&imgtype=0&src=http%3A%2F%2Fpic.shejiben.com%2Fcase%2F2015%2F06%2F13%2F20150613075420-236250cd.jpg',
-            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711248924&di=d447728206a39e7d8ae292ea8b735a37&imgtype=0&src=http%3A%2F%2Fwww.yw2005.com%2Fbaike%2Fuploads%2Fallimg%2F160604%2F1-160604155221243.jpg'
-          ,'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711249406&di=ba9f9bfe9bd7aaf61309aa06ee0ca5fd&imgtype=0&src=http%3A%2F%2Fimg3.myhsw.cn%2F2018-03-22%2Fcp4yy0x9.jpg%3F86i',
-          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711249408&di=3b8c09e57a6d0938e807ed4c9057f47e&imgtype=0&src=http%3A%2F%2Fpic.shejiben.com%2Fcase%2F2015%2F06%2F13%2F20150613075420-236250cd.jpg',
-          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711248924&di=d447728206a39e7d8ae292ea8b735a37&imgtype=0&src=http%3A%2F%2Fwww.yw2005.com%2Fbaike%2Fuploads%2Fallimg%2F160604%2F1-160604155221243.jpg'
-          ,'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711249406&di=ba9f9bfe9bd7aaf61309aa06ee0ca5fd&imgtype=0&src=http%3A%2F%2Fimg3.myhsw.cn%2F2018-03-22%2Fcp4yy0x9.jpg%3F86i',
-          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711249408&di=3b8c09e57a6d0938e807ed4c9057f47e&imgtype=0&src=http%3A%2F%2Fpic.shejiben.com%2Fcase%2F2015%2F06%2F13%2F20150613075420-236250cd.jpg'
-        ]
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711248924&di=d447728206a39e7d8ae292ea8b735a37&imgtype=0&src=http%3A%2F%2Fwww.yw2005.com%2Fbaike%2Fuploads%2Fallimg%2F160604%2F1-160604155221243.jpg',
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711249406&di=ba9f9bfe9bd7aaf61309aa06ee0ca5fd&imgtype=0&src=http%3A%2F%2Fimg3.myhsw.cn%2F2018-03-22%2Fcp4yy0x9.jpg%3F86i',
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711249408&di=3b8c09e57a6d0938e807ed4c9057f47e&imgtype=0&src=http%3A%2F%2Fpic.shejiben.com%2Fcase%2F2015%2F06%2F13%2F20150613075420-236250cd.jpg',
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711248924&di=d447728206a39e7d8ae292ea8b735a37&imgtype=0&src=http%3A%2F%2Fwww.yw2005.com%2Fbaike%2Fuploads%2Fallimg%2F160604%2F1-160604155221243.jpg',
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711249406&di=ba9f9bfe9bd7aaf61309aa06ee0ca5fd&imgtype=0&src=http%3A%2F%2Fimg3.myhsw.cn%2F2018-03-22%2Fcp4yy0x9.jpg%3F86i',
+            'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542711249408&di=3b8c09e57a6d0938e807ed4c9057f47e&imgtype=0&src=http%3A%2F%2Fpic.shejiben.com%2Fcase%2F2015%2F06%2F13%2F20150613075420-236250cd.jpg'
+          ]
         }
       }
     } else {
@@ -365,7 +368,7 @@ module.exports = app => {
     }
   })
 
-  router.post('/newsletter/detail', async ctx =>{
+  router.post('/newsletter/detail', async ctx => {
     const req = ctx.request.body
     if (req.id) {
       ctx.response.body = {
@@ -398,7 +401,8 @@ module.exports = app => {
               content: '333秘密描述1',
               createTime: '2018-11-19 10:23:22',
               author: '钢铁侠'
-            },{
+            },
+            {
               id: 1,
               title: '秘密1',
               content: '111秘密描述1',
@@ -418,7 +422,8 @@ module.exports = app => {
               content: '333秘密描述1',
               createTime: '2018-11-19 10:23:22',
               author: '钢铁侠'
-            },{
+            },
+            {
               id: 1,
               title: '秘密1',
               content: '111秘密描述1',
@@ -438,7 +443,8 @@ module.exports = app => {
               content: '333秘密描述1',
               createTime: '2018-11-19 10:23:22',
               author: '钢铁侠'
-            },{
+            },
+            {
               id: 1,
               title: '秘密1',
               content: '111秘密描述1',
@@ -458,7 +464,8 @@ module.exports = app => {
               content: '333秘密描述1',
               createTime: '2018-11-19 10:23:22',
               author: '钢铁侠'
-            },{
+            },
+            {
               id: 1,
               title: '秘密1',
               content: '111秘密描述1',
@@ -478,7 +485,8 @@ module.exports = app => {
               content: '333秘密描述1',
               createTime: '2018-11-19 10:23:22',
               author: '钢铁侠'
-            },{
+            },
+            {
               id: 1,
               title: '秘密1',
               content: '111秘密描述1',
@@ -498,7 +506,8 @@ module.exports = app => {
               content: '333秘密描述1',
               createTime: '2018-11-19 10:23:22',
               author: '钢铁侠'
-            },{
+            },
+            {
               id: 1,
               title: '秘密1',
               content: '111秘密描述1',
@@ -531,14 +540,14 @@ module.exports = app => {
   })
 
   router.post('/secret/detail/edit', async ctx => {
-    ctx.response.body ={
+    ctx.response.body = {
       code: 0,
       data: ctx.request.body
     }
   })
 
-  router.post('/newsletter/publish' ,async ctx => {
-    ctx.response.body ={
+  router.post('/newsletter/publish', async ctx => {
+    ctx.response.body = {
       code: 0,
       data: ctx.request.body
     }
@@ -546,13 +555,13 @@ module.exports = app => {
 
   router.post('/shieldedword/delete', async ctx => {
     const req = ctx.request.body
-    if(req.id){
+    if (req.id) {
       ctx.response.body = {
         code: 0,
         content: req.id
       }
-    }else{
-      ctx.response.body ={
+    } else {
+      ctx.response.body = {
         code: 1,
         content: '请求参数错误'
       }
@@ -561,28 +570,28 @@ module.exports = app => {
 
   router.post('/shieldedwrod/batchdelete', async ctx => {
     const req = ctx.request.body
-    if(req.ids){
+    if (req.ids) {
       ctx.response.body = {
         code: 0,
         content: req.ids
       }
-    }else{
-      ctx.response.body ={
+    } else {
+      ctx.response.body = {
         code: 1,
         content: '请求参数错误'
       }
     }
   })
-  
+
   router.post('/shieldedwrod/add', async ctx => {
     const req = ctx.request.body
-    if(req.category){
+    if (req.category) {
       ctx.response.body = {
         code: 0,
         content: req.ids
       }
-    }else{
-      ctx.response.body ={
+    } else {
+      ctx.response.body = {
         code: 1,
         content: '请求参数错误'
       }
@@ -591,13 +600,13 @@ module.exports = app => {
 
   router.post('/wordlibrary/import', async ctx => {
     const req = ctx.request.body
-    if(req.id){
+    if (req.id) {
       ctx.response.body = {
         code: 0,
         content: req.id
       }
-    }else{
-      ctx.response.body ={
+    } else {
+      ctx.response.body = {
         code: 1,
         content: '请求参数错误'
       }
@@ -605,16 +614,44 @@ module.exports = app => {
   })
   router.post('/wordlibrary/batchimport', async ctx => {
     const req = ctx.request.body
-    if(req.ids){
+    if (req.ids) {
       ctx.response.body = {
         code: 0,
         content: req.ids
       }
-    }else{
-      ctx.response.body ={
+    } else {
+      ctx.response.body = {
         code: 1,
         content: '请求参数错误'
       }
+    }
+  })
+
+  var tags = [{ id: 1, name: '一般' }]
+  router.post('/tags/list', async ctx => {
+    const req = ctx.request.body
+    ctx.response.body = {
+      code: 0,
+      data: tags
+    }
+  })
+
+  router.post('/tags/add', async ctx => {
+    const req = ctx.request.body
+    tags.push({ id: tags.length + 1, name: req.tag })
+    ctx.response.body = {
+      code: 0,
+      data: tags
+    }
+  })
+
+  router.post('/tags/delete', async ctx => {
+    const req = ctx.request.body
+    const index = tags.findIndex(item => item.id === +req.id)
+    tags.splice(index, 1)
+    ctx.response.body = {
+      code: 0,
+      data: tags
     }
   })
 
