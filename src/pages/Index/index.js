@@ -1,44 +1,126 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Row, Col } from 'antd'
+import './index.less'
+import { Row, Col, Divider, Icon } from 'antd'
+import { inject, observer } from 'mobx-react'
+import ReactEcharts from 'echarts-for-react'
+
+@inject('authenticateStore')
+@observer
 export default class index extends Component {
+  getOption() {
+    return {
+      title: {
+        text: '10月份匿名意见分类图',
+        subtext: '',
+        left: 'center'
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{b} : {c} ({d}%)'
+      },
+      legend: {
+        // orient: 'vertical',
+        // top: 'middle',
+        bottom: 10,
+        left: 'center',
+        data: ['十分重要', '亟需解决', '一般', '毫无意义', '多人点赞']
+      },
+      series: [
+        {
+          type: 'pie',
+          radius: '70%',
+          center: ['50%', '50%'],
+          selectedMode: 'single',
+          label:{
+            normal:{
+              formatter:'{b}:{c}',
+              textStyle: {
+                fontWeight: 'normal',
+                fontSize: 14
+              }
+            }
+          },
+          data: [
+            {
+              value: 1548,
+              name: '十分重要'
+            },
+            { value: 535, name: '亟需解决' },
+            { value: 510, name: '一般' },
+            { value: 634, name: '毫无意义' },
+            { value: 735, name: '多人点赞' }
+          ],
+          itemStyle: {
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
+        }
+      ]
+    }
+  }
   render() {
+    const { userInfo } = this.props.authenticateStore
     return (
-      <div>
+      <div className="index-page">
         <Row>
-          <Col span={12}>
-            <h3>已完成的页面</h3>
+          <Col span={16}>
+            <div className="main">
+              <Row>
+                <Col span={24}>
+                  <span className="orangle">您好，{userInfo.userName}</span>{' '}
+                  您已使用31天，还可以继续使用12天。<Link to="#">去充值</Link>
+                </Col>
+              </Row>
+              <Row>
+                <Col span={8}>
+                  今日意见：<span className="red">12</span>
+                </Col>
+                <Col span={8}>
+                  未读意见：<span className="red">4</span>
+                </Col>
+                <Col span={8}>
+                  回复意见：<span className="red">8</span>
+                </Col>
+              </Row>
+              <Row style={{paddingTop: '20px'}}>
+                <Col span={24}>
+                  <ReactEcharts option={this.getOption()} style={{height: '400px'}}/>
+                </Col>
+              </Row>
+            </div>
           </Col>
-          <Col span={12}>
-            <h3>未开始的页面</h3>
+          <Col span={8}>
+            <div className="short-tools">
+              <h2>快捷工具</h2>
+              <Divider />
+              <Row>
+                <Col span={8} className="center">
+                  <Link to="/changepassword">
+                    <Icon type="lock" />
+                    <br /> 修改密码
+                  </Link>
+                </Col>
+                <Col span={8} className="center">
+                  <Link to="/secret">
+                    <Icon type="file-text" />
+                    <br /> 查看意见
+                  </Link>
+                </Col>
+                <Col span={8} className="center">
+                  <Link to="/system">
+                    <Icon type="setting" />
+                    <br /> 系统设置
+                  </Link>
+                </Col>
+              </Row>
+            </div>
           </Col>
         </Row>
-        <Row>
-          <Col span={12}>
-            {' '}
-            <Link to="/userinfo">用户中心</Link>
-            <br />
-            <Link to="/changepassword">密码修改</Link>
-            <br />
-            <Link to="/secret">秘密列表</Link>
-            <br />
-            <Link to="/secret/detail/1">秘密详情</Link>
-            <br />
-            <Link to="/newsletter">newsletter</Link>
-            <br />
-            <Link to="/newsletter/detail/1">newsletter详情</Link><br/>
-            <Link to="/shieldedword">关键字屏蔽（列表、搜索、新增）</Link><br/>
-          </Col>
-          <Col span={12}>
-         
-          <Link to="/#">在线充值</Link><br/>
-          <Link to="/#">充值记录</Link><br/>
-          
-          <Link to="/#">标签设置（列表、搜索、新增）</Link><br/>
-          <Link to="/#">系统配置（通知手机、邮箱）</Link><br/>
-          <Link to="/#">公司地址管理</Link><br/>
-          </Col>
-        </Row>
+
       </div>
     )
   }
