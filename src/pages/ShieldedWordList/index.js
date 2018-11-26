@@ -181,7 +181,7 @@ export default class index extends Component {
             批量删除
           </Button>
           <Button className="ml20" onClick={this.props.shieldedWordStore.showAddShieldedWord}>新增</Button>
-          <Button className="ml20">从词库导入</Button>
+          <Button className="ml20" onClick={()=>this.props.history.push({pathname: '/wordlibrary'})}>从词库导入</Button>
           <Button className="ml20" onClick={this.handleExport}>
             导出
           </Button>

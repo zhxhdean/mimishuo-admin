@@ -212,6 +212,61 @@ module.exports = app => {
       data: data 
     }
   })
+  router.post('/wordlibrary/list', async ctx => {
+    const req = ctx.request.body //get 获取参数 ; ctx.request.body 获取post参数
+    let data = [
+      {
+        id: 1,
+        title: '王八',
+        createTime: '2018-11-19 12:00:01',
+        similar: '王八蛋',
+        category: 1
+      },
+      {
+        id: 2,
+        title: 'SB',
+        createTime: '2018-11-19 12:00:01',
+        similar: '傻逼,sb',
+        category: 2
+      },{
+        id: 3,
+        title: '王八',
+        createTime: '2018-11-19 12:00:01',
+        similar: '王八蛋',
+        category: 1
+      },
+      {
+        id: 4,
+        title: 'SB',
+        createTime: '2018-11-19 12:00:01',
+        similar: '傻逼,sb',
+        category: 2
+      },
+      {
+        id: 5,
+        title: '王八',
+        createTime: '2018-11-19 12:00:01',
+        similar: '王八蛋',
+        category: 1
+      },
+      {
+        id: 6,
+        title: 'SB',
+        createTime: '2018-11-19 12:00:01',
+        similar: '傻逼,sb',
+        category: 2
+      }
+    ]
+    if(req.keyword!== ''){
+      data = data.filter(item => item.title.includes(req.keyword))
+    }
+    ctx.response.body = {
+      code: 0,
+      content: '',
+      data: data 
+    }
+  })
+ 
 
   router.post('/newsletter/list', async ctx => {
     const req = ctx.request.body //get 获取参数 ; ctx.request.body 获取post参数
@@ -522,6 +577,35 @@ module.exports = app => {
   router.post('/shieldedwrod/add', async ctx => {
     const req = ctx.request.body
     if(req.category){
+      ctx.response.body = {
+        code: 0,
+        content: req.ids
+      }
+    }else{
+      ctx.response.body ={
+        code: 1,
+        content: '请求参数错误'
+      }
+    }
+  })
+
+  router.post('/wordlibrary/import', async ctx => {
+    const req = ctx.request.body
+    if(req.id){
+      ctx.response.body = {
+        code: 0,
+        content: req.id
+      }
+    }else{
+      ctx.response.body ={
+        code: 1,
+        content: '请求参数错误'
+      }
+    }
+  })
+  router.post('/wordlibrary/batchimport', async ctx => {
+    const req = ctx.request.body
+    if(req.ids){
       ctx.response.body = {
         code: 0,
         content: req.ids

@@ -31,3 +31,9 @@ export const SHIELDED_WORD_DELETE = '/shieldedword/delete'
 export const SHIELDED_WORD_BATCH_DELETE = '/shieldedwrod/batchdelete'
 
 export const SHIELDED_WORD_BATCH_ADD = '/shieldedwrod/add'
+
+export const WORD_LIBRARY_LIST = '/wordlibrary/list'
+
+export const WORD_LIBRARY_IMPORT = '/wordlibrary/import'
+
+export const WORD_LIBRARY_BATCH_IMPORT = '/wordlibrary/batchimport'

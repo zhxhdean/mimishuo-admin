@@ -26,6 +26,9 @@ export default withRouter(
         case '/shieldedword':
           key = '41'
           break
+        case '/wordlibrary':
+          key = '41'
+          break
         default:
           key = '11'
           break
