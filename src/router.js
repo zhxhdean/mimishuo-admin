@@ -25,7 +25,7 @@ import secretDetailStore from './pages/SecretDetail/store'
 import pendingListStore from './components/NewsLetterPendingList/store'
 import newsLetterStore from './pages/NewsLetterList/store'
 import newsLetterDetailStore from './pages/NewsLetterDetail/store'
-import shieledWordStore from './pages/ShieldedWordList/store'
+import shieldedWordStore from './pages/ShieldedWordList/store'
 import { BackTop } from 'antd'
 const stores = {
   rootStore,
@@ -38,7 +38,7 @@ const stores = {
   pendingListStore,
   newsLetterStore,
   newsLetterDetailStore,
-  shieledWordStore
+  shieldedWordStore
 }
 
 // for debug

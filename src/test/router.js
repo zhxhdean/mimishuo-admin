@@ -519,6 +519,20 @@ module.exports = app => {
     }
   })
   
+  router.post('/shieldedwrod/add', async ctx => {
+    const req = ctx.request.body
+    if(req.category){
+      ctx.response.body = {
+        code: 0,
+        content: req.ids
+      }
+    }else{
+      ctx.response.body ={
+        code: 1,
+        content: '请求参数错误'
+      }
+    }
+  })
 
   app.use(router.routes()).use(router.allowedMethods())
 }

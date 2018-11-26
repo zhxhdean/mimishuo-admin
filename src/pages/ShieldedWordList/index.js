@@ -7,8 +7,9 @@ import {
   getCategory
 } from '../../common/constant'
 import jsxlxs from '../../common/js2execl'
+import AddShieldedWord from '../../components/AddShieldedWord'
 const Search = Input.Search
-@inject('shieledWordStore', 'rootStore')
+@inject('shieldedWordStore', 'rootStore')
 @observer
 export default class index extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ export default class index extends Component {
 
   loadData(pageIndex, pageSize, keyword = '') {
     this.props.rootStore.showLoading()
-    this.props.shieledWordStore
+    this.props.shieldedWordStore
       .getList(pageIndex, pageSize, keyword)
       .then(rsp => {
         if (rsp.code !== 0) {
@@ -40,7 +41,7 @@ export default class index extends Component {
 
   // 搜索
   handleSearch = value => {
-    this.props.shieledWordStore.setKeyWord(value)
+    this.props.shieldedWordStore.setKeyWord(value)
     this.loadData(DEFAULT_PAGEINDEX, DEFAULT_PAGESIZE, value)
   }
 
@@ -49,14 +50,14 @@ export default class index extends Component {
     this.loadData(
       pagination.current,
       DEFAULT_PAGESIZE,
-      this.props.shieledWordStore.keyword
+      this.props.shieldedWordStore.keyword
     )
   }
 
   // 导出
   handleExport = () => {
     // todo 全集导出
-    const data = this.props.shieledWordStore.shieldedWordList.map(item => {
+    const data = this.props.shieldedWordStore.shieldedWordList.map(item => {
       return {
         主题: item.title,
         创建时间: item.createTime,
@@ -75,7 +76,7 @@ export default class index extends Component {
       content: '请确定要删除当前行数据？',
       onOk(){
         self.props.rootStore.showLoading()
-        self.props.shieledWordStore.delete(id).then(rsp => {
+        self.props.shieldedWordStore.delete(id).then(rsp => {
           if(rsp.code === 0){
             message.success('删除成功')
           }else{
@@ -102,7 +103,7 @@ export default class index extends Component {
       content: '请确定要删除当前选择的数据？',
       onOk(){
         self.props.rootStore.showLoading()
-        self.props.shieledWordStore.batchDelete(self.state.selectedRows).then(rsp => {
+        self.props.shieldedWordStore.batchDelete(self.state.selectedRows).then(rsp => {
           if(rsp.code === 0){
             message.success('删除成功')
           }else{
@@ -135,7 +136,11 @@ export default class index extends Component {
       },
       {
         dataIndex: 'similar',
-        title: '相关近义词'
+        title: '相关近义词',
+        width: 300
+      },{
+        dataIndex: 'createTime',
+        title: '添加时间'
       },
       {
         title: '操作',
@@ -153,7 +158,7 @@ export default class index extends Component {
       }
     ]
 
-    const { shieldedWordList, current, total } = this.props.shieledWordStore
+    const { shieldedWordList, current, total } = this.props.shieldedWordStore
     const dataSource = shieldedWordList.map(item => item)
     const { loading } = this.props.rootStore
     const rowSelection = {
@@ -175,8 +180,8 @@ export default class index extends Component {
           <Button type="primary" className="ml20" onClick={this.handleBatchDelete}>
             批量删除
           </Button>
-          <Button className="ml20">新增</Button>
-          <Button className="ml20">从系统中导入</Button>
+          <Button className="ml20" onClick={this.props.shieldedWordStore.showAddShieldedWord}>新增</Button>
+          <Button className="ml20">从词库导入</Button>
           <Button className="ml20" onClick={this.handleExport}>
             导出
           </Button>
@@ -197,6 +202,8 @@ export default class index extends Component {
             columns={columns}
             style={{ marginTop: '20px' }}
           />
+
+          <AddShieldedWord />
         </div>
       </div>
     )

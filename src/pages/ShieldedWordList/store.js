@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx'
-import { SHIELDED_WORD_LIST, SHIELDED_WORD_DELETE,SHIELDED_WORD_BATCH_DELETE } from '../../service/urls'
+import { SHIELDED_WORD_LIST, SHIELDED_WORD_DELETE,SHIELDED_WORD_BATCH_DELETE,SHIELDED_WORD_BATCH_ADD } from '../../service/urls'
 import { post } from '../../service/request'
 class ShieldedWordStore {
   @observable
@@ -10,7 +10,41 @@ class ShieldedWordStore {
   total = 0
   @observable
   keyword = ''
+  @observable
+  showAddShieldedWordModal = false
 
+  // 新增屏蔽词
+  @observable
+  category = 0
+  @observable
+  shieldedWord = ''
+  @observable
+  similar = ''
+
+  @action
+  setValue(name,value){
+    this[name] = value
+  }
+  @action.bound
+  showAddShieldedWord (){
+    this.showAddShieldedWordModal = true
+  }
+  @action.bound
+  hideAddShieldedWord (){
+    this.showAddShieldedWordModal = false
+  }
+
+  @action
+  async add(){
+    return await post({
+      url: SHIELDED_WORD_BATCH_ADD,
+      data: {
+        category: this.category,
+        shieldedWord: this.shieldedWord,
+        similar: this.similar
+      }
+    })
+  }
   @action
   async getList(pageIndex, pageSize, keyword = '') {
     this.current = pageIndex
