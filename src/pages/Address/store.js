@@ -33,12 +33,20 @@ class AddressStore {
 
   @action
   async edit(id){
-    return await post({url: ADDRESS_EDIT, data: {id: id}})
+    const rsp =  await post({url: ADDRESS_EDIT, data: {id: id}})
+    if(rsp.code === 0){
+      this.getList()
+    }
+    return rsp
   }
 
   @action
   async delete(id){
-    return await post({url: ADDRESS_DELETE, data: {id: id}})
+    const rsp = await post({url: ADDRESS_DELETE, data: {id: id}})
+    if(rsp.code === 0){
+      this.getList()
+    }
+    return rsp
   }
 }
 export default new AddressStore()

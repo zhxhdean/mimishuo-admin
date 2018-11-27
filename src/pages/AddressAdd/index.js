@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Icon, Divider, Input,message,Button } from 'antd'
+import { Icon, Divider, Input, message, Button } from 'antd'
 import './index.less'
-import { inject,observer } from 'mobx-react';
+import { inject, observer } from 'mobx-react'
 const Search = Input.Search
 
-@inject('addressStore','rootStore')
+@inject('addressStore', 'rootStore')
 @observer
 export default class index extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       cityCode: '' || '010'
@@ -24,10 +24,17 @@ export default class index extends Component {
     const self = this
     // 加载完成
     tag.onload = () => {
-       let map = new window.AMap.Map('container', {
+      let map = new window.AMap.Map('container', {
         resizeEnable: true
       })
       window.map = map
+      window.AMap.plugin('AMap.Autocomplete', () => {
+        // 自动提示
+        var auto = new window.AMap.Autocomplete({
+          input: 'tipinput'
+        })
+      })
+
       self.props.rootStore.showLoading()
       window.AMap.plugin('AMap.Geolocation', function() {
         var geolocation = new window.AMap.Geolocation({
@@ -53,8 +60,8 @@ export default class index extends Component {
     this.props.addressStore.setValue('address', value)
     this.props.rootStore.showLoading()
     const self = this
-    window.AMap.plugin('AMap.Geocoder', function(){
-      const geocoder =new window.AMap.Geocoder({city: self.state.cityCode})
+    window.AMap.plugin('AMap.Geocoder', function() {
+      const geocoder = new window.AMap.Geocoder({ city: self.state.cityCode })
       let marker = ''
       geocoder.getLocation(value, (status, result) => {
         self.props.rootStore.hideLoading()
@@ -62,59 +69,64 @@ export default class index extends Component {
           const lnglat = result.geocodes[0].location
           self.props.addressStore.setValue('lng', lnglat.lng)
           self.props.addressStore.setValue('lat', lnglat.lat)
-          document.getElementById('result') && (document.getElementById('result').innerHTML = lnglat)
+          document.getElementById('result') &&
+            (document.getElementById('result').innerHTML = lnglat)
           if (!marker) {
             marker = new window.AMap.Marker()
             window.map.add(marker)
           }
           marker.setPosition(lnglat)
           window.map.setFitView(marker)
-        }else{
+        } else {
           message.error('搜索失败')
         }
       })
     })
-  
   }
 
-  handlSubmit = () =>{
-    if(!this.props.addressStore.address.address){
+  handlSubmit = () => {
+    if (!this.props.addressStore.address.address) {
       message.error('请输入公司地址')
       return
     }
     this.props.rootStore.showLoading()
-    this.props.addressStore.add().then(rsp => {
-      this.props.rootStore.hideLoading()
-      if(rsp.code === 0){
-        message.success('添加成功')
-      }else{
+    this.props.addressStore
+      .add()
+      .then(rsp => {
+        this.props.rootStore.hideLoading()
+        if (rsp.code === 0) {
+          message.success('添加成功')
+        } else {
+          message.error('添加失败')
+        }
+      })
+      .catch(err => {
+        this.props.rootStore.hideLoading()
         message.error('添加失败')
-      }
-    }).catch(err => {
-      this.props.rootStore.hideLoading()
-      message.error('添加失败')
-    })
+      })
   }
 
   //解析定位结果
   onComplete(data, self) {
     // document.getElementById('status').innerHTML='定位成功'
     var str = []
-    self.setState({cityCode: data.addressComponent.cityCode})
+    self.setState({ cityCode: data.addressComponent.cityCode })
     str.push('定位结果：' + data.position)
     str.push('定位类别：' + data.location_type)
     if (data.accuracy) {
       str.push('精度：' + data.accuracy + ' 米')
     } //如为IP精确定位结果则没有精度信息
     str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'))
-    document.getElementById('result') && (document.getElementById('result').innerHTML = str.join('<br>'))
+    document.getElementById('result') &&
+      (document.getElementById('result').innerHTML = str.join('<br>'))
   }
   //解析定位错误信息
-  onError(data,self) {
-    self.setState({cityCode: '021'})
+  onError(data, self) {
+    self.setState({ cityCode: '021' })
     // document.getElementById('status').innerHTML='定位失败'
-    document.getElementById('result') && (document.getElementById('result').innerHTML =
-      '失败原因排查信息:' + data.message)
+    document.getElementById('result') &&
+      (document.getElementById('result').innerHTML =
+        '失败原因排查信息:' + data.message)
   }
 
   render() {
@@ -137,8 +149,11 @@ export default class index extends Component {
           className="wd300"
           onSearch={this.handleSearch}
           enterButton
+          id="tipinput"
         />
-        <Button type="primary" className="ml20" onClick={this.handlSubmit}>确定添加</Button>
+        <Button type="primary" className="ml20" onClick={this.handlSubmit}>
+          确定添加
+        </Button>
         <div id="result" />
         <div id="container" />
       </div>

@@ -721,6 +721,8 @@ module.exports = app => {
 
   router.post('/address/delete', async ctx => {
     const req = ctx.request.body
+    const index = addressList.findIndex(item => item.id === req.id)
+    addressList.splice(index, 1)
     ctx.response.body = {
       code: 0,
       data: []
