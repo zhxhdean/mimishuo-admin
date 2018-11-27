@@ -150,7 +150,7 @@ export default class index extends Component {
               />
             </Col>
           </Row>
-        <VerifyCode handleInputChange={this.handleInputChange}/>
+        <VerifyCode handleInputChange={this.handleInputChange} prevalue={{v:this.props.userInformationStore.password,t: '请先输入登录密码'}}/>
         </Modal>
       </div>
     )

@@ -64,6 +64,21 @@ module.exports = app => {
       }
     }
   })
+  router.post('/user/forgetpassword', async ctx => {
+    const req = ctx.request.body //get 获取参数 ; ctx.request.body 获取post参数
+
+      ctx.response.body = {
+        code: 0,
+        content: '',
+        data: {
+          new: req.newPassword,
+          confirm: req.confirmPassword,
+          verify: req.verify
+        }
+      }
+  })
+
+  
 
   router.post('/secret/list', async ctx => {
     const req = ctx.request.body //get 获取参数 ; ctx.request.body 获取post参数

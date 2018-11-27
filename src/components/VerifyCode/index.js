@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Row,Col,Button,Input} from 'antd'
+import {Row,Col,Button,Input,message} from 'antd'
 
 let interval
 export default class index extends Component {
@@ -12,6 +12,10 @@ export default class index extends Component {
   }
 
   handleSend =() => {
+    if(this.props.prevalue&&!this.props.prevalue.v){
+      message.error(this.props.prevalue.t)
+      return
+    }
     let countDown = this.state.countDown
     //todo 调接口发送验证码
     this.setState({disable: true})
@@ -41,7 +45,7 @@ export default class index extends Component {
                 onChange={this.props.handleInputChange.bind(this, 'verify')}
                 style={{width: '150px'}}
               />
-              <Button style={{marginTop: '0'}} disabled={this.state.disable} onClick={this.handleSend}>发送验证码{this.state.disable && `(${this.state.countDown})`}</Button>
+              <Button type="primary" style={{marginTop: '0', marginLeft: '30px'}} disabled={this.state.disable} onClick={this.handleSend}>获取验证码{this.state.disable && `(${this.state.countDown})`}</Button>
             </Col>
           </Row>
       </div>

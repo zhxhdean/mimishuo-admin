@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 import { Button, Input, message, Icon } from 'antd'
 import { observer, inject } from 'mobx-react'
 import { STATUS } from '../../common/constant'
@@ -50,7 +51,7 @@ export default class index extends Component {
     return (
       <div className="login-page">
         <div className="form">
-          <h2>登录</h2>
+          <h2>登　录</h2>
           <ul>
             <li>
               <span>用户名：</span>
@@ -82,6 +83,7 @@ export default class index extends Component {
                 登录
               </Button>
             </li>
+            <li className="pright"><Link to="/forget">忘记密码？</Link></li>
           </ul>
         </div>
       </div>

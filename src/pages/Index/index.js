@@ -11,7 +11,7 @@ export default class index extends Component {
   getOption() {
     return {
       title: {
-        text: '10月份匿名意见分类图',
+        text: '10月份匿名秘密分类图',
         subtext: '',
         left: 'center'
       },
@@ -77,13 +77,13 @@ export default class index extends Component {
               </Row>
               <Row style={{paddingTop: '15px'}}>
                 <Col span={8}>
-                  今日意见：<span className="red">12</span>
+                  今日秘密：<span className="red">12</span>
                 </Col>
                 <Col span={8}>
-                  未读意见：<span className="red">4</span>
+                  未读秘密：<span className="red">4</span>
                 </Col>
                 <Col span={8}>
-                  回复意见：<span className="red">8</span>
+                  回复秘密：<span className="red">8</span>
                 </Col>
               </Row>
               <Row style={{paddingTop: '20px'}}>
@@ -107,7 +107,7 @@ export default class index extends Component {
                 <Col span={8} className="center">
                   <Link to="/secret">
                     <Icon type="file-text" />
-                    <br /> 查看意见
+                    <br /> 查看秘密
                   </Link>
                 </Col>
                 <Col span={8} className="center">

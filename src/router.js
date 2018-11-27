@@ -17,6 +17,7 @@ import ShieldedWordList from './pages/ShieldedWordList'
 import WordLibrary from './pages/WordLibrary'
 import TagsList from './pages/Tags'
 import SystemConfig from './pages/SystemConfig'
+import ForgetPassword from './pages/ForgetPassword'
 // store
 import loginStore from './pages/Login/store'
 import rootStore from './store'
@@ -32,6 +33,7 @@ import shieldedWordStore from './pages/ShieldedWordList/store'
 import wordLibraryStore from './pages/WordLibrary/store'
 import tagsStore from './pages/Tags/store'
 import systemConfigStore from './pages/SystemConfig/store'
+import forgetPasswordStore from './pages/ForgetPassword/store'
 import { BackTop } from 'antd'
 const stores = {
   rootStore,
@@ -47,7 +49,8 @@ const stores = {
   shieldedWordStore,
   wordLibraryStore,
   tagsStore,
-  systemConfigStore
+  systemConfigStore,
+  forgetPasswordStore
 }
 
 // for debug
@@ -59,6 +62,7 @@ export const rootRouter = (
     <Router>
       <Switch>
         <Route path="/login" component={Login} />
+        <Route path="/forget" component={ForgetPassword} />
         <Route path="/" component={Layout} />
       </Switch>
     </Router>

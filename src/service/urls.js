@@ -10,6 +10,8 @@ export const USER_INFORMATION = '/user/info'
 
 export const USER_CHANGE_PASSWORD = '/user/changepassword'
 
+export const USER_FORGET_PASSWORD = '/user/forgetpassword'
+
 export const SECRET_LIST = '/secret/list'
 
 export const SECRET_REPLY_CONTENT = '/secret/reply'
