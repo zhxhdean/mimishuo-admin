@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Divider, Input, Table, message, Tooltip, Button } from 'antd'
+import { Divider, Input, Table, message, Tooltip, Button,DatePicker } from 'antd'
 import './index.less'
 import { inject, observer } from 'mobx-react'
 import { DEFAULT_PAGESIZE, DEFAULT_PAGEINDEX } from '../../common/constant'
@@ -8,6 +8,13 @@ import ReplySecret from '../../components/ReplySecret'
 import NewsLetterPendingList from '../../components/NewsLetterPendingList'
 import jsxlxs from '../../common/js2execl'
 import {SECRET_STATUS, getSecretStatus} from '../../common/constant'
+import moment from 'moment';
+import 'moment/locale/zh-cn';
+
+import locale from 'antd/lib/date-picker/locale/zh_CN'
+moment.locale('zh-cn');
+const { RangePicker} = DatePicker;
+
 const Search = Input.Search
 
 @inject('secretListStore', 'rootStore', 'pendingListStore')
@@ -52,14 +59,17 @@ export default class index extends Component {
 
   // 表格分页、筛选、排序
   handleChange = (pagination, filters, sorter) => {
-    const { status } = filters
+    console.log(sorter,filters)
     this.props.rootStore.showLoading()
     this.props.secretListStore
       .getList(
         pagination.current,
         DEFAULT_PAGESIZE,
         this.props.secretListStore.keyword,
-        { status: status }
+        { filters: filters },{
+          name: sorter.field,
+          order: sorter.order
+        }
       )
       .then(rsp => {
         this.props.rootStore.hideLoading()
@@ -103,6 +113,12 @@ export default class index extends Component {
     jsxlxs.exportFile(data)
   }
 
+  handleChangeDate = (date, dateString) =>{
+    console.log(date, dateString)
+    this.props.secretListStore.setValue('startDate',dateString[0])
+    this.props.secretListStore.setValue('endDate',dateString[1])
+  }
+
   render() {
     const columns = [
       {
@@ -126,12 +142,14 @@ export default class index extends Component {
       {
         dataIndex: 'viewCount',
         title: '点击阅读量',
-        key: 'viewCount'
+        key: 'viewCount',
+        sorter:(a,b) => a.viewCount - b.viewCount
       },
       {
         dataIndex: 'voteCount',
         title: '点赞人数',
-        key: 'voteCount'
+        key: 'voteCount',
+        sorter:(a,b) => a.voteCount - b.voteCount
       },
       {
         dataIndex: 'reply',
@@ -143,7 +161,8 @@ export default class index extends Component {
           } else {
             return <span className="red">未回复</span>
           }
-        }
+        },
+        filters:[{text: '已回复', value: true},{text: '未回复', value: false}]
       },
       {
         dataIndex: 'status',
@@ -170,6 +189,8 @@ export default class index extends Component {
             return '否'
           }
         }
+        ,
+        filters:[{text: '是', value: true},{text: '否', value: false}]
       },
       {
         title: '操作',
@@ -220,6 +241,7 @@ export default class index extends Component {
         <h2>秘密列表</h2>
         <Divider />
         <div>
+        <RangePicker defaultValue={null} locale={locale} onChange={this.handleChangeDate} style={{marginRight: '20px'}}/>
           <Search
             style={{ width: 300 }}
             placeholder="请输入关键字"

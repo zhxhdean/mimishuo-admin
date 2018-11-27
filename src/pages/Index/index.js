@@ -32,9 +32,9 @@ export default class index extends Component {
           radius: '70%',
           center: ['50%', '50%'],
           selectedMode: 'single',
-          label:{
-            normal:{
-              formatter:'{b}:{c}',
+          label: {
+            normal: {
+              formatter: '{b}:{c}',
               textStyle: {
                 fontWeight: 'normal',
                 fontSize: 14
@@ -75,7 +75,7 @@ export default class index extends Component {
                   您已使用31天，还可以继续使用12天。<Link to="#">去充值</Link>
                 </Col>
               </Row>
-              <Row style={{paddingTop: '15px'}}>
+              <Row style={{ paddingTop: '15px' }}>
                 <Col span={8}>
                   今日秘密：<span className="red">12</span>
                 </Col>
@@ -86,9 +86,12 @@ export default class index extends Component {
                   回复秘密：<span className="red">8</span>
                 </Col>
               </Row>
-              <Row style={{paddingTop: '20px'}}>
+              <Row style={{ paddingTop: '20px' }}>
                 <Col span={24}>
-                  <ReactEcharts option={this.getOption()} style={{height: '400px'}}/>
+                  <ReactEcharts
+                    option={this.getOption()}
+                    style={{ height: '400px' }}
+                  />
                 </Col>
               </Row>
             </div>
@@ -111,16 +114,30 @@ export default class index extends Component {
                   </Link>
                 </Col>
                 <Col span={8} className="center">
+                  <Link to="/userinfo">
+                    <Icon type="user" />
+                    <br /> 用户信息
+                  </Link>
+                </Col>
+              </Row>
+              <Row className="mt20">
+                <Col span={8} className="center">
                   <Link to="/shieldedword">
-                    <Icon type="setting" />
-                    <br /> 系统设置
+                    <Icon type="hdd" />
+                    <br /> 屏蔽词管理
+                  </Link>
+                </Col>
+
+                <Col span={8} className="center">
+                  <Link to="/newsletter">
+                    <Icon type="read" />
+                    <br /> 发布历史
                   </Link>
                 </Col>
               </Row>
             </div>
           </Col>
         </Row>
-
       </div>
     )
   }

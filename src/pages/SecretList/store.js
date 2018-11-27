@@ -12,6 +12,11 @@ class SecretListStore {
   total = 0
   @observable
   keyword= ''
+  @observable
+  startDate = ''
+  @observable
+  endDate = ''
+
 
   @observable // 显示回复弹框
   showQuickReplyModal = false
@@ -21,8 +26,8 @@ class SecretListStore {
   record = {}
 
   @action
-  setValue (value) {
-    this.replyContent = value
+  setValue (name,value) {
+    this[name] = value
   }
 
   @action 
@@ -32,13 +37,16 @@ class SecretListStore {
 
   // 搜索、筛选、分页数据
   @action
-  async getList(pageIndex, pageSize, keyword = '', filters) {
+  async getList(pageIndex, pageSize, keyword = '', filters, sorter={name: 'id', order: 'desc'}) {
     this.current = pageIndex
     const rsp = await post({url: SECRET_LIST, data: {
       pageIndex: pageIndex,
       pageSize: pageSize,
       keyword: keyword,
-      filters: filters
+      filters: filters,
+      startDate: this.startDate,
+      endDate: this.endDate,
+      sorter: {name: sorter.name, order: sorter.order}
     }})
     if(rsp.code === 0){
       this.secretList = rsp.data

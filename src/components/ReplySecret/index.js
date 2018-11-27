@@ -9,7 +9,7 @@ const TextArea = Input.TextArea
 export default class index extends Component {
 
   handleInputChange = e => {
-    this.props.secretListStore.setValue(e.target.value)
+    this.props.secretListStore.setValue('replyContent', e.target.value)
   }
 
   // 提交回复
@@ -25,7 +25,7 @@ export default class index extends Component {
     this.props.secretListStore.reply(id, content).then(rsp => {
       if(rsp.code === 0){
         // 重置输入框的内容
-        this.props.secretListStore.setValue('')
+        this.props.secretListStore.setValue('replyContent','')
         message.success('回复成功')
         this.props.secretListStore.showQuickReply(false)
       }else{

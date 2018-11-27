@@ -78,7 +78,7 @@ export default withRouter(
             <Menu.Item key="21">
               <Link to="/secret">秘密列表</Link>
             </Menu.Item>
-            <Menu.Item key="22">搜索</Menu.Item>
+            {/* <Menu.Item key="22">搜索</Menu.Item> */}
             <Menu.Item key="23">
               <Link to="/newsletter">newsletter</Link>
             </Menu.Item>
