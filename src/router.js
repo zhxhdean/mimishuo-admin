@@ -16,8 +16,11 @@ import NewsLetterDetail from './pages/NewsLetterDetail'
 import ShieldedWordList from './pages/ShieldedWordList'
 import WordLibrary from './pages/WordLibrary'
 import TagsList from './pages/Tags'
-import SystemConfig from './pages/SystemConfig'
+// import SystemConfig from './pages/SystemConfig'
 import ForgetPassword from './pages/ForgetPassword'
+import Recharge from './pages/Recharge'
+import AddressList from './pages/Address'
+import AddressAdd from './pages/AddressAdd'
 // store
 import loginStore from './pages/Login/store'
 import rootStore from './store'
@@ -32,8 +35,9 @@ import newsLetterDetailStore from './pages/NewsLetterDetail/store'
 import shieldedWordStore from './pages/ShieldedWordList/store'
 import wordLibraryStore from './pages/WordLibrary/store'
 import tagsStore from './pages/Tags/store'
-import systemConfigStore from './pages/SystemConfig/store'
+// import systemConfigStore from './pages/SystemConfig/store'
 import forgetPasswordStore from './pages/ForgetPassword/store'
+import addressStore from './pages/Address/store'
 import { BackTop } from 'antd'
 const stores = {
   rootStore,
@@ -49,8 +53,9 @@ const stores = {
   shieldedWordStore,
   wordLibraryStore,
   tagsStore,
-  systemConfigStore,
-  forgetPasswordStore
+  // systemConfigStore,
+  forgetPasswordStore,
+  addressStore
 }
 
 // for debug
@@ -79,12 +84,14 @@ export const router = (
         <Route path="/changepassword" exact component={PassWord} />
         <Route path="/secret/detail/:id" component={SecretDetail} />
         <Route path="/secret" exact component={SecretList} />
+        <Route path="/recharge" exact component={Recharge} />
         <Route path="/newsletter/detail/:id" component={NewsLetterDetail}/>
         <Route path='/newsletter' exact component={NewsLetterList}/>
         <Route path="/shieldedword" component={ShieldedWordList} />
         <Route path="/wordlibrary" component={WordLibrary}/>
         <Route path="/tags" component={TagsList} />
-        <Route path="/systemconfig" component={SystemConfig} />
+        <Route path="/address/add" component={AddressAdd} />
+        <Route path="/address" component={AddressList} />
         <Route component={Index} />
       </Switch>
     </Router>

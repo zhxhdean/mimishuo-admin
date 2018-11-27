@@ -693,5 +693,39 @@ module.exports = app => {
     }
   })
 
+  let addressList = [{id: 1, address: '上海市嘉定区安亭镇泽普路318弄', status: true, createTime: '2018-11-27 16:00:21'}]
+  router.post('/address/list', async ctx => {
+    ctx.response.body = {
+      code: 0,
+      data: addressList
+    }
+  })
+
+  router.post('/address/add', async ctx => {
+    const req = ctx.request.body
+    addressList.push({id: addressList.length+1, address: req.address.address, createTime: Date.now(), status: true})
+    ctx.response.body = {
+      code: 0,
+      data: addressList
+    }
+  })
+
+  router.post('/address/edit', async ctx => {
+    const req = ctx.request.body
+    ctx.response.body = {
+      code: 0,
+      data: []
+    }
+  })
+
+
+  router.post('/address/delete', async ctx => {
+    const req = ctx.request.body
+    ctx.response.body = {
+      code: 0,
+      data: []
+    }
+  })
+
   app.use(router.routes()).use(router.allowedMethods())
 }

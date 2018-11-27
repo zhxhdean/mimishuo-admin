@@ -50,7 +50,9 @@ export const getSecretStatus = status => {
 
 export const CATEGORY = {
   VULGAR: 1, //粗话
-  EROTIC: 2 // 色情
+  EROTIC: 2, // 色情
+  FORBID: 3, //国家禁止
+  OTHER: 4 //其他
 }
 
 export const getCategory = category => {
@@ -58,5 +60,11 @@ export const getCategory = category => {
     return '粗言秽语'
   } else if (category === CATEGORY.EROTIC) {
     return '低俗色情'
+  }
+  else if (category === CATEGORY.FORBID) {
+    return '国家禁止'
+  }
+  else {
+    return '其他'
   }
 }

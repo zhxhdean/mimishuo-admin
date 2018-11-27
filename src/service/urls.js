@@ -49,3 +49,11 @@ export const TAGS_DELETE= '/tags/delete'
 export const SYSTEM_CONFIG = '/systemconfig'
 
 export const SYSTEM_CONFIG_EDIT = '/systemconfig/edit'
+
+export const ADDRESS_LIST = '/address/list'
+
+export const ADDRESS_ADD = '/address/add'
+
+export const ADDRESS_EDIT = '/address/edit'
+
+export const ADDRESS_DELETE = '/address/delete'

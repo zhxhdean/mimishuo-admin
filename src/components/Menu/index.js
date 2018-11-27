@@ -32,7 +32,10 @@ export default withRouter(
         case '/tags':
           key = '42'
           break
-        case '/systemconfig':
+        case '/address':
+          key = '43'
+          break
+        case '/address/add':
           key = '43'
           break
         default:
@@ -98,7 +101,7 @@ export default withRouter(
             <Menu.Item key="32">
               <Link to="/changepassword">密码修改</Link>
             </Menu.Item>
-            <Menu.Item key="33">在线充值</Menu.Item>
+            <Menu.Item key="33"><Link to="/recharge">在线充值</Link></Menu.Item>
             <Menu.Item key="34">充值记录</Menu.Item>
           </SubMenu>
           <SubMenu
@@ -114,6 +117,7 @@ export default withRouter(
               <Link to="/shieldedword">屏蔽词管理</Link>
             </Menu.Item>
             <Menu.Item key="42"><Link to="/tags">标签设置</Link></Menu.Item>
+            <Menu.Item key="43"><Link to="/address">公司地址管理</Link></Menu.Item>
             {/* <Menu.Item key="43"><Link to="/systemconfig">系统配置</Link></Menu.Item> */}
           </SubMenu>
         </Menu>

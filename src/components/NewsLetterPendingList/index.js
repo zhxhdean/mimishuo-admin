@@ -34,8 +34,16 @@ export default class index extends Component {
       message.error('请输入newsletter的标题')
       return
     }
+    if(this.props.pendingListStore.title.length > 20){
+      message.error('newsletter的标题不能超过20个字')
+      return
+    }
     if(!this.props.pendingListStore.content){
       message.error('请输入newsletter的内容')
+      return
+    }
+    if(this.props.pendingListStore.content.length > 200){
+      message.error('newsletter的标题不能超过200个字')
       return
     }
     if(this.props.pendingListStore.pendingList.length === 0){

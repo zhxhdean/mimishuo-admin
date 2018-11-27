@@ -16,6 +16,7 @@ export default class index extends Component {
       message.error(this.props.prevalue.t)
       return
     }
+    message.success('验证码已发送邮箱')
     let countDown = this.state.countDown
     //todo 调接口发送验证码
     this.setState({disable: true})

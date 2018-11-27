@@ -130,6 +130,7 @@ export default class index extends Component {
         dataIndex: 'title',
         title: '主题',
         key: 'title',
+        width:300,
         render: (text,record) => {
           return (<Link to={{ pathname: `secret/detail/${record.id}` }}>{text}</Link>)
         }
