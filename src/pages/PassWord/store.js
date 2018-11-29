@@ -3,11 +3,11 @@ import { post } from '../../service/request'
 import { USER_CHANGE_PASSWORD } from '../../service/urls'
 class PassWordStore {
   @observable
-  oldPassWord = ''
+  oldPassword = ''
   @observable
-  newPassWord = ''
+  newPassword = ''
   @observable
-  confirmPassWord = ''
+  confirmPassword = ''
 
   @action
   setValue(name, value) {
@@ -19,9 +19,8 @@ class PassWordStore {
     return await post({
       url: USER_CHANGE_PASSWORD,
       data: {
-        old: this.oldPassWord,
-        new: this.newPassWord,
-        confirm: this.confirmPassWord
+        originalPassword: this.oldPassword,
+        newPassword: this.newPassword
       }
     })
   }

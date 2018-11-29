@@ -1,7 +1,10 @@
 // 全局sotre
 
 import { observable, action } from 'mobx'
-
+import { CONFIG_KEY } from './common/constant'
+import { VERIFY_CODE_BY_EMAIL } from './service/urls'
+import { post } from './service/request'
+import md5 from 'js-md5'
 class RootStore {
   // 加载提示
   @observable loading = false
@@ -45,6 +48,21 @@ class RootStore {
   @action.bound
   hideNewsLetter() {
     this.newsletterModal = false
+  }
+
+  @action
+  getVerifyCodeByEmail(option) {
+    const now = Date.now()
+    console.log(now, md5(now + CONFIG_KEY))
+    return post({
+      url: VERIFY_CODE_BY_EMAIL,
+      data: {
+        email: option.email,
+        event: option.event,
+        timestamp: now,
+        token: md5(now + CONFIG_KEY)
+      }
+    })
   }
 }
 

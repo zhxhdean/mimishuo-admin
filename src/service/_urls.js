@@ -1,41 +1,26 @@
 // 请求接口地址
 
-export const LOGIN = '/management/account/login'
+export const LOGIN = '/user/login' // '/management/account/login'
 
-export const LOGOUT = '/management/account/logout'
+export const LOGOUT = '/user/logout'
 
 export const USER_STATUS = '/user/status'
 
-export const USER_INFORMATION = '/management/account/info'
+export const USER_INFORMATION = '/user/info'
 
-// 修改邮箱
-export const USER_EMAIL_CHANGE = '/management/account/email/change'
-// 修改手机
-export const USER_PHONE_CHANGE = '/management/account/mobile/change'
+export const USER_CHANGE_PASSWORD = '/user/changepassword'
 
-export const VERIFY_CODE_BY_EMAIL = '/management/account/email/verify-code'
+export const USER_FORGET_PASSWORD = '/user/forgetpassword'
 
-// 修改密码
-export const USER_CHANGE_PASSWORD = '/management/account/password/change'
+export const SECRET_LIST = '/secret/list'
 
-export const USER_FORGET_PASSWORD = '/management/account/forget-password'
+export const SECRET_REPLY_CONTENT = '/secret/reply'
 
-// 秘密列表
-export const SECRET_LIST = '/management/secret/search'
-
-// 回复秘密
-export const SECRET_REPLY_CONTENT = '/management/secret/reply'
-
-// 秘密详情
-export const SECRET_DETAIL = '/management/secret/info'
+export const SECRET_DETAIL = '/secret/detail'
 
 export const SECRET_DETAIL_EDIT = '/secret/detail/edit'
 
 export const NEWS_LETTER_PUBLISH = '/newsletter/publish'
-
-export const NEWS_LETTER_CACHE_ADD = '/management/secret/cache/add/'
-
-export const NEWS_LETTER_CACHE_DELETE = '/management/secret/cache/del/'
 
 export const NEWS_LETTER_LIST = '/newsletter/list'
 
@@ -57,7 +42,7 @@ export const WORD_LIBRARY_BATCH_IMPORT = '/wordlibrary/batchimport'
 
 export const TAGS_ADD = '/tags/add'
 
-export const TAGS_LIST = '/management/secret/tag/list'
+export const TAGS_LIST = '/tags/list'
 
 export const TAGS_DELETE= '/tags/delete'
 

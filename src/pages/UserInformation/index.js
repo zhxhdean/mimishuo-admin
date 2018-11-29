@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { Divider, Row, Col,message, Modal, Input } from 'antd'
 import VerifyCode from '../../components/VerifyCode'
-
-@inject('userInformationStore','rootStore')
+import defaultAvatar from '../../assets/default_avatar@2x.png'
+@inject('userInformationStore','rootStore','authenticateStore')
 @observer
 export default class index extends Component {
   constructor(props) {
@@ -13,9 +13,7 @@ export default class index extends Component {
       name: ''
     }
   }
-  componentDidMount() {
-    this.props.userInformationStore.getUserInformation(10)
-  }
+
 
   handleInputChange = (name, e) => {
     this.props.userInformationStore.setValue(name, e.target.value)
@@ -60,25 +58,25 @@ export default class index extends Component {
     })
   }
   render() {
-    const { userInformation } = this.props.userInformationStore
+    const { userInfo } = this.props.authenticateStore
     return (
       <div>
         <h2>用户信息</h2>
         <Divider />
         <Row>
-          <Col><img src={userInformation.avatar} width="150px" alt="用户头像"/></Col>
+          <Col><img src={defaultAvatar} width="150px" alt="用户头像"/></Col>
         </Row>
         <Row className="pdtb10">
           <Col span={3}>登录账号：</Col>
           <Col span={8} className="black">
-            {userInformation.userName}
+            {userInfo.userName}
           </Col>
         </Row>
         <Row className="pdtb10">
           <Col span={3}>通知邮箱：</Col>
           <Col span={8} className="black">
             {/*eslint-disable no-script-url */}
-            {userInformation.email || '尚未设置通知邮箱'}
+            {userInfo.email || '尚未设置通知邮箱'}
              <a
               href="javascript:void(0)"
               onClick={this.handleShowModal.bind(this, 'email')}
@@ -93,7 +91,7 @@ export default class index extends Component {
           <Col span={3}>通知手机：</Col>
           <Col span={8} className="black">
             {/*eslint-disable no-script-url */}
-            {userInformation.phone || '尚未设置通知手机'}
+            {userInfo.mobile || '尚未设置通知手机'}
             <a
             className="ml20"
               href="javascript:void(0)"
@@ -108,13 +106,13 @@ export default class index extends Component {
         <Row className="pdtb10">
           <Col span={3}>企业名称：</Col>
           <Col span={8} className="black">
-            {userInformation.company}
+            {userInfo.companyInfo.companyName}
           </Col>
         </Row>
         <Row className="pdtb10">
           <Col span={3}>社会信用代码：</Col>
           <Col span={8} className="black">
-            {userInformation.creditCode}
+            {userInfo.companyInfo.creditCode}
           </Col>
         </Row>
 
@@ -150,7 +148,7 @@ export default class index extends Component {
               />
             </Col>
           </Row>
-        <VerifyCode handleInputChange={this.handleInputChange} prevalue={{v:this.props.userInformationStore.password,t: '请先输入登录密码'}}/>
+        <VerifyCode handleInputChange={this.handleInputChange} prevalue={{v:this.props.userInformationStore.password,t: '请先输入登录密码',c: this.state.name}}/>
         </Modal>
       </div>
     )

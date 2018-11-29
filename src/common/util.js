@@ -1,12 +1,11 @@
-
 // 校验密码
 const validatePassWord = val => {
   if (!val) {
     return false
   }
-  if(/\d/.test(val) && /[a-z]+/.test(val) && /[A-Z]/.test(val)){
+  if (/\d/.test(val) && /[a-z]+/.test(val) && /[A-Z]/.test(val)) {
     const reg = /^(?!([a-zA-Z]+|\d+)$)[a-zA-Z\d]{8,12}$/
-    if(reg.test(val)){
+    if (reg.test(val)) {
       return true
     }
     return false
@@ -14,6 +13,14 @@ const validatePassWord = val => {
   return false
 }
 
+// 求时间差几天
+const subDay = (time1, time2) => {
+  const days = time1 - time2
+  const rst = parseInt(days / (1000 * 60 * 60 * 24), 10)
+  return rst < 0 ? 0 : rst
+}
+
 export default {
-  validatePassWord
+  validatePassWord,
+  subDay
 }

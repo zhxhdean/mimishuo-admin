@@ -88,7 +88,7 @@ export default class index extends Component {
               />
             </Col>
           </Row>
-          <VerifyCode handleInputChange={this.handleInputChange} prevalue={{v:user.userName,t:'请先输入登录账号'}}/>
+          <VerifyCode handleInputChange={this.handleInputChange} prevalue={{v:user.userName,t:'请先输入登录账号',c: 'forget',e: user.userName}}/>
           <Row>
             <Col>设置密码：</Col>
           </Row>

@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3000', // 'https://api.mimishuo.com',
+  baseURL: 'http://140.143.223.43:8090', //'http://localhost:3000' 'https://api.mimishuo.com',
   withCredentials: true,
   timeout: 5000
 })
@@ -22,7 +22,7 @@ instance.interceptors.request.use(function(config){
 instance.interceptors.response.use(function(response){
   // todo 统一判断是否登录后，做跳转登录页面
   if(response.status === 200){
-    return response.data
+    return {data:response.data.data, code: response.data.errorCode || 0, content: response.data.errorMsg || ''}
   }
   return response
 },function(err){

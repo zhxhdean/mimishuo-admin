@@ -80,7 +80,7 @@ export default class index extends Component {
         render: (text, record) => {
            /*eslint-disable no-script-url*/
           return(<span>
-            <Link to={{ pathname: `/secret/detail/${record.id}` }}>详情</Link>
+            <Link to={{ pathname: `/secret/detail/${record.secretId}` }}>详情</Link>
             <Divider type="vertical" />
             <a href="javascript:;" onClick={this.handleRemove.bind(this, record)}>移除</a>
           </span>)

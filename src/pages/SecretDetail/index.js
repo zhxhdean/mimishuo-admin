@@ -83,20 +83,20 @@ export default class index extends Component {
         <Spin spinning={loading}>
           <ul>
             <li>
-    <h3>{secretDetail.remove ? <span className="red"><CountDown endTime ={secretDetail.removeTime}/>【阅后即焚】</span>: ''}<span className="orange">【{getSecretStatus(secretDetail.status)}】</span>{secretDetail.title}</h3>
+    <h3>{secretDetail.burnAfterReading ? <span className="red"><CountDown endTime ={secretDetail.burnTime}/>【阅后即焚】</span>: ''}<span className="orange">【{getSecretStatus(secretDetail.status)}】</span>{secretDetail.subject}</h3>
               <Button type="primary" onClick={this.handleJoinNewsLetter.bind(this, secretDetail)}>加入发布清单</Button>
             </li>
             <li>
               <Row>
-                <Col span={10}><label className="label">发布人：</label>{secretDetail.author}</Col>
-                <Col span={12}><label className="label">发布时间：</label>{secretDetail.createTime}</Col>
+                {/* <Col span={10}><label className="label">发布人：</label>{secretDetail.author}</Col> */}
+                <Col span={24}><label className="label">发布时间：</label>{secretDetail.createTime}</Col>
               </Row>
               <Row>
                 <Col span={24}><label className="label">标签：</label><CheckboxGroup value={secretDetail.tags} options={tagsForSecret} onChange={this.handleTagsChange}></CheckboxGroup></Col>
               </Row>
               <Row>
-                <Col span={10}><label className="label">阅读数量：</label>{secretDetail.viewCount}</Col>
-                <Col span={12}><label className="label">点赞人数：</label>{secretDetail.voteCount}</Col>
+                <Col span={10}><label className="label">阅读数量：</label>{secretDetail.viewNum}</Col>
+                <Col span={12}><label className="label">点赞人数：</label>{secretDetail.likeNum}</Col>
               </Row>
               <Row>
                 <Col span={2}><label className="label">内容：</label></Col>
@@ -104,13 +104,13 @@ export default class index extends Component {
               </Row>
               <Row>
                 <Col span={2}><label className="label">图片：</label></Col>
-                <Col span={18}>{secretDetail.img.map((item,index) => {
+                <Col span={18}>{secretDetail.imageUrls.map((item,index) => {
                   return <img src={item} key={index} className="small-image" title="点击查看大图" alt="图片描述" onClick={this.props.rootStore.showCarouse.bind(this, index)}/>
                 })}</Col>
               </Row>
               <Row>
                 <Col span={2}><label className="label">回复：</label></Col>
-                <Col span={18}><TextArea placeholder="请输入回复内容" row={5} value={secretDetail.replyContent} onChange={this.handleInputChange}></TextArea></Col>
+                <Col span={18}><TextArea placeholder="请输入回复内容" row={5} value={secretDetail.reply} onChange={this.handleInputChange}></TextArea></Col>
               </Row>
               <Row>
                 <Col span={2}></Col>
@@ -119,7 +119,7 @@ export default class index extends Component {
             </li>
           </ul>
 
-          <PreviewImage img={secretDetail.img}/>
+          <PreviewImage img={secretDetail.imageUrls}/>
           <NewsLetterPendingList/>
         </Spin>
       </div>

@@ -1,16 +1,7 @@
 import { observable, action } from 'mobx'
-import { USER_INFORMATION,SYSTEM_CONFIG_EDIT } from '../../service/urls'
-import { get,post } from '../../service/request'
+import { USER_EMAIL_CHANGE,USER_PHONE_CHANGE } from '../../service/urls'
+import {post } from '../../service/request'
 class UserInformationStore {
-  @observable
-  userInformation = {
-    uid: '',
-    userName: '',
-    phone: '',
-    company: '',
-    creditCode: '',
-    email: ''
-  }
 
   // 修改时候需要用的
   @observable
@@ -34,29 +25,29 @@ class UserInformationStore {
   hideModal(){
     this.modal = false
   }
-  @action
-  async getUserInformation(uid) {
-    const rsp = await get({ url: USER_INFORMATION, data: { uid: uid } })
-    if(rsp.code === 0){
-      this.userInformation = rsp.data
-    }
-  }
+
 
   @action
   async edit() {
-    const rsp = await post({
-      url: SYSTEM_CONFIG_EDIT,
-      data: {
-        email: this.email,
-        phone: this.phone,
+    let data = {}
+    if(this.email){
+      // 修改邮箱
+      data = {
+        newEmail: this.email,
         password: this.password,
         verify: this.verify
       }
-    })
-    if (rsp.code === 0) {
-      this.userInformation.email = rsp.data.email
-      this.userInformation.phone = rsp.data.phone
+    }else if(this.phone){
+      data = {
+        newMobile: this.phone,
+        password: this.password,
+        verify: this.verify
+      }
     }
+    const rsp = await post({
+      url: this.email ? USER_EMAIL_CHANGE : USER_PHONE_CHANGE ,
+      data: data
+    })
     return rsp
   }
 

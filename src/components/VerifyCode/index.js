@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import {Row,Col,Button,Input,message} from 'antd'
-
+import { inject } from 'mobx-react';
+import {CONFIG_SEND_EVENT} from '../../common/constant'
 let interval
+@inject('rootStore','authenticateStore')
 export default class index extends Component {
   constructor(props){
     super(props)
@@ -16,7 +18,25 @@ export default class index extends Component {
       message.error(this.props.prevalue.t)
       return
     }
-    message.success('验证码已发送邮箱')
+    let event = ''
+    if(this.props.prevalue.c === 'email'){
+      event = CONFIG_SEND_EVENT.CHANGE_EMAIL
+    }else if(this.props.prevalue.c === 'phone'){
+      event = CONFIG_SEND_EVENT.CHANGE_MOBILE
+    }else if (this.props.prevalue.c === 'forget'){
+      event = CONFIG_SEND_EVENT.FORGET_PASSWORD
+    }
+    // 找回密码，取this.props.prevalue.e 
+    this.props.rootStore.getVerifyCodeByEmail({email: this.props.authenticateStore.userInfo.email || this.props.prevalue.e || '', event: event}).then(rsp => {
+      if(rsp.code === 0){
+        message.success('验证码已发送邮箱')
+      }else{
+        message.error('验证码发送遇到错误')
+      }
+    }).catch(err => {
+      message.error('验证码发送遇到错误')
+    })
+    
     let countDown = this.state.countDown
     //todo 调接口发送验证码
     this.setState({disable: true})

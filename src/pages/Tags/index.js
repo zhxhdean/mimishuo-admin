@@ -66,18 +66,18 @@ export default class index extends Component {
         <h2>标签管理</h2>
         <Divider />
         {tags.map((tag, index) => {
-          const isLongTag = tag.name.length > 5
+          const isLongTag = tag.tagName.length > 5
           const tagElem = (
             <Tag className="tag"
             closable
-              key={tag.id}
-              afterClose={() => this.handleDelete(tag.id)}
+              key={tag.tagId}
+              afterClose={() => this.handleDelete(tag.tagId)}
             >
-              {isLongTag ? `${tag.name.slice(0, 5)}...` : tag.name}
+              {isLongTag ? `${tag.tagName.slice(0, 5)}...` : tag.tagName}
             </Tag>
           )
           return isLongTag ? (
-            <Tooltip title={tag.name} key={tag.id}>
+            <Tooltip title={tag.tagName} key={tag.tagId}>
               {tagElem}
             </Tooltip>
           ) : (

@@ -10,7 +10,7 @@ export default class index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      cityCode: '' || '010'
+      cityCode: '' || '全国'
     }
   }
   componentDidMount() {
@@ -30,7 +30,7 @@ export default class index extends Component {
       window.map = map
       window.AMap.plugin('AMap.Autocomplete', () => {
         // 自动提示
-        var auto = new window.AMap.Autocomplete({
+        new window.AMap.Autocomplete({
           input: 'tipinput'
         })
       })
@@ -39,7 +39,7 @@ export default class index extends Component {
       window.AMap.plugin('AMap.Geolocation', function() {
         var geolocation = new window.AMap.Geolocation({
           enableHighAccuracy: true, //是否使用高精度定位，默认:true
-          timeout: 10000, //超过10秒后停止定位，默认：5s
+          timeout: 5000, //超过10秒后停止定位，默认：5s
           buttonPosition: 'RB', //定位按钮的停靠位置
           buttonOffset: new window.AMap.Pixel(10, 20), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
           zoomToAccuracy: true //定位成功后是否自动调整地图视野到定位点
@@ -122,7 +122,7 @@ export default class index extends Component {
   }
   //解析定位错误信息
   onError(data, self) {
-    self.setState({ cityCode: '021' })
+    self.setState({ cityCode: '全国' })
     // document.getElementById('status').innerHTML='定位失败'
     document.getElementById('result') &&
       (document.getElementById('result').innerHTML =

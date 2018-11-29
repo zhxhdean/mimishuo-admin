@@ -17,7 +17,7 @@ class ForgetPasswordStore{
 
   @action
   async changePassword(){
-    return await post({url: USER_FORGET_PASSWORD, data: this.user})
+    return await post({url: USER_FORGET_PASSWORD, data: {userName: this.user.userName, password: this.user.newPassword, verificationCode: this.user.verify}})
   }
 }
 export default new ForgetPasswordStore()

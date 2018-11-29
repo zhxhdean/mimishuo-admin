@@ -20,9 +20,9 @@ export default class index extends Component {
       message.error('回复内容不能为空！')
       return
     }
-    const {id} = this.props.secretListStore.record
+    const {secretId} = this.props.secretListStore.record
     this.props.rootStore.showLoading()
-    this.props.secretListStore.reply(id, content).then(rsp => {
+    this.props.secretListStore.reply(secretId, content).then(rsp => {
       if(rsp.code === 0){
         // 重置输入框的内容
         this.props.secretListStore.setValue('replyContent','')

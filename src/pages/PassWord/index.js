@@ -29,27 +29,27 @@ export default class index extends Component {
   }
 
   valid = () => {
-    if(!this.props.passWordStore.oldPassWord){
+    if(!this.props.passWordStore.oldPassword){
       message.error('请输入原密码', 1.5)
       return false
     }
-    if(!this.props.passWordStore.newPassWord){
+    if(!this.props.passWordStore.newPassword){
       message.error('请输入新密码', 1.5)
       return false
     }
-    if(!this.props.passWordStore.confirmPassWord){
+    if(!this.props.passWordStore.confirmPassword){
       message.error('请输入确认密码', 1.5)
       return false
     }
-    if(this.props.passWordStore.newPassWord !== this.props.passWordStore.confirmPassWord){
+    if(this.props.passWordStore.newPassword !== this.props.passWordStore.confirmPassword){
       message.error('两次密码不一致', 1.5)
       return false
     }
-    if(!util.validatePassWord(this.props.passWordStore.newPassWord)){
+    if(!util.validatePassWord(this.props.passWordStore.newPassword)){
       message.error('新密码必须且只能包含数字、字母，长度在8-12位', 1.5)
       return false
     }
-    if(!util.validatePassWord(this.props.passWordStore.confirmPassWord)){
+    if(!util.validatePassWord(this.props.passWordStore.confirmPassword)){
       message.error('确认密码必须且包含数字、字母，长度在8-12位', 1.5)
       return false
     }
@@ -68,7 +68,8 @@ export default class index extends Component {
             <Input
               type="password"
               className="password"
-              onChange={this.handleInputChange.bind(this, 'oldPassWord')}
+              placeholder="请输入原始密码"
+              onChange={this.handleInputChange.bind(this, 'oldPassword')}
             />
           </li>
           <li>
@@ -76,7 +77,8 @@ export default class index extends Component {
             <Input
               type="password"
               className="password"
-              onChange={this.handleInputChange.bind(this, 'newPassWord')}
+              placeholder="密码需包含数字、大小写字母，长度8-12位"
+              onChange={this.handleInputChange.bind(this, 'newPassword')}
             />
           </li>
           <li>
@@ -84,7 +86,8 @@ export default class index extends Component {
             <Input
               type="password"
               className="password"
-              onChange={this.handleInputChange.bind(this, 'confirmPassWord')}
+              placeholder="密码需包含数字、大小写字母，长度8-12位"
+              onChange={this.handleInputChange.bind(this, 'confirmPassword')}
             />
           </li>
           <li>

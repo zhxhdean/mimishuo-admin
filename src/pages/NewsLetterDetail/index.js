@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { Link } from 'react-router-dom'
-import { message, Divider, Spin, Icon, Row, Col, Table } from 'antd'
+import { message, Divider, Spin, Icon, Row, Col, Table, Tooltip } from 'antd'
 import '../SecretDetail/index.less'
 
 @inject('rootStore', 'newsLetterDetailStore')
@@ -29,12 +29,19 @@ export default class index extends Component {
     const columns = [
       { dataIndex: 'title', title: '主题' },
       { dataIndex: 'createTime', title: '发布时间' },
-      { dataIndex: 'author', title: '发布人' },
+      { dataIndex: 'content', title: '内容', render: text =>{
+        if(text.length>30){
+          return <Tooltip title={text}>{text.substr(0,30) + '...'}</Tooltip>
+        }else{
+          return <Tooltip title={text}>{text}</Tooltip>
+        }
+      }},
       {
         dataIndex: 'action',
         title: '操作',
+        align:'center',
         render: (text, record) => {
-          return <Link to={`/secret/detail/${record.id}`}>查看详情</Link>
+          return (<span><Link to={`/secret/detail/${record.id}`}>详情</Link> <Divider type="vertical" /> <a href="#">撤回</a> <Divider type="vertical" /> <a href="#">移除</a></span>)
         }
       }
     ]

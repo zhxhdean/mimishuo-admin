@@ -37,21 +37,22 @@ class SecretListStore {
 
   // 搜索、筛选、分页数据
   @action
-  async getList(pageIndex, pageSize, keyword = '', filters, sorter={name: 'id', order: 'desc'}) {
+  async getList(pageIndex, pageSize, keyword = '', filters, sorter={name: 'secretId', order: 'desc'}) {
     this.current = pageIndex
     const rsp = await post({url: SECRET_LIST, data: {
       pageIndex: pageIndex,
       pageSize: pageSize,
       keyword: keyword,
       filters: filters,
-      startDate: this.startDate,
-      endDate: this.endDate,
-      sorter: {name: sorter.name, order: sorter.order}
+      createBeginTime: this.startDate,
+      createEndTime: this.endDate,
+      searchOrder: sorter.name,
+      desc: sorter.order.includes('desc')
     }})
     if(rsp.code === 0){
-      this.secretList = rsp.data
+      this.secretList = rsp.data.items
       // 测试数据
-      this.total = 106
+      this.total = rsp.data.totalCount
     }
   }
 
@@ -65,7 +66,7 @@ class SecretListStore {
   @action
   async reply(id, content){
     return await post({url: SECRET_REPLY_CONTENT, data:{
-      id: id,
+      secretId: id,
       content: content
     }})
   }

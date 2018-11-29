@@ -102,12 +102,12 @@ export default class index extends Component {
     // todo 全集导出
     const data = this.props.secretListStore.secretList.map(item => {
       return {
-        '主题': item.title,
+        '主题': item.subject,
         '创建时间': item.createTime,
-        '点击阅读量': item.viewCount,
-        '点赞人数': item.voteCount,
+        '点击阅读量': item.viewNum,
+        '点赞人数': item.likeNum,
         '发布状态': getSecretStatus(item.status),
-        '阅后即焚': item.remove ? '是' : '否'
+        '阅后即焚': item.burnAfterReading ? '是' : '否'
       }
     })
     jsxlxs.exportFile(data)
@@ -122,40 +122,36 @@ export default class index extends Component {
   render() {
     const columns = [
       {
-        dataIndex: 'id',
+        dataIndex: 'secretId',
         title: '序号',
-        key: 'id'
+        key: 'secretId'
       },
       {
-        dataIndex: 'title',
+        dataIndex: 'subject',
         title: '主题',
-        key: 'title',
-        width:300,
+        width:200,
         render: (text,record) => {
-          return (<Link to={{ pathname: `secret/detail/${record.id}` }}>{text}</Link>)
+          return (<Link to={{ pathname: `secret/detail/${record.secretId}` }}>{text}</Link>)
         }
       },
       {
         dataIndex: 'createTime',
         title: '创建时间',
-        key: 'createTime'
+        render: text => new moment(text).format('YYYY-MM-DD HH:mm:ss')
       },
       {
-        dataIndex: 'viewCount',
+        dataIndex: 'viewNum',
         title: '点击阅读量',
-        key: 'viewCount',
-        sorter:(a,b) => a.viewCount - b.viewCount
+        sorter:(a,b) => a.viewNum - b.viewNum
       },
       {
-        dataIndex: 'voteCount',
+        dataIndex: 'likeNum',
         title: '点赞人数',
-        key: 'voteCount',
-        sorter:(a,b) => a.voteCount - b.voteCount
+        sorter:(a,b) => a.likeNum - b.likeNum
       },
       {
-        dataIndex: 'reply',
+        dataIndex: 'replied',
         title: '是否回复',
-        key: 'reply',
         render: text => {
           if (text) {
             return '已回复'
@@ -180,9 +176,8 @@ export default class index extends Component {
         ]
       },
       {
-        dataIndex: 'remove',
+        dataIndex: 'burnAfterReading',
         title: '阅后即焚',
-        key: 'remove',
         render: text => {
           if (text) {
             return <span className="red">是</span>
@@ -256,7 +251,7 @@ export default class index extends Component {
                 {" "}
               </a>
           <Table
-            rowKey="id"
+            rowKey="secretId"
             loading={loading}
             pagination={{
               current: current,

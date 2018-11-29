@@ -1,16 +1,16 @@
 
 import {observable, action} from 'mobx'
-import {post} from '../../service/request'
+import {post,get} from '../../service/request'
 import {SECRET_DETAIL,SECRET_DETAIL_EDIT} from '../../service/urls'
 class SecretDetailStore {
   @observable
-  secretDetail = {img: []}
+  secretDetail = {imageUrls: []}
 
   @action
   async getDetail(id){
-    const rsp = await post({url: SECRET_DETAIL, data: {id: id}})
+    const rsp = await get({url: `${SECRET_DETAIL}/${id}`})
     if(rsp.code === 0){
-      this.secretDetail = rsp.data
+      this.secretDetail = rsp.data || this.secretDetail
     }
     return rsp
   }

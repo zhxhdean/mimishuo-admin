@@ -68,3 +68,13 @@ export const getCategory = category => {
     return '其他'
   }
 }
+
+// 发送类型
+export const CONFIG_SEND_EVENT = {
+LOGIN: 'LOGIN',
+FORGET_PASSWORD: 'FORGET_PASSWORD',
+CHANGE_MOBILE: 'CHANGE_MOBILE',
+CHANGE_EMAIL: 'CHANGE_EMAIL'
+}
+
+export const CONFIG_KEY = '!2@M0m1S8'

@@ -45,8 +45,8 @@ class TagsStore {
    if(rsp.code === 0){
     this.tagsForSecret = rsp.data.map(item => {
       return {
-        label: item.name,
-        value: item.id
+        label: item.tarName,
+        value: item.tagId
       }
     })
    }else{
