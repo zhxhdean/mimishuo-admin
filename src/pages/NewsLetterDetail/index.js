@@ -31,7 +31,8 @@ export default class index extends Component {
       {
         dataIndex: 'content',
         title: '内容',
-        with: 500,
+        key: 'secretId',
+        width: '500px',
         render: text => {
           if (text && text.length > 30) {
             return <Tooltip title={text}>{text.substr(0, 30) + '...'}</Tooltip>
@@ -43,6 +44,7 @@ export default class index extends Component {
       {
         dataIndex: 'createTime',
         title: '发布时间',
+        align: 'center',
         render: text => new moment(text).format('YYYY-MM-DD HH:mm:ss')
       },
       {

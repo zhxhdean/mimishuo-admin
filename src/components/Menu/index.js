@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import { Menu, Icon } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
 import {DEFAULT_PAGESIZE} from '../../common/constant'
 const SubMenu = Menu.SubMenu
 
+
+
 @inject('secretListStore','newsLetterStore')
 @observer
-export default class index extends Component {
+class index extends Component {
 
   handlePageIndex (type) {
     if(type === 'secret'){
@@ -138,4 +140,6 @@ export default class index extends Component {
     )
   }
 }
+
+export default(withRouter(index))
 

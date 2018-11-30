@@ -31,7 +31,7 @@ export default class Index extends Component {
           collapsed={this.state.collapsed}
         >
           <div className="logo"><img src={Logo} alt="秘密说管理系统"/></div>
-          <LeftMenu history={this.props.history}/>
+          <LeftMenu />
         </Sider>
         <Layout>
           <Header style={{ background: '#fff', padding: 0, justifyContent: 'space-between', display: 'flex', alignItems: 'center' }}>
