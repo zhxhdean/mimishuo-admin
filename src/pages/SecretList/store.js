@@ -1,6 +1,8 @@
 
 import {observable, action} from 'mobx'
 import {post} from '../../service/request'
+import util from '../../common/util'
+import {DEFAULT_PAGESIZE} from '../../common/constant'
 import {SECRET_LIST,SECRET_REPLY_CONTENT} from '../../service/urls'
 class SecretListStore {
 
@@ -37,17 +39,25 @@ class SecretListStore {
 
   // 搜索、筛选、分页数据
   @action
-  async getList(pageIndex, pageSize, keyword = '', filters, sorter={name: 'secretId', order: 'desc'}) {
+  async getList(pageIndex, pageSize, keyword = '', filters ={}, sorter={}) {
     this.current = pageIndex
+    let _filters = {...filters}
+    if(this.startDate && this.endDate){
+      _filters['createEndTime'] = this.endDate
+      _filters['createBeginTime'] = this.startDate
+    }
+    // api排序字段 CreateTime,ViewNum,LikeNum
+    const orderName = util.toUpperFirstLetter(sorter.name)
     const rsp = await post({url: SECRET_LIST, data: {
       pageIndex: pageIndex,
       pageSize: pageSize,
       keyword: keyword,
-      filters: filters,
-      createBeginTime: this.startDate,
-      createEndTime: this.endDate,
-      searchOrder: sorter.name,
-      desc: sorter.order.includes('desc')
+      filter: _filters,
+      order: {
+        searchOrder: orderName || 'CreateTime',
+        desc: sorter.order === undefined ? true : sorter.order
+      }
+      
     }})
     if(rsp.code === 0){
       this.secretList = rsp.data.items
@@ -65,10 +75,14 @@ class SecretListStore {
 
   @action
   async reply(id, content){
-    return await post({url: SECRET_REPLY_CONTENT, data:{
+    const rsp = await post({url: SECRET_REPLY_CONTENT, data:{
       secretId: id,
       content: content
     }})
+    if(rsp.code === 0){
+      this.getList(this.current,DEFAULT_PAGESIZE)
+    }
+    return rsp
   }
   
 }

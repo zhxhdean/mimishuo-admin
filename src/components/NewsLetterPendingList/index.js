@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Drawer, Table, Divider,message,Button,Input,Modal } from 'antd'
 import { Link } from 'react-router-dom'
 import { inject, observer } from 'mobx-react'
-
+import moment from 'moment'
 import './index.less'
 const TextArea = Input.TextArea
 @inject('rootStore', 'pendingListStore')
@@ -71,11 +71,11 @@ export default class index extends Component {
     const columns = [
       {
         dataIndex: 'title',
-        key: 'id',
-        title: '标题',
+        key: 'secretId',
+        title: '内容',
         width:340,
         render: (text, record) => {
-          return(<div><span  className="black">{record.title}</span><br/>{record.createTime}</div>)
+          return(<div><span  className="black">{record.content.substr(0,10)}</span><br/>{new moment(record.createTime).format('YYYY-MM-DD HH:mm:ss')}</div>)
         }
       },
       {

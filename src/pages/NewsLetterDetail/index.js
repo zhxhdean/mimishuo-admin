@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react'
 import { Link } from 'react-router-dom'
 import { message, Divider, Spin, Icon, Row, Col, Table, Tooltip } from 'antd'
 import '../SecretDetail/index.less'
-
+import moment from 'moment'
 @inject('rootStore', 'newsLetterDetailStore')
 @observer
 export default class index extends Component {
@@ -24,27 +24,40 @@ export default class index extends Component {
       })
   }
 
-
   render() {
     const { loading } = this.props.rootStore
     const { newsLetterDetail } = this.props.newsLetterDetailStore
     const columns = [
-      
-      { dataIndex: 'content', title: '内容', render: text =>{
-        if(text.length>30){
-          return <Tooltip title={text}>{text.substr(0,30) + '...'}</Tooltip>
-        }else{
-          return <Tooltip title={text}>{text}</Tooltip>
+      {
+        dataIndex: 'content',
+        title: '内容',
+        with: 500,
+        render: text => {
+          if (text && text.length > 30) {
+            return <Tooltip title={text}>{text.substr(0, 30) + '...'}</Tooltip>
+          } else {
+            return <Tooltip title={text}>{text}</Tooltip>
+          }
         }
-      }},
-      { dataIndex: 'createTime', title: '发布时间' },
+      },
+      {
+        dataIndex: 'createTime',
+        title: '发布时间',
+        render: text => new moment(text).format('YYYY-MM-DD HH:mm:ss')
+      },
       {
         dataIndex: 'action',
         title: '操作',
-        align:'center',
+        align: 'center',
         render: (text, record) => {
           /*eslint-disable no-script-url*/
-          return (<span><Link to={`/secret/detail/${record.secretId}`}>详情</Link> <Divider type="vertical" /> <a href="javascript:void(0)" >撤回</a> <Divider type="vertical" /> <a href="javascript:void(0)">移除</a></span>)
+          return (
+            <span>
+              <Link to={`/secret/detail/${record.secretId}`}>详情</Link>{' '}
+              <Divider type="vertical" /> <a href="javascript:void(0)">撤回</a>{' '}
+              <Divider type="vertical" /> <a href="javascript:void(0)">移除</a>
+            </span>
+          )
         }
       }
     ]
@@ -53,7 +66,13 @@ export default class index extends Component {
         <h2>
           newsletter详情
           {/*eslint-disable no-script-url*/}
-          <a href="javascript:void(0);" onClick={() => this.props.history.goBack()}><Icon type="caret-left" />返回</a>
+          <a
+            href="javascript:void(0);"
+            onClick={() => this.props.history.goBack()}
+          >
+            <Icon type="caret-left" />
+            返回
+          </a>
         </h2>
         <Divider />
         <Spin spinning={loading}>
@@ -75,10 +94,11 @@ export default class index extends Component {
           <Divider />
           <h3>关联清单</h3>
           <Table
+          rowKey="secretId"
             dataSource={newsLetterDetail.secretSimpleInfoList}
             pagination={false}
             columns={columns}
-            scroll={{y: 500}}
+            scroll={{ y: 500 }}
           />
         </Spin>
       </div>

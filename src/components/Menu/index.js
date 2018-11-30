@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import { Menu, Icon } from 'antd'
 import { Link, withRouter } from 'react-router-dom'
 const SubMenu = Menu.SubMenu
+
 export default withRouter(
   class index extends Component {
+
     render() {
       const path = this.props.history.location.pathname
       let key = '11'

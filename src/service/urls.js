@@ -33,9 +33,9 @@ export const SECRET_DETAIL_EDIT = '/secret/detail/edit'
 
 export const NEWS_LETTER_PUBLISH = '/newsletter/publish'
 
-export const NEWS_LETTER_CACHE_ADD = '/management/secret/cache/add/'
+export const NEWS_LETTER_CACHE_ADD = '/management/secret/cache/add'
 
-export const NEWS_LETTER_CACHE_DELETE = '/management/secret/cache/del/'
+export const NEWS_LETTER_CACHE_DELETE = '/management/secret/cache/del'
 
 export const NEWS_LETTER_CACHE_LIST = '/management/secret/cache/list'
 
@@ -43,7 +43,7 @@ export const NEWS_LETTER_CACHE_PUBLISH= '/management/secret/cache/publish'
 
 export const NEWS_LETTER_LIST = '/management/news-letter/search'
 
-export const NEWS_LETTER_DETAIL = '/management/news-letter/info/'
+export const NEWS_LETTER_DETAIL = '/management/news-letter/info'
 
 export const NEWS_LETTER_WITHDRAW = '/management/news-letter/withdraw/'
 

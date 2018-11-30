@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import {message} from 'antd'
 
 
 const instance = axios.create({
@@ -22,6 +22,11 @@ instance.interceptors.request.use(function(config){
 instance.interceptors.response.use(function(response){
   // todo 统一判断是否登录后，做跳转登录页面
   if(response.status === 200){
+    if(response.data.errorCode === '10004'){
+      message.error('登录已超时')
+      window.location.href = '/#/login'
+      return
+    }
     return {data:response.data.data, code: response.data.errorCode || 0, content: response.data.errorMsg || ''}
   }
   return response

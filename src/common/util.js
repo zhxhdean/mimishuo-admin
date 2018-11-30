@@ -20,7 +20,21 @@ const subDay = (time1, time2) => {
   return rst < 0 ? 0 : rst
 }
 
+// 首字母转大写
+const toUpperFirstLetter = str => {
+  if(!str){
+    return ''
+  }
+  if(str.length>=1){
+    const first = str.substr(0, 1).toUpperCase()
+    const _a = str.split('')
+    _a.splice(0,1,first)
+    return _a.join('')
+  }
+}
+
 export default {
   validatePassWord,
-  subDay
+  subDay,
+  toUpperFirstLetter
 }
