@@ -5,7 +5,7 @@ export const STATUS = {
 }
 
 // 分页默认的条数
-export const DEFAULT_PAGESIZE = 2
+export const DEFAULT_PAGESIZE = 20
 
 // 分页默认的页码
 export const DEFAULT_PAGEINDEX = 1

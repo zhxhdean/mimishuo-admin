@@ -5,12 +5,17 @@ import { inject, observer } from 'mobx-react'
 import {DEFAULT_PAGESIZE} from '../../common/constant'
 const SubMenu = Menu.SubMenu
 
-@inject('secretListStore')
+@inject('secretListStore','newsLetterStore')
 @observer
 export default class index extends Component {
 
-  handlePageIndex () {
-    this.props.secretListStore.getList(1, DEFAULT_PAGESIZE)
+  handlePageIndex (type) {
+    if(type === 'secret'){
+      this.props.secretListStore.getList(1, DEFAULT_PAGESIZE)
+    }else if(type === 'newsletter'){
+      this.props.newsLetterStore.getList(1, DEFAULT_PAGESIZE)
+    }
+    
   }
 
   render() {
@@ -88,11 +93,11 @@ export default class index extends Component {
           }
         >
           <Menu.Item key="21">
-            <Link to="/secret" onClick={this.handlePageIndex.bind(this)}>秘密列表</Link>
+            <Link to="/secret" onClick={this.handlePageIndex.bind(this, 'secret')}>秘密列表</Link>
           </Menu.Item>
           {/* <Menu.Item key="22">搜索</Menu.Item> */}
           <Menu.Item key="23">
-            <Link to="/newsletter">newsletter</Link>
+            <Link to="/newsletter" onClick={this.handlePageIndex.bind(this, 'newsletter')}>newsletter</Link>
           </Menu.Item>
         </SubMenu>
         <SubMenu
