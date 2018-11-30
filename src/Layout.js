@@ -5,6 +5,9 @@ import LeftMenu from './components/Menu'
 import MyHeader from './components/Header'
 import Logo from './logo.svg'
 const { Header, Sider, Content } = Layout
+
+
+
 export default class Index extends Component {
   constructor(props){
     super(props)
@@ -28,7 +31,7 @@ export default class Index extends Component {
           collapsed={this.state.collapsed}
         >
           <div className="logo"><img src={Logo} alt="秘密说管理系统"/></div>
-          <LeftMenu/>
+          <LeftMenu history={this.props.history}/>
         </Sider>
         <Layout>
           <Header style={{ background: '#fff', padding: 0, justifyContent: 'space-between', display: 'flex', alignItems: 'center' }}>
