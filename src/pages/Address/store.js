@@ -10,9 +10,7 @@ class AddressStore {
   address = {
     address: '',
     lng: 0, //经度
-    lat: 0, //维度
-    id:0,
-    status: 0
+    lat: 0 //维度
   }
 
   @action
@@ -22,7 +20,7 @@ class AddressStore {
   
   @action
   async add(name, value){
-    return await post({url: ADDRESS_ADD, data: {address: this.address}})
+    return await post({url: ADDRESS_ADD, data: this.address})
   }
   @action
   async getList(){
@@ -35,7 +33,7 @@ class AddressStore {
 
   @action
   async edit(id,status){
-    const rsp =  await post({url: `${ADDRESS_LIST}/${id}`, data: {status: status}})
+    const rsp =  await get({url: `${ADDRESS_LIST}/${id}`, data: {status: status ? 1 : 0}})
     if(rsp.code === 0){
       this.getList()
     }

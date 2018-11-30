@@ -22,7 +22,7 @@ class TagsStore {
 
   @action
   async add(){
-    const rsp = await post({url: TAGS_ADD, data: {tagName: this.tag, tagId: 0}})
+    const rsp = await post({url: TAGS_ADD, data: {tagName: this.tag}})
     if(rsp.code === 0){
       this.tag = ''
       this.getList()
@@ -34,7 +34,7 @@ class TagsStore {
   async getList(){
    const rsp = await get({url: TAGS_LIST})
    if(rsp.code === 0){
-     this.tags = rsp.data
+     this.tags = rsp.data || []
    }
    return rsp
   }
@@ -45,7 +45,7 @@ class TagsStore {
    if(rsp.code === 0){
     this.tagsForSecret = rsp.data.map(item => {
       return {
-        label: item.tarName,
+        label: item.tagName,
         value: item.tagId
       }
     })
