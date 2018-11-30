@@ -21,7 +21,8 @@ module.exports = function override(config, env) {
   //   ['@babel/plugin-proposal-decorators', { legacy: true}],
   //   config
   // )
-
+  config.devtool = 'cheap-module-source-map' // 用于build
   injectBabelPlugin('transform-decorators-legacy', config);
+  console.log(config)
   return config
 }
