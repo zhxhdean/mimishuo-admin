@@ -41,17 +41,18 @@ export default class index extends Component {
     })
   }
 
-  handleDisabled = record => {
+  handleToggle = record => {
     const self = this
+    const msg = record.status ? '停用' : '启用'
     Modal.confirm({
       title: '提示',
-      content: '请确定要停用该地址？',
+      content: `请确定要${msg}该地址？`,
       onOk(){
         self.props.rootStore.showLoading()
-        self.props.addressStore.edit(record.id).then(rsp => {
+        self.props.addressStore.edit(record.id, !record.status).then(rsp => {
           self.props.rootStore.hideLoading()
           if(rsp.code === 0){
-            message.success('停用成功')
+            message.success(`${msg}成功`)
           }else{
             message.error('操作错误')
           }
@@ -90,10 +91,10 @@ export default class index extends Component {
             <a href="javascript:void(0);" onClick={this.handleDelete.bind(this, record)}>删除</a> 
           </Tooltip>
           <Divider type="vertical" />
-          <Tooltip title="停用">
+ 
           { /*eslint-disable no-script-url*/}
-            <a href="javascript:void(0);" onClick={this.handleDisabled.bind(this, record)}>停用</a> 
-          </Tooltip>
+            <a href="javascript:void(0);" onClick={this.handleToggle.bind(this, record)}>{record.status ? '停用' : '启用'}</a> 
+        
         </span>)
       }
     }]

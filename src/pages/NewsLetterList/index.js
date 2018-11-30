@@ -55,15 +55,28 @@ export default class index extends Component {
       })
   }
 
-  handleRecall = record => {
+  // 撤回
+  handleRecall = id => {
     //todo 撤回
+    this.props.rootStore.showLoading()
+    this.props.newsLetterStore.recall(id).then(rsp => {
+      this.props.rootStore.hideLoading()
+      if(rsp.code === 0){
+        message.success('撤回成功')
+      }else{
+        message.error('撤回失败')
+      }
+    }).catch(err => {
+      message.error('失败')
+      this.props.rootStore.hideLoading()
+    })
   }
   render() {
     const { loading } = this.props.rootStore
     const { current, total, newsLetterList } = this.props.newsLetterStore
     const columns = [
       {
-        dataIndex: 'id',
+        dataIndex: 'newsLetterId',
         title: '序号'
       },
       {
@@ -71,7 +84,7 @@ export default class index extends Component {
         title: '标题',
         render: (text,record) => (
           <div className="word-hide wd150">
-            <Tooltip title={text}><Link to={`/newsletter/detail/${record.id}`}>{record.title}</Link></Tooltip>
+            <Tooltip title={text}><Link to={`/newsletter/detail/${record.newsLetterId}`}>{record.title}</Link></Tooltip>
           </div>
         )
       },
@@ -81,7 +94,7 @@ export default class index extends Component {
         render: text => getSecretStatus(text)
       },
       {
-        dataIndex: 'createTime',
+        dataIndex: 'publishTime',
         title: '发布时间'
       },
       {
@@ -101,12 +114,12 @@ export default class index extends Component {
             // todo 撤回
             <span>
               <Tooltip title="查看详情">
-                <Link to={`/newsletter/detail/${record.id}`}>详情</Link>
+                <Link to={`/newsletter/detail/${record.newsLetterId}`}>详情</Link>
               </Tooltip>
               <Divider type="vertical" />
               <Tooltip title="撤回">
               { /*eslint-disable no-script-url*/}
-                <a href="javascript:void(0);" onClick={this.handleRecall.bind(this, record)}>撤回</a> 
+                <a href="javascript:void(0);" onClick={this.handleRecall.bind(this, record.newsLetterId)}>撤回</a> 
               </Tooltip>
             </span>
           )
@@ -126,7 +139,7 @@ export default class index extends Component {
           />
 
           <Table
-            rowKey="id"
+            rowKey="newsLetterId"
             loading={loading}
             pagination={{
               current: current,

@@ -44,7 +44,13 @@ function post (options){
   return instance.post(url, data)
 }
 
+function del (options){
+  const {url} = options
+  return instance.delete(url)
+}
+
 export {
   get,
-  post
+  post,
+  del
 }

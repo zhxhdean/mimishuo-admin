@@ -1,6 +1,6 @@
 import { action, observable } from 'mobx'
-import {post} from '../../service/request'
-import {NEWS_LETTER_LIST} from '../../service/urls'
+import {post,get} from '../../service/request'
+import {NEWS_LETTER_LIST,NEWS_LETTER_WITHDRAW} from '../../service/urls'
 class NewsLetterStore {
   @observable
   newsLetterList = []
@@ -30,10 +30,15 @@ class NewsLetterStore {
       }
     })
     if (rsp.code === 0) {
-      this.newsLetterList = rsp.data
+      this.newsLetterList = rsp.data.items || []
       // 测试数据
-      this.total = 106
+      this.total = rsp.data.totalCount
     }
+  }
+
+  @action
+  async recall(id){
+    return await get({url: `${NEWS_LETTER_WITHDRAW}/${id}`})
   }
 }
 

@@ -1,6 +1,6 @@
 
 import {observable, action} from 'mobx'
-import {post} from '../../service/request'
+import {post,del,get} from '../../service/request'
 import {DEFAULT_SECRET_TAGS} from '../../common/constant'
 import {TAGS_ADD,TAGS_LIST,TAGS_DELETE} from '../../service/urls'
 class TagsStore {
@@ -22,7 +22,7 @@ class TagsStore {
 
   @action
   async add(){
-    const rsp = await post({url: TAGS_ADD, data: {tag: this.tag}})
+    const rsp = await post({url: TAGS_ADD, data: {tagName: this.tag, tagId: 0}})
     if(rsp.code === 0){
       this.tag = ''
       this.getList()
@@ -32,7 +32,7 @@ class TagsStore {
 
   @action
   async getList(){
-   const rsp = await post({url: TAGS_LIST})
+   const rsp = await get({url: TAGS_LIST})
    if(rsp.code === 0){
      this.tags = rsp.data
    }
@@ -56,7 +56,7 @@ class TagsStore {
 
   @action
   async delete(id){
-    const rsp = await post({url: TAGS_DELETE, data: {id: id}})
+    const rsp = await del({url: `${TAGS_DELETE}/${id}`})
     if(rsp.code === 0){
       this.tags = rsp.data
     }

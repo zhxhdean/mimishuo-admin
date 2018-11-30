@@ -1,5 +1,5 @@
-import {ADDRESS_LIST, ADDRESS_ADD, ADDRESS_EDIT,ADDRESS_DELETE} from '../../service/urls'
-import {post} from '../../service/request'
+import {ADDRESS_LIST, ADDRESS_ADD} from '../../service/urls'
+import {post,get,del} from '../../service/request'
 import { observable,action } from 'mobx';
 
 class AddressStore {
@@ -10,7 +10,9 @@ class AddressStore {
   address = {
     address: '',
     lng: 0, //经度
-    lat: 0 //维度
+    lat: 0, //维度
+    id:0,
+    status: 0
   }
 
   @action
@@ -24,7 +26,7 @@ class AddressStore {
   }
   @action
   async getList(){
-    const rsp = await post({url: ADDRESS_LIST})
+    const rsp = await get({url: ADDRESS_LIST})
     if(rsp.code === 0){
       this.addressList = rsp.data
     }
@@ -32,8 +34,8 @@ class AddressStore {
   }
 
   @action
-  async edit(id){
-    const rsp =  await post({url: ADDRESS_EDIT, data: {id: id}})
+  async edit(id,status){
+    const rsp =  await post({url: `${ADDRESS_LIST}/${id}`, data: {status: status}})
     if(rsp.code === 0){
       this.getList()
     }
@@ -42,7 +44,7 @@ class AddressStore {
 
   @action
   async delete(id){
-    const rsp = await post({url: ADDRESS_DELETE, data: {id: id}})
+    const rsp = await del({url: `${ADDRESS_LIST}/${id}`})
     if(rsp.code === 0){
       this.getList()
     }

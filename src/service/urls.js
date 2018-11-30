@@ -37,9 +37,15 @@ export const NEWS_LETTER_CACHE_ADD = '/management/secret/cache/add/'
 
 export const NEWS_LETTER_CACHE_DELETE = '/management/secret/cache/del/'
 
-export const NEWS_LETTER_LIST = '/newsletter/list'
+export const NEWS_LETTER_CACHE_LIST = '/management/secret/cache/list'
 
-export const NEWS_LETTER_DETAIL = '/newsletter/detail'
+export const NEWS_LETTER_CACHE_PUBLISH= '/management/secret/cache/publish'
+
+export const NEWS_LETTER_LIST = '/management/news-letter/search'
+
+export const NEWS_LETTER_DETAIL = '/management/news-letter/info/'
+
+export const NEWS_LETTER_WITHDRAW = '/management/news-letter/withdraw/'
 
 export const SHIELDED_WORD_LIST = '/shieldedword/list'
 
@@ -55,20 +61,17 @@ export const WORD_LIBRARY_IMPORT = '/wordlibrary/import'
 
 export const WORD_LIBRARY_BATCH_IMPORT = '/wordlibrary/batchimport'
 
-export const TAGS_ADD = '/tags/add'
+export const TAGS_ADD = '/management/basic-info/tag/add'
 
-export const TAGS_LIST = '/management/secret/tag/list'
+export const TAGS_LIST = '/management/basic-info/tag/list'
 
-export const TAGS_DELETE= '/tags/delete'
+export const TAGS_DELETE= '/management/basic-info/tag/'
 
 export const SYSTEM_CONFIG = '/systemconfig'
 
 export const SYSTEM_CONFIG_EDIT = '/systemconfig/edit'
 
-export const ADDRESS_LIST = '/address/list'
+export const ADDRESS_LIST = '/management/basic-info/company/address'
 
-export const ADDRESS_ADD = '/address/add'
+export const ADDRESS_ADD = '/management/basic-info/company/address/add'
 
-export const ADDRESS_EDIT = '/address/edit'
-
-export const ADDRESS_DELETE = '/address/delete'

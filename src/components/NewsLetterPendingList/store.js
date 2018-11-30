@@ -1,7 +1,7 @@
 import { observable, action } from 'mobx'
 import { message } from 'antd'
 import { post } from '../../service/request'
-import { NEWS_LETTER_PUBLISH, NEWS_LETTER_CACHE_ADD, NEWS_LETTER_CACHE_DELETE } from '../../service/urls'
+import { NEWS_LETTER_CACHE_PUBLISH, NEWS_LETTER_CACHE_ADD, NEWS_LETTER_CACHE_DELETE,NEWS_LETTER_CACHE_LIST } from '../../service/urls'
 class NewsLetterPendingListStore {
   //发布清单集合
   @observable pendingList = []
@@ -9,6 +9,14 @@ class NewsLetterPendingListStore {
   @observable title = ''
   @observable content = ''
 
+  @action
+  async getPendingList(){
+    const rsp = await post({url:NEWS_LETTER_CACHE_LIST})
+    if(rsp.code === 0){
+      this.pendingList = rsp.data || []
+    }
+    return rsp
+  }
   @action
   setValue(name, value) {
     this[name] = value
@@ -60,7 +68,7 @@ class NewsLetterPendingListStore {
   @action
   async publish() {
     return await post({
-      url: NEWS_LETTER_PUBLISH,
+      url: NEWS_LETTER_CACHE_PUBLISH,
       data: {
         title: this.title,
         content: this.content,

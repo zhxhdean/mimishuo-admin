@@ -9,6 +9,9 @@ const TextArea = Input.TextArea
 @observer
 export default class index extends Component {
 
+  componentDidMount(){
+    this.props.pendingListStore.getPendingList()
+  }
   handleRemove = record => {
     this.props.pendingListStore.remove(record)
   }

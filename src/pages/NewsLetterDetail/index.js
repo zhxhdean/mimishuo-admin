@@ -23,12 +23,13 @@ export default class index extends Component {
         this.props.rootStore.hideLoading()
       })
   }
+
+
   render() {
     const { loading } = this.props.rootStore
     const { newsLetterDetail } = this.props.newsLetterDetailStore
     const columns = [
-      { dataIndex: 'title', title: '主题' },
-      { dataIndex: 'createTime', title: '发布时间' },
+      
       { dataIndex: 'content', title: '内容', render: text =>{
         if(text.length>30){
           return <Tooltip title={text}>{text.substr(0,30) + '...'}</Tooltip>
@@ -36,12 +37,14 @@ export default class index extends Component {
           return <Tooltip title={text}>{text}</Tooltip>
         }
       }},
+      { dataIndex: 'createTime', title: '发布时间' },
       {
         dataIndex: 'action',
         title: '操作',
         align:'center',
         render: (text, record) => {
-          return (<span><Link to={`/secret/detail/${record.id}`}>详情</Link> <Divider type="vertical" /> <a href="#">撤回</a> <Divider type="vertical" /> <a href="#">移除</a></span>)
+          /*eslint-disable no-script-url*/
+          return (<span><Link to={`/secret/detail/${record.secretId}`}>详情</Link> <Divider type="vertical" /> <a href="javascript:void(0)" >撤回</a> <Divider type="vertical" /> <a href="javascript:void(0)">移除</a></span>)
         }
       }
     ]
@@ -59,7 +62,7 @@ export default class index extends Component {
               <h3>{newsLetterDetail.title}</h3>
             </Col>
             <Col span={4} className="black65">
-              {newsLetterDetail.createTime}
+              {newsLetterDetail.publishTime}
             </Col>
             <Col span={2} />
           </Row>
@@ -72,7 +75,7 @@ export default class index extends Component {
           <Divider />
           <h3>关联清单</h3>
           <Table
-            dataSource={newsLetterDetail.secretList}
+            dataSource={newsLetterDetail.secretSimpleInfoList}
             pagination={false}
             columns={columns}
             scroll={{y: 500}}
