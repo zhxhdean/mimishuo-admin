@@ -1,0 +1,67 @@
+
+.recharge-page{
+  .body{
+    display:flex;
+  }
+.msg{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size:14px;
+  height: 40px;
+  color:#000;
+  background:#eee;
+  padding: 0 10px;
+  margin-bottom: 10px;
+  strong{
+    font-size:16px;
+  }
+  span{
+    strong{
+      font-size:14px;
+    }
+  }
+}
+
+.price{
+  font-size: 16px;
+  color:#f20;
+  span{
+    text-decoration:line-through;
+    color:#ccc;
+  }
+}
+.content{
+  text-align: center;
+}
+.ant-col-8{
+  .ant-card-head{
+    border-bottom: 0;
+    .ant-card-head-wrapper{
+      border-bottom: 1px solid #e8e8e8;
+    }
+  }
+
+}
+
+.price-item {
+  .ant-row{
+    border: solid 1px #e8e8e8;
+    &:last-child{
+      border-top: 0;
+    }
+    .ant-col-8{
+      box-sizing: border-box;
+      border-right: solid 1px #e8e8e8;
+      .ant-card:hover{
+        cursor: pointer;
+        border: 1px solid #1890ff;
+      }
+      &:last-child{
+        border-right: 0;
+      }
+    }
+  }
+}
+
+}
