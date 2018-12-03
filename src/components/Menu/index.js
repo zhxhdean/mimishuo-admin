@@ -54,6 +54,9 @@ class index extends Component {
       case '/address/add':
         key = '43'
         break
+      case '/systemconfig':
+        key = '44'
+        break
       default:
         key = '11'
         break
@@ -118,7 +121,7 @@ class index extends Component {
             <Link to="/changepassword">密码修改</Link>
           </Menu.Item>
           <Menu.Item key="33"><Link to="/recharge">在线充值</Link></Menu.Item>
-          <Menu.Item key="34">充值记录</Menu.Item>
+          <Menu.Item key="34">我的订单</Menu.Item>
         </SubMenu>
         <SubMenu
           key="sub4"
@@ -134,7 +137,7 @@ class index extends Component {
           </Menu.Item>
           <Menu.Item key="42"><Link to="/tags">标签设置</Link></Menu.Item>
           <Menu.Item key="43"><Link to="/address">公司地址管理</Link></Menu.Item>
-          {/* <Menu.Item key="43"><Link to="/systemconfig">系统配置</Link></Menu.Item> */}
+          <Menu.Item key="44"><Link to="/systemconfig">设置配置</Link></Menu.Item>
         </SubMenu>
       </Menu>
     )

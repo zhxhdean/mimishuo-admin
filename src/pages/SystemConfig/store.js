@@ -3,48 +3,29 @@ import { post } from '../../service/request'
 import { SYSTEM_CONFIG, SYSTEM_CONFIG_EDIT } from '../../service/urls'
 class SystemConfigStore {
   @observable
-  email = ''
+  replace = false
   @observable
-  phone = ''
+  gps = false
 
-  @observable
-  verify = ''
-  @observable
-  modal = false
 
-  @action
-  showModal(){
-    this.modal = true
-  }
-  @action.bound
-  hideModal(){
-    this.modal = false
-  }
+
   @action
   async getConfig() {
     const rsp = await post({ url: SYSTEM_CONFIG })
     if (rsp.code === 0) {
-      this.email = rsp.data.email
-      this.phone = rsp.data.phone
+      this.replace = rsp.data.replace
+      this.gps = rsp.data.gps
     }
     return rsp
   }
 
   @action
-  async edit() {
-    const rsp = await post({
-      url: SYSTEM_CONFIG_EDIT,
-      data: {
-        email: this.email,
-        phone: this.phone
-      }
-    })
-    if (rsp.code === 0) {
-      this.email = rsp.data.email
-      this.phone = rsp.data.phone
-    }
+  async setConfig() {
+    const rsp = await post({ url: SYSTEM_CONFIG_EDIT })
+    // todo
     return rsp
   }
+
 
   @action
   setValue (name, value){

@@ -59,6 +59,7 @@ export default class index extends Component {
                 style={{ width: '300px' }}
                 prefix={<Icon type="user" />}
                 value={user.userName}
+                defaultValue={user.userName}
                 placeholder="请输入用户名"
                 onChange={this.handleInputChange.bind(this, 'userName')}
               />
@@ -71,6 +72,7 @@ export default class index extends Component {
                 type="passWord"
                 value={user.passWord}
                 placeholder="请输入密码"
+                onPressEnter={this.handleLogin}
                 onChange={this.handleInputChange.bind(this, 'passWord')}
               />
             </li>
