@@ -33,6 +33,15 @@ class index extends Component {
       case '/changepassword':
         key = '32'
         break
+      case '/recharge':
+        key = '33'
+        break
+      case '/payment':
+        key = '33'
+        break
+      case '/order':
+        key = '34'
+        break
       case '/secret':
         key = '21'
         break
@@ -121,7 +130,7 @@ class index extends Component {
             <Link to="/changepassword">密码修改</Link>
           </Menu.Item>
           <Menu.Item key="33"><Link to="/recharge">在线充值</Link></Menu.Item>
-          <Menu.Item key="34">我的订单</Menu.Item>
+          <Menu.Item key="34"><Link to="/order">我的订单</Link></Menu.Item>
         </SubMenu>
         <SubMenu
           key="sub4"

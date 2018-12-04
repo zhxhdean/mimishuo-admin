@@ -75,3 +75,11 @@ export const ADDRESS_LIST = '/management/basic-info/company/address'
 
 export const ADDRESS_ADD = '/management/basic-info/company/address/add'
 
+export const ORDER_CREATE = '/management/order/create'
+
+export const ORDER_STATUS = '/management/order/status'
+
+export const ORDER_LIST = '/management/order/list'
+
+export const INVOICE_CREATE = '/management/invoice/create'
+

@@ -50,6 +50,8 @@ class RootStore {
     this.newsletterModal = false
   }
 
+
+
   @action
   getVerifyCodeByEmail(option) {
     const now = Date.now()

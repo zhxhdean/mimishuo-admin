@@ -78,3 +78,9 @@ CHANGE_EMAIL: 'CHANGE_EMAIL'
 }
 
 export const CONFIG_KEY = '!2@M0m1S8'
+
+// 订单状态
+export const ORDER_STATUS = new Map([[1, '待支付'],[2, '已支付'], [3, '已取消']])
+
+//发票状态
+export const INVOICE_STATUS = new Map([[1, '未申请'],[2, '申请中'], [3, '已寄出']])

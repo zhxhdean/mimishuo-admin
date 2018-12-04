@@ -21,6 +21,8 @@ import ForgetPassword from './pages/ForgetPassword'
 import Recharge from './pages/Recharge'
 import AddressList from './pages/Address'
 import AddressAdd from './pages/AddressAdd'
+import Payment from './pages/Recharge/payment'
+import OrderList from './pages/OrderList'
 // store
 import loginStore from './pages/Login/store'
 import rootStore from './store'
@@ -38,6 +40,8 @@ import tagsStore from './pages/Tags/store'
 import systemConfigStore from './pages/SystemConfig/store'
 import forgetPasswordStore from './pages/ForgetPassword/store'
 import addressStore from './pages/Address/store'
+import rechargeStore from './pages/Recharge/store'
+import orderListStore from './pages/OrderList/store'
 import { BackTop } from 'antd'
 const stores = {
   rootStore,
@@ -55,7 +59,9 @@ const stores = {
   tagsStore,
   systemConfigStore,
   forgetPasswordStore,
-  addressStore
+  addressStore,
+  rechargeStore,
+  orderListStore
 }
 
 // for debug
@@ -93,6 +99,8 @@ export const router = (
         <Route path="/address/add" component={AddressAdd} />
         <Route path="/address" component={AddressList} />
         <Route path="/systemconfig" component={SystemConfig} />
+        <Route path="/payment" exact component={Payment} />
+        <Route path="/order" component={OrderList} />
         <Route component={Index} />
       </Switch>
     </Router>

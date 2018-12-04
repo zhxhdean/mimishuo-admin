@@ -1,67 +1,89 @@
-
-.recharge-page{
-  .body{
-    display:flex;
+.recharge-page {
+  .body {
+    display: flex;
   }
-.msg{
-  display:flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size:14px;
-  height: 40px;
-  color:#000;
-  background:#eee;
-  padding: 0 10px;
-  margin-bottom: 10px;
-  strong{
-    font-size:16px;
-  }
-  span{
-    strong{
-      font-size:14px;
+  .msg {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    height: 40px;
+    color: #000;
+    background: #eee;
+    padding: 0 10px;
+    margin-bottom: 10px;
+    strong {
+      font-size: 16px;
+    }
+    span {
+      strong {
+        font-size: 14px;
+      }
     }
   }
-}
-
-.price{
-  font-size: 16px;
-  color:#f20;
-  span{
-    text-decoration:line-through;
-    color:#ccc;
-  }
-}
-.content{
-  text-align: center;
-}
-.ant-col-8{
-  .ant-card-head{
-    border-bottom: 0;
-    .ant-card-head-wrapper{
-      border-bottom: 1px solid #e8e8e8;
+  .price {
+    font-size: 16px;
+    color: #f20;
+    span {
+      text-decoration: line-through;
+      color: #ccc;
     }
   }
-
-}
-
-.price-item {
-  .ant-row{
-    border: solid 1px #e8e8e8;
-    &:last-child{
+  .content {
+    text-align: center;
+  }
+  .ant-col-8 {
+    .ant-card-head {
+      border-bottom: 0;
+      .ant-card-head-wrapper {
+        border-bottom: 1px solid #e8e8e8;
+      }
+    }
+  }
+  .price-item {
+    .ant-row {
+      &:hover {
+        cursor: pointer;
+      }
+      .ant-col-8 {
+        box-sizing: border-box;
+        border: solid 1px #e8e8e8;
+        .ant-card{
+          border-radius: 0;
+        }
+        .ant-card:hover{
+          background:#6ebeff;
+          color:#fff;
+          .ant-card-head-title{
+            color:#fff;
+          }
+        }
+      }
+      .ant-col-8 +.ant-col-8{
+        border-left: 0;
+      }
+    }
+  }
+  .price-item .ant-row+.ant-row {
+    .ant-col-8 {
       border-top: 0;
     }
-    .ant-col-8{
-      box-sizing: border-box;
-      border-right: solid 1px #e8e8e8;
-      .ant-card:hover{
-        cursor: pointer;
-        border: 1px solid #1890ff;
-      }
-      &:last-child{
-        border-right: 0;
-      }
-    }
   }
 }
 
+.payment-page{
+  .ant-row{
+    margin-top: 10px;
+    color:#000;
+  }
+  .pay-card{
+    margin-top: 25px;
+  }
+  .qrcode{
+    margin-top: 15px;
+    img{
+      width: 200px;
+      height: 200px;
+    }
+  }
 }
