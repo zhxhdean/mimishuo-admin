@@ -9,7 +9,7 @@ export default class index extends Component {
   }
   render() {
     return (
-      <div className="main">
+      <div className="main-x">
       <div className="triangle">
       </div>
 
