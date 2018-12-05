@@ -17,6 +17,7 @@ export default class index extends Component {
         
       </div>
 
+      <div className="shadow">阴影演示</div>
       <div className="rotate">
       animation动画演示
       </div>
