@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
-import {Icon, Tooltip} from 'antd'
+import {Icon, Tooltip,Avatar} from 'antd'
 import './index.less'
 import {observer,inject} from 'mobx-react'
 
@@ -11,7 +11,7 @@ export default class index extends Component {
     const {userInfo} = this.props.authenticateStore
     return (
       <div className="header-right">
-        <Link to="/userinfo"><Icon type="idcard" style={{fontSize: '14px'}}/> {userInfo.companyInfo.companyName}</Link>
+        <Link to="/userinfo"><Avatar style={{ backgroundColor: '#1890ff' }} icon="user" /> {userInfo.companyInfo.companyName}</Link>
         <Tooltip title="退出系统">
         <Icon type="logout" onClick={this.props.loginStore.logout}/>
         </Tooltip>

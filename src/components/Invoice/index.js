@@ -80,7 +80,7 @@ export default class index extends Component {
   }
 
   render() {
-    const { invoiceModal } = this.props.orderListStore
+    const { invoiceModal, invoiceInfo } = this.props.orderListStore
     const provice = cities.filter(item => item.level === '1')
     return (
       <div>
@@ -92,12 +92,16 @@ export default class index extends Component {
         >
           <Row>
             <Col span={4}>商品名称：</Col>
-            <Col>秘密说1年套餐</Col>
+            <Col>{invoiceInfo.packageName}</Col>
           </Row>
           <Row style={{ marginTop: '10px' }}>
             <Col span={4}>发票类型：</Col>
             <Col>增值税普通发票</Col>
           </Row>
+          <Row style={{ marginTop: '10px' }}>
+                  <Col span={6}>发票金额(元)：</Col>
+                  <Col span={18}>￥{invoiceInfo.price}</Col>
+                </Row>
           <Row style={{ marginTop: '10px' }} type="flex" align="middle">
             <Col span={4}>发票抬头：</Col>
             <Col span={16}>

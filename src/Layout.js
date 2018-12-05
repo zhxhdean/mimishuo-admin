@@ -4,6 +4,7 @@ import {router} from './router'
 import LeftMenu from './components/Menu'
 import MyHeader from './components/Header'
 import Logo from './logo.svg'
+import Suggest from './components/Suggest'
 const { Header, Sider, Content } = Layout
 
 
@@ -46,6 +47,7 @@ export default class Index extends Component {
           </Header>
           <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
             {router}
+            <Suggest />
           </Content>
         </Layout>
       </Layout>
