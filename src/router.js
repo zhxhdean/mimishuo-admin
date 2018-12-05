@@ -23,6 +23,7 @@ import AddressList from './pages/Address'
 import AddressAdd from './pages/AddressAdd'
 import Payment from './pages/Recharge/payment'
 import OrderList from './pages/OrderList'
+import CssComponent from './components/Css'
 // store
 import loginStore from './pages/Login/store'
 import rootStore from './store'
@@ -72,6 +73,7 @@ export const rootRouter = (
   <Provider {...stores}>
     <Router>
       <Switch>
+      <Route path="/css" component={CssComponent} />
         <Route path="/login" component={Login} />
         <Route path="/forget" component={ForgetPassword} />
         <Route path="/" component={Layout} />
