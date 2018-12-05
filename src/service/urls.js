@@ -83,3 +83,5 @@ export const ORDER_LIST = '/management/order/list'
 
 export const INVOICE_CREATE = '/management/invoice/create'
 
+export const INVOICE_DETAIL = '/management/invoice/info'
+

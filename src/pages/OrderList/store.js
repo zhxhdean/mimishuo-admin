@@ -1,7 +1,8 @@
 
 import {observable,action} from 'mobx'
-import {post} from '../../service/request'
-import {ORDER_LIST,INVOICE_CREATE} from '../../service/urls'
+import {post,get} from '../../service/request'
+import {ORDER_LIST,INVOICE_CREATE,INVOICE_DETAIL} from '../../service/urls'
+
 class OrderListStore{
 
   @observable orderInfo = {}
@@ -52,6 +53,16 @@ class OrderListStore{
   async createInvoice(option){
     const data = {title: this.title,taxCode: this.taxCode, address:this.address,...option}
     const rsp = await post({url: INVOICE_CREATE, data: data})
+    return rsp
+  }
+
+  // 查找发票信息
+  @action
+  async getInvoice(id){
+    const rsp = await get({url: INVOICE_DETAIL, data: {id: id}})
+    if(rsp.code === 0){
+      this.invoiceInfo = rsp.data
+    }
     return rsp
   }
 }
