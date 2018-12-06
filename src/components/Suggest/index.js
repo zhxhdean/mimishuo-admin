@@ -20,7 +20,7 @@ export default class index extends Component {
   render() {
     return (
       <div className="suggest-page">
-        <span className="display">隐藏</span>
+        {/* <span className="display">隐藏</span> */}
         <div className="default" onClick={this.handleShow}>
           <Icon type="form" style={{ fontSize: '30px' }} />
           <br />

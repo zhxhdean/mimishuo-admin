@@ -76,6 +76,8 @@ class index extends Component {
     if (path.includes('/newsletter/detail')) {
       key = '23'
     }
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     console.log(path)
     return (
       <Menu
