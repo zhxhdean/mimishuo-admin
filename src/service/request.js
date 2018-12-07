@@ -11,7 +11,11 @@ const instance = axios.create({
 // 请求拦截器
 instance.interceptors.request.use(function(config){
   // 动态增加一些配置
-
+  if(config.url.includes('aliyuncs.com')){
+    //阿里云的oss地址
+    config.baseURL = ''
+    config.headers['Content-Type'] = 'image/jpeg'
+  }
   console.log(config)
   return config
 }, function(err){
@@ -54,8 +58,14 @@ function del (options){
   return instance.delete(url)
 }
 
+function put (options){
+  const {url, data} = options
+  return instance.put(url, data)
+}
+
 export {
   get,
   post,
-  del
+  del,
+  put
 }

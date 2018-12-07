@@ -85,3 +85,7 @@ export const INVOICE_CREATE = '/management/invoice/create'
 
 export const INVOICE_DETAIL = '/management/invoice/info'
 
+export const UPLOAD = '/management/file/presigned-info?fileType=JPG'
+
+export const SUGGEST_ADD = '/management/basic-info/suggestion/add'
+

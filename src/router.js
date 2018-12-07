@@ -43,7 +43,9 @@ import forgetPasswordStore from './pages/ForgetPassword/store'
 import addressStore from './pages/Address/store'
 import rechargeStore from './pages/Recharge/store'
 import orderListStore from './pages/OrderList/store'
+import suggestStore from './components/Suggest/store'
 import { BackTop } from 'antd'
+
 const stores = {
   rootStore,
   loginStore,
@@ -62,7 +64,8 @@ const stores = {
   forgetPasswordStore,
   addressStore,
   rechargeStore,
-  orderListStore
+  orderListStore,
+  suggestStore
 }
 
 // for debug
