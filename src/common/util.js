@@ -13,6 +13,14 @@ const validatePassWord = val => {
   return false
 }
 
+const validateMobile = val => {
+  if (!val) {
+    return false
+  }
+  const reg = /^1\d{10}/
+  return reg.test(val)
+}
+
 // 求时间差几天
 const subDay = (time1, time2) => {
   const days = time1 - time2
@@ -36,5 +44,6 @@ const toUpperFirstLetter = str => {
 export default {
   validatePassWord,
   subDay,
-  toUpperFirstLetter
+  toUpperFirstLetter,
+  validateMobile
 }

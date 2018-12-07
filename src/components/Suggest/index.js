@@ -3,7 +3,7 @@ import './index.less'
 import { Icon, Row, Col, Button, Input, Tooltip, Upload,message } from 'antd'
 
 import { observer, inject } from 'mobx-react'
-
+import util from '../../common/util'
 const TextArea = Input.TextArea
 
 @inject('suggestStore', 'rootStore')
@@ -40,6 +40,10 @@ export default class index extends Component {
     }
     if(!mobile){
       message.error('联系电话没有填写！')
+      return
+    }
+    if(!util.validateMobile(mobile)){
+      message.error('联系电话格式错误！')
       return
     }
 
@@ -187,6 +191,7 @@ export default class index extends Component {
           <Row className="pd10">
             <Col>
               <Button
+              loading={this.props.rootStore.loading}
                 className="submit"
                 type="primary"
                 onClick={this.handleSubmit}
