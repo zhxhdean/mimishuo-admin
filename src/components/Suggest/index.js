@@ -104,6 +104,7 @@ export default class index extends Component {
   render() {
     // const {fileList} = this.props.suggestStore
     const props = {
+      accept: 'image/*',
       listType: 'picture',
       beforeUpload: file => {
         this.props.suggestStore.addFile(file)
