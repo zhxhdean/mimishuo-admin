@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
-import { Button, Input, message, Icon } from 'antd'
+import { Button, Input, message, Icon,Modal } from 'antd'
 import { observer, inject } from 'mobx-react'
 import { STATUS } from '../../common/constant'
 import './index.less'
