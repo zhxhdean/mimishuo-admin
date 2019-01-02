@@ -89,3 +89,5 @@ export const UPLOAD = '/management/file/presigned-info?fileType=JPG'
 
 export const SUGGEST_ADD = '/management/basic-info/suggestion/add'
 
+export const QRCODE = '/management/account/wxacode'
+

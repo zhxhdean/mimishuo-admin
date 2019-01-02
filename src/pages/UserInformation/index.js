@@ -14,6 +14,10 @@ export default class index extends Component {
     }
   }
 
+  componentDidMount(){
+    this.props.userInformationStore.getQRCode()
+  }
+
 
   handleInputChange = (name, e) => {
     this.props.userInformationStore.setValue(name, e.target.value)
@@ -59,6 +63,7 @@ export default class index extends Component {
   }
   render() {
     const { userInfo } = this.props.authenticateStore
+    const {qrcode } = this.props.userInformationStore
     return (
       <div>
         <h2>用户信息</h2>
@@ -113,6 +118,13 @@ export default class index extends Component {
           <Col span={3}>社会信用代码：</Col>
           <Col span={8} className="black">
             {userInfo.companyInfo.creditCode}
+          </Col>
+        </Row>
+
+        <Row className="pdtb10">
+          <Col span={3}>企业二维码：</Col>
+          <Col span={8} className="black">
+            <img src={qrcode} />
           </Col>
         </Row>
 

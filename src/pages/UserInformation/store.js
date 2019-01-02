@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx'
-import { USER_EMAIL_CHANGE,USER_PHONE_CHANGE } from '../../service/urls'
-import {post } from '../../service/request'
+import { USER_EMAIL_CHANGE,USER_PHONE_CHANGE,QRCODE } from '../../service/urls'
+import {post,get } from '../../service/request'
 class UserInformationStore {
 
   // 修改时候需要用的
@@ -15,6 +15,9 @@ class UserInformationStore {
 
   @observable
   modal = false
+
+  @observable
+  qrcode = ''
 
 
   @action
@@ -54,6 +57,15 @@ class UserInformationStore {
   @action
   setValue (name, value){
     this[name] = value
+  }
+
+  @action
+  async getQRCode (){
+    const rsp = await get({url: QRCODE})
+    if(rsp.code === 0){
+      this.qrcode = rsp.data
+    }
+    return rsp
   }
 }
 
