@@ -20,10 +20,11 @@ export default class index extends Component {
       'https://webapi.amap.com/maps?v=1.4.6&key=d0e7001dedeb866445f257ea4aa03362'
     let root = document.getElementById('root')
     root.appendChild(tag)
-
+    let el = document.getElementById('container')
     const self = this
     // 加载完成
     tag.onload = () => {
+      el.style.width = document.getElementsByClassName('address-add')[0].offsetWidth + 'px'
       let map = new window.AMap.Map('container', {
         resizeEnable: true
       })

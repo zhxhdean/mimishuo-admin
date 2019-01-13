@@ -28,7 +28,7 @@ instance.interceptors.response.use(function(response){
   if(response.status === 200){
     if(response.data.errorCode === '10004' || response.data.errorCode === '10001'){
       message.error('登录已超时')
-      window.location.href = '/#/login'
+      window.location.href = '/admin/#/login'
       return {data:response.data.data, code: response.data.errorCode || 0, content: response.data.errorMsg || ''}
     }
     return {data:response.data.data, code: response.data.errorCode || 0, content: response.data.errorMsg || ''}

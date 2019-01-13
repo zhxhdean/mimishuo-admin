@@ -75,7 +75,7 @@ export default class index extends Component {
               <Row>
                 <Col span={24}>
                   <span className="orange">您好，{userInfo.userName}</span>{' '}
-                  您已使用{usedDate}天，还可以继续使用{remainingDate}天。<Link to="#">去充值</Link>
+                  您已使用{usedDate}天，还可以继续使用{remainingDate}天。<Link to="/recharge">去充值</Link>
                 </Col>
               </Row>
               <Row style={{ paddingTop: '15px' }}>

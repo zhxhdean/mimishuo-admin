@@ -3,7 +3,7 @@ import {Layout, Icon, Tooltip} from 'antd'
 import {router} from './router'
 import LeftMenu from './components/Menu'
 import MyHeader from './components/Header'
-import Logo from './logo.svg'
+import Logo from './logo.png'
 import Suggest from './components/Suggest'
 const { Header, Sider, Content } = Layout
 
@@ -45,7 +45,7 @@ export default class Index extends Component {
             </Tooltip>
             <MyHeader />
           </Header>
-          <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280 }}>
+          <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 600 }}>
             {router}
             <Suggest />
           </Content>
