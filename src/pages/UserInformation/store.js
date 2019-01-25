@@ -63,7 +63,7 @@ class UserInformationStore {
   async getQRCode (){
     const rsp = await get({url: QRCODE})
     if(rsp.code === 0){
-      this.qrcode = rsp.data
+      this.qrcode = rsp.data.qrCode
     }
     return rsp
   }

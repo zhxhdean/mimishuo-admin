@@ -3,7 +3,7 @@ import {message} from 'antd'
 
 
 const instance = axios.create({
-  baseURL: 'http://www.mimishuo.net', //'http://localhost:3000' 'https://api.mimishuo.com',
+  baseURL: 'https://www.mimishuo.net', //'http://localhost:3000' 'https://api.mimishuo.com',
   withCredentials: true,
   timeout: 5000
 })

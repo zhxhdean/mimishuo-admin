@@ -47,17 +47,17 @@ export const NEWS_LETTER_DETAIL = '/management/news-letter/info'
 
 export const NEWS_LETTER_WITHDRAW = '/management/news-letter/withdraw/'
 
-export const SHIELDED_WORD_LIST = '/shieldedword/list'
+export const SHIELDED_WORD_LIST = '/management/word/list'
 
-export const SHIELDED_WORD_DELETE = '/shieldedword/delete'
+export const SHIELDED_WORD_DELETE = '/management/word/delete/'
 
 export const SHIELDED_WORD_BATCH_DELETE = '/shieldedwrod/batchdelete'
 
-export const SHIELDED_WORD_BATCH_ADD = '/shieldedwrod/add'
+export const SHIELDED_WORD_BATCH_ADD = '/management/word/add'
 
-export const WORD_LIBRARY_LIST = '/wordlibrary/list'
+export const WORD_LIBRARY_LIST = '/management/word/repo'
 
-export const WORD_LIBRARY_IMPORT = '/wordlibrary/import'
+export const WORD_LIBRARY_IMPORT = '/management/word/add/repo/'
 
 export const WORD_LIBRARY_BATCH_IMPORT = '/wordlibrary/batchimport'
 

@@ -98,16 +98,16 @@ export default class index extends Component {
         key: 'id'
       },
       {
-        dataIndex: 'title',
+        dataIndex: 'wordName',
         title: '主题'
       },
       {
-        dataIndex: 'category',
+        dataIndex: 'wordTypeId',
         title: '类型',
         render: text => getCategory(text)
       },
       {
-        dataIndex: 'similar',
+        dataIndex: 'similarWord',
         title: '相关近义词',
         width: 300
       },{

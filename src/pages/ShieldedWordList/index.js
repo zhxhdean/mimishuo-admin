@@ -59,10 +59,10 @@ export default class index extends Component {
     // todo 全集导出
     const data = this.props.shieldedWordStore.shieldedWordList.map(item => {
       return {
-        主题: item.title,
+        主题: item.wordName,
         创建时间: item.createTime,
-        相关近义词: item.similar,
-        分类: getCategory(item.category)
+        相关近义词: item.similarWord,
+        分类: getCategory(item.wordTypeId)
       }
     })
     jsxlxs.exportFile(data)
@@ -126,16 +126,16 @@ export default class index extends Component {
         key: 'id'
       },
       {
-        dataIndex: 'title',
+        dataIndex: 'wordName',
         title: '主题'
       },
       {
-        dataIndex: 'category',
+        dataIndex: 'wordTypeId',
         title: '类型',
         render: text => getCategory(text)
       },
       {
-        dataIndex: 'similar',
+        dataIndex: 'similarWord',
         title: '相关近义词',
         width: 300
       },{
@@ -185,7 +185,7 @@ export default class index extends Component {
           <Button className="ml20" onClick={this.handleExport}>
             导出
           </Button>
-          <a href="" download="newsletter列表.xlsx" id="hf">
+          <a href="" download="屏蔽词列表.xlsx" id="hf">
             {' '}
           </a>
           <Table

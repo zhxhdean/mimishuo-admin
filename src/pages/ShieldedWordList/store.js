@@ -36,14 +36,18 @@ class ShieldedWordStore {
 
   @action
   async add(){
-    return await post({
+    const rsp = await post({
       url: SHIELDED_WORD_BATCH_ADD,
       data: {
-        category: this.category,
-        shieldedWord: this.shieldedWord,
-        similar: this.similar
+        wordTypeId: this.category,
+        wordName: this.shieldedWord,
+        similarWord: this.similar
       }
     })
+    if(rsp.code === 0){
+      this.getList(1,20,'')
+    }
+    return rsp
   }
   @action
   async getList(pageIndex, pageSize, keyword = '') {
@@ -57,9 +61,9 @@ class ShieldedWordStore {
       }
     })
     if (rsp.code === 0) {
-      this.shieldedWordList = rsp.data
+      this.shieldedWordList = rsp.data.items || []
       // 测试数据
-      this.total = 76
+      this.total = rsp.data.totalCount
     }
     return rsp
   }
@@ -73,7 +77,7 @@ class ShieldedWordStore {
   @action
   async delete(id) {
     // todo 调接口
-    const rsp = await post({ url: SHIELDED_WORD_DELETE, data: { id: id } })
+    const rsp = await post({ url: `${SHIELDED_WORD_DELETE}/${id}` })
     if (rsp.code === 0) {
       const index = this.shieldedWordList.findIndex(item => item.id === id)
       if (index > -1) {

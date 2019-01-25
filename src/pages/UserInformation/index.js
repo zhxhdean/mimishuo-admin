@@ -124,7 +124,7 @@ export default class index extends Component {
         <Row className="pdtb10">
           <Col span={3}>企业二维码：</Col>
           <Col span={8} className="black">
-            <img src={qrcode} />
+            <img src={`data:image/png;base64,${qrcode}`} width="150px"/>
           </Col>
         </Row>
 

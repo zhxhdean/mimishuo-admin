@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx'
 import { WORD_LIBRARY_LIST,WORD_LIBRARY_IMPORT, WORD_LIBRARY_BATCH_IMPORT} from '../../service/urls'
-import { post } from '../../service/request'
+import { post,get } from '../../service/request'
 class WordLibraryStore {
   @observable
   wordLibraryList = []
@@ -16,7 +16,7 @@ class WordLibraryStore {
   @action
   async getList(pageIndex, pageSize, keyword = '') {
     this.current = pageIndex
-    const rsp = await post({
+    const rsp = await get({
       url: WORD_LIBRARY_LIST,
       data: {
         pageIndex: pageIndex,
@@ -25,9 +25,9 @@ class WordLibraryStore {
       }
     })
     if (rsp.code === 0) {
-      this.wordLibraryList = rsp.data
+      this.wordLibraryList = rsp.data.items|| []
       // 测试数据
-      this.total = 76
+      this.total = rsp.data.totalCount
     }
     return rsp
   }
@@ -40,10 +40,7 @@ class WordLibraryStore {
   @action
   async import(id) {
     return await post({
-      url: WORD_LIBRARY_IMPORT,
-      data: {
-       id: id
-      }
+      url: `${WORD_LIBRARY_IMPORT}/${id}`
     })
   }
 
