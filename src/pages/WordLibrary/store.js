@@ -49,7 +49,7 @@ class WordLibraryStore {
     return await post({
       url: WORD_LIBRARY_BATCH_IMPORT,
       data: {
-       ids: ids
+        maskWordIdList: ids
       }
     })
   }

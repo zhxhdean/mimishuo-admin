@@ -51,7 +51,7 @@ export const SHIELDED_WORD_LIST = '/management/word/list'
 
 export const SHIELDED_WORD_DELETE = '/management/word/delete/'
 
-export const SHIELDED_WORD_BATCH_DELETE = '/shieldedwrod/batchdelete'
+export const SHIELDED_WORD_BATCH_DELETE = '/management/word/delete/multi'
 
 export const SHIELDED_WORD_BATCH_ADD = '/management/word/add'
 
@@ -59,7 +59,7 @@ export const WORD_LIBRARY_LIST = '/management/word/repo'
 
 export const WORD_LIBRARY_IMPORT = '/management/word/add/repo/'
 
-export const WORD_LIBRARY_BATCH_IMPORT = '/wordlibrary/batchimport'
+export const WORD_LIBRARY_BATCH_IMPORT = '/management/word/add/repo/multi'
 
 export const TAGS_ADD = '/management/basic-info/tag/add'
 

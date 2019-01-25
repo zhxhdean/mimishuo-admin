@@ -91,7 +91,7 @@ class ShieldedWordStore {
   @action
   async batchDelete(ids) {
     // todo 调接口
-    const rsp = await post({ url: SHIELDED_WORD_BATCH_DELETE, data: { ids: ids } })
+    const rsp = await post({ url: SHIELDED_WORD_BATCH_DELETE, data: { maskWordIdList: ids } })
     if (rsp.code === 0) {
       ids.forEach(id => {
         const index = this.shieldedWordList.findIndex(item => item.id === id)
