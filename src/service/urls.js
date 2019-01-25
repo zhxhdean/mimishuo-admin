@@ -67,9 +67,9 @@ export const TAGS_LIST = '/management/basic-info/tag/list'
 
 export const TAGS_DELETE= '/management/basic-info/tag/'
 
-export const SYSTEM_CONFIG = '/systemconfig'
+export const SYSTEM_CONFIG = '/management/basic-info/company/config'
 
-export const SYSTEM_CONFIG_EDIT = '/systemconfig/edit'
+export const SYSTEM_CONFIG_EDIT = '/management/basic-info/company/config'
 
 export const ADDRESS_LIST = '/management/basic-info/company/address'
 

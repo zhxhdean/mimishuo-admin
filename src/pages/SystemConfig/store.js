@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx'
-import { post } from '../../service/request'
+import { post,get } from '../../service/request'
 import { SYSTEM_CONFIG, SYSTEM_CONFIG_EDIT } from '../../service/urls'
 class SystemConfigStore {
   @observable
@@ -11,17 +11,20 @@ class SystemConfigStore {
 
   @action
   async getConfig() {
-    const rsp = await post({ url: SYSTEM_CONFIG })
+    const rsp = await get({ url: SYSTEM_CONFIG })
     if (rsp.code === 0) {
-      this.replace = rsp.data.replace
-      this.gps = rsp.data.gps
+      this.replace = rsp.data.autoFilterWord
+      this.gps = rsp.data.checkGPS
     }
     return rsp
   }
 
   @action
   async setConfig() {
-    const rsp = await post({ url: SYSTEM_CONFIG_EDIT })
+    const rsp = await post({ url: SYSTEM_CONFIG_EDIT, data: {
+      autoFilterWord:this.replace,
+      checkGPS: this.gps
+    } })
     // todo
     return rsp
   }
