@@ -110,7 +110,7 @@ export default class index extends Component {
               </Row>
               <Row>
                 <Col span={2}><label className="label">回复：</label></Col>
-                <Col span={18}><TextArea placeholder="请输入回复内容" row={5} value={secretDetail.reply} onChange={this.handleInputChange}></TextArea></Col>
+                <Col span={18}><TextArea placeholder="请输入回复内容" row={5} defaultValue={secretDetail.reply} onChange={this.handleInputChange}></TextArea></Col>
               </Row>
               <Row>
                 <Col span={2}></Col>
