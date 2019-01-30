@@ -7,7 +7,7 @@ import {
   DEFAULT_PAGESIZE,
   getCategory
 } from '../../common/constant'
-
+import moment from 'moment'
 const Search = Input.Search
 
 @inject('rootStore','wordLibraryStore')
@@ -112,7 +112,8 @@ export default class index extends Component {
         width: 300
       },{
         dataIndex: 'createTime',
-        title: '添加时间'
+        title: '添加时间',
+        render: text => new moment(text).format('YYYY-MM-DD HH:mm:ss')
       },
       {
         title: '操作',

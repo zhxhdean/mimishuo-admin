@@ -58,7 +58,7 @@ class TagsStore {
   async delete(id){
     const rsp = await del({url: `${TAGS_DELETE}/${id}`})
     if(rsp.code === 0){
-      this.tags = rsp.data
+      this.getList()
     }
     return rsp
   }

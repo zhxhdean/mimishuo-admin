@@ -8,6 +8,7 @@ import {
 } from '../../common/constant'
 import jsxlxs from '../../common/js2execl'
 import AddShieldedWord from '../../components/AddShieldedWord'
+import moment from 'moment'
 const Search = Input.Search
 @inject('shieldedWordStore', 'rootStore')
 @observer
@@ -140,7 +141,8 @@ export default class index extends Component {
         width: 300
       },{
         dataIndex: 'createTime',
-        title: '添加时间'
+        title: '添加时间',
+        render: text => new moment(text).format('YYYY-MM-DD HH:mm:ss')
       },
       {
         title: '操作',
