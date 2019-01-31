@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { message, Input, Table, Divider, Tooltip } from 'antd'
 import {Link} from 'react-router-dom'
+import moment from 'moment'
 import {
   DEFAULT_PAGEINDEX,
   DEFAULT_PAGESIZE,
@@ -63,6 +64,8 @@ export default class index extends Component {
       this.props.rootStore.hideLoading()
       if(rsp.code === 0){
         message.success('撤回成功')
+        const index = this.props.newsLetterStore.newsLetterList.find(item => item.newsLetterId === id)
+        this.props.newsLetterStore.newsLetterList.splice(index, 1)
       }else{
         message.error('撤回失败')
       }
@@ -95,7 +98,8 @@ export default class index extends Component {
       },
       {
         dataIndex: 'publishTime',
-        title: '发布时间'
+        title: '发布时间',
+        render: text => new moment(text).format('YYYY-MM-DD HH:mm:ss')
       },
       {
         dataIndex: 'content',

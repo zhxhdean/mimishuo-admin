@@ -10,7 +10,7 @@ class SecretDetailStore {
   async getDetail(id){
     const rsp = await get({url: `${SECRET_DETAIL}/${id}`})
     if(rsp.code === 0){
-      this.secretDetail = rsp.data || this.secretDetail
+      this.secretDetail = rsp.data
     }
     return rsp
   }

@@ -62,7 +62,7 @@ class NewsLetterPendingListStore {
 
   @action // 移除所有
   async clear() {
-    const rsp = await post({url: SECRECT_CLEAR, secretIdList: this.pendingList.map(item => item.secretId)})
+    const rsp = await post({url: SECRECT_CLEAR, data: {secretIdList: this.pendingList.map(item => item.secretId)}})
     if(rsp.code === 0){
       this.pendingList = []
     }

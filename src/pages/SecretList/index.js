@@ -226,14 +226,15 @@ export default class index extends Component {
                 </a>
               </Tooltip>
               <Divider type="vertical" />
-              <Tooltip title="加入发布清单">
+              {record.status !== 1 ? <Tooltip title="加入发布清单">
                 <a
                   href="javascript:;"
                   onClick={this.handleJoinNewsLetter.bind(this, record)}
                 >
                   加入
                 </a>
-              </Tooltip>
+              </Tooltip>: null}
+              
             </span>
           )
         }

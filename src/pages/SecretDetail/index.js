@@ -6,7 +6,7 @@ import PreviewImage from '../../components/PreviewImage'
 import './index.less'
 import CountDown from '../../components/CountDown'
 import NewsLetterPendingList from '../../components/NewsLetterPendingList'
-
+import moment from 'moment'
 const CheckboxGroup = Checkbox.Group
 const TextArea = Input.TextArea
 @inject('secretDetailStore', 'rootStore', 'pendingListStore','tagsStore')
@@ -44,7 +44,7 @@ export default class index extends Component {
   // 回复内容
   handleInputChange = e => {
     const value = e.target.value
-    this.props.secretDetailStore.setValue('replyContent', value)
+    this.props.secretDetailStore.setValue('reply', value)
   }
 
   // 标签选择
@@ -54,7 +54,7 @@ export default class index extends Component {
   
   
   handleSubmit = () => {
-    if(!this.props.secretDetailStore.secretDetail.replyContent){
+    if(!this.props.secretDetailStore.secretDetail.reply){
       message.error('回复内容不能为空！')
       return
     }
@@ -89,7 +89,7 @@ export default class index extends Component {
             <li>
               <Row>
                 {/* <Col span={10}><label className="label">发布人：</label>{secretDetail.author}</Col> */}
-                <Col span={24}><label className="label">发布时间：</label>{secretDetail.createTime}</Col>
+                <Col span={24}><label className="label">发布时间：</label>{new moment(secretDetail.createTime).format('YYYY-MM-DD HH:mm:ss')}</Col>
               </Row>
               <Row>
                 <Col span={24}><label className="label">标签：</label><CheckboxGroup value={secretDetail.tags} options={tagsForSecret} onChange={this.handleTagsChange}></CheckboxGroup></Col>
@@ -110,7 +110,7 @@ export default class index extends Component {
               </Row>
               <Row>
                 <Col span={2}><label className="label">回复：</label></Col>
-                <Col span={18}><TextArea placeholder="请输入回复内容" row={5} defaultValue={secretDetail.reply} onChange={this.handleInputChange}></TextArea></Col>
+                <Col span={18}><textarea style={{width: "100%"}} onChange={this.handleInputChange} value={secretDetail.reply}></textarea></Col>
               </Row>
               <Row>
                 <Col span={2}></Col>

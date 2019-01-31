@@ -42,7 +42,7 @@ class TagsStore {
   @action
   async formatTags (){
    const rsp = await this.getList()
-   if(rsp.code === 0){
+   if(rsp.code === 0 && rsp.data){
     this.tagsForSecret = rsp.data.map(item => {
       return {
         label: item.tagName,

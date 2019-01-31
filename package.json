@@ -30,5 +30,11 @@
     "build": "PUBLIC_URL=./ react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-app-rewired eject"
+  },
+  "proxy":{
+    "/management": {
+      "target": "https://www.mimishuo.net/",
+      "changeOrigin": true
+    }
   }
 }

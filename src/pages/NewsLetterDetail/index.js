@@ -83,7 +83,7 @@ export default class index extends Component {
               <h3>{newsLetterDetail.title}</h3>
             </Col>
             <Col span={4} className="black65">
-              {newsLetterDetail.publishTime}
+              {new moment(newsLetterDetail.publishTime).format('YYYY-MM-DD HH:mm:ss')}
             </Col>
             <Col span={2} />
           </Row>
