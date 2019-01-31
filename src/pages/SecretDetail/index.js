@@ -122,7 +122,7 @@ export default class index extends Component {
           </ul>
 
           <PreviewImage img={secretDetail.imageUrls}/>
-          <NewsLetterPendingList/>
+          {/* <NewsLetterPendingList/> */}
         </Spin>
       </div>
     )
