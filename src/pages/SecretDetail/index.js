@@ -54,11 +54,12 @@ export default class index extends Component {
   
   
   handleSubmit = () => {
-    if(!this.props.secretDetailStore.secretDetail.reply){
+    let {secretDetail} = this.props.secretDetailStore
+    if(!secretDetail.reply){
       message.error('回复内容不能为空！')
       return
     }
-    this.props.secretDetailStore.editDetail().then(rsp => {
+    this.props.secretDetailStore.save(secretDetail.reply, secretDetail.secretId, secretDetail.tags).then(rsp => {
       if(rsp.code === 0){
         message.success('回复成功！')
       }else{
@@ -110,7 +111,8 @@ export default class index extends Component {
               </Row>
               <Row>
                 <Col span={2}><label className="label">回复：</label></Col>
-                <Col span={18}><textarea style={{width: "100%"}} onChange={this.handleInputChange} value={secretDetail.reply}></textarea></Col>
+                <Col span={18}>
+                <textarea style={{width: "100%"}} onChange={this.handleInputChange} value={secretDetail.reply || ''}></textarea></Col>
               </Row>
               <Row>
                 <Col span={2}></Col>

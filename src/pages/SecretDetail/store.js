@@ -1,7 +1,7 @@
 
 import {observable, action} from 'mobx'
 import {post,get} from '../../service/request'
-import {SECRET_DETAIL,SECRET_DETAIL_EDIT} from '../../service/urls'
+import {SECRET_DETAIL,SECRET_DETAIL_EDIT,SECRECT_SAVE} from '../../service/urls'
 class SecretDetailStore {
   @observable
   secretDetail = {imageUrls: []}
@@ -23,6 +23,15 @@ class SecretDetailStore {
   @action
   async editDetail(){
     return await post({url: SECRET_DETAIL_EDIT, data: this.secretDetail})
+  }
+
+  @action
+  async save(content, id, tagIds){
+    return await post({url: SECRECT_SAVE, data: {
+        content: content,
+        secretId: id,
+        tagIdList: tagIds
+    }})
   }
 }
 

@@ -43,6 +43,7 @@ export const NEWS_LETTER_CACHE_PUBLISH= '/secret/cache/publish'
 
 export const SECRECT_CLEAR = '/secret/cache/del/all'
 
+export const SECRECT_SAVE = '/secret/save'
 
 export const NEWS_LETTER_LIST = '/news-letter/search'
 
