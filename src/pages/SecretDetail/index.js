@@ -93,7 +93,7 @@ export default class index extends Component {
                 <Col span={24}><label className="label">发布时间：</label>{new moment(secretDetail.createTime).format('YYYY-MM-DD HH:mm:ss')}</Col>
               </Row>
               <Row>
-                <Col span={24}><label className="label">标签：</label><CheckboxGroup value={secretDetail.tags} options={tagsForSecret} onChange={this.handleTagsChange}></CheckboxGroup></Col>
+                <Col span={24}><label className="label">标签：</label><CheckboxGroup value={secretDetail.tags.map(item => item.tagId)} options={tagsForSecret} onChange={this.handleTagsChange}></CheckboxGroup></Col>
               </Row>
               <Row>
                 <Col span={10}><label className="label">阅读数量：</label>{secretDetail.viewNum}</Col>

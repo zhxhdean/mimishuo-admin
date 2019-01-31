@@ -4,7 +4,7 @@ import {post,get} from '../../service/request'
 import {SECRET_DETAIL,SECRET_DETAIL_EDIT,SECRECT_SAVE} from '../../service/urls'
 class SecretDetailStore {
   @observable
-  secretDetail = {imageUrls: []}
+  secretDetail = {imageUrls: [],tags: []}
 
   @action
   async getDetail(id){
