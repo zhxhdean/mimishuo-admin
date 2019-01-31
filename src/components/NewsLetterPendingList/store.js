@@ -1,7 +1,7 @@
 import { observable, action } from 'mobx'
 import { message } from 'antd'
 import { post } from '../../service/request'
-import { NEWS_LETTER_CACHE_PUBLISH, NEWS_LETTER_CACHE_ADD, NEWS_LETTER_CACHE_DELETE,NEWS_LETTER_CACHE_LIST } from '../../service/urls'
+import { NEWS_LETTER_CACHE_PUBLISH, NEWS_LETTER_CACHE_ADD, NEWS_LETTER_CACHE_DELETE,NEWS_LETTER_CACHE_LIST,SECRECT_CLEAR } from '../../service/urls'
 class NewsLetterPendingListStore {
   //发布清单集合
   @observable pendingList = []
@@ -61,8 +61,12 @@ class NewsLetterPendingListStore {
   }
 
   @action // 移除所有
-  clear() {
-    this.pendingList = []
+  async clear() {
+    const rsp = await post({url: SECRECT_CLEAR, secretIdList: this.pendingList.map(item => item.secretId)})
+    if(rsp.code === 0){
+      this.pendingList = []
+    }
+    return rsp
   }
 
   @action

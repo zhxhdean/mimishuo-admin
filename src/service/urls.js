@@ -41,6 +41,8 @@ export const NEWS_LETTER_CACHE_LIST = '/management/secret/cache/list'
 
 export const NEWS_LETTER_CACHE_PUBLISH= '/management/secret/cache/publish'
 
+export const SECRECT_CLEAR = '/management/secret/cache/del/all'
+
 export const NEWS_LETTER_LIST = '/management/news-letter/search'
 
 export const NEWS_LETTER_DETAIL = '/management/news-letter/info'
