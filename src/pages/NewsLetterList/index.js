@@ -62,7 +62,8 @@ export default class index extends Component {
     this.props.rootStore.showLoading()
     this.props.newsLetterStore.recall(id).then(rsp => {
       this.props.rootStore.hideLoading()
-      if(rsp.code === 0){
+      console.log(rsp)
+      if(rsp.data && rsp.code === 0){
         message.success('撤回成功')
         const index = this.props.newsLetterStore.newsLetterList.find(item => item.newsLetterId === id)
         this.props.newsLetterStore.newsLetterList.splice(index, 1)
