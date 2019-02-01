@@ -100,7 +100,7 @@ export default class index extends Component {
       {
         dataIndex: 'publishTime',
         title: '发布时间',
-        render: text => new moment(text).format('YYYY-MM-DD HH:mm:ss')
+        render: text => text && new moment(text).format('YYYY-MM-DD HH:mm:ss')
       },
       {
         dataIndex: 'content',
