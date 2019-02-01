@@ -6,6 +6,9 @@ class SecretDetailStore {
   @observable
   secretDetail = {imageUrls: [],tags: []}
 
+  @observable
+  tags = []
+
   @action
   async getDetail(id){
     const rsp = await get({url: `${SECRET_DETAIL}/${id}`})
@@ -20,6 +23,10 @@ class SecretDetailStore {
     this.secretDetail[name] = value
   }
 
+  @action 
+  setTags(value){
+    this.tags = value
+  }
   @action
   async editDetail(){
     return await post({url: SECRET_DETAIL_EDIT, data: this.secretDetail})

@@ -33,6 +33,7 @@ export default class index extends Component {
         if (rsp.code !== 0) {
           message.error('数据加载失败')
         }
+        this.props.secretDetailStore.setTags(this.props.secretDetailStore.secretDetail.tags.map(item => item.tagId))
         this.props.rootStore.hideLoading()
       })
       .catch(err => {
@@ -49,17 +50,19 @@ export default class index extends Component {
 
   // 标签选择
   handleTagsChange = val => {
-    this.props.secretDetailStore.setValue('tags', val)
+    console.log(val)
+    this.props.secretDetailStore.setTags(val)
   }
   
   
   handleSubmit = () => {
-    let {secretDetail} = this.props.secretDetailStore
+    let {secretDetail,tags} = this.props.secretDetailStore
     if(!secretDetail.reply){
       message.error('回复内容不能为空！')
       return
     }
-    this.props.secretDetailStore.save(secretDetail.reply, secretDetail.secretId, secretDetail.tags).then(rsp => {
+
+    this.props.secretDetailStore.save(secretDetail.reply, secretDetail.secretId, tags).then(rsp => {
       if(rsp.code === 0){
         message.success('回复成功！')
       }else{
@@ -74,7 +77,7 @@ export default class index extends Component {
   }
   render() {
     const { loading } = this.props.rootStore
-    const { secretDetail } = this.props.secretDetailStore
+    const { secretDetail,tags } = this.props.secretDetailStore
     const {tagsForSecret} = this.props.tagsStore
     return (
       <div className="secret-detail-page">
@@ -93,7 +96,7 @@ export default class index extends Component {
                 <Col span={24}><label className="label">发布时间：</label>{new moment(secretDetail.createTime).format('YYYY-MM-DD HH:mm:ss')}</Col>
               </Row>
               <Row>
-                <Col span={24}><label className="label">标签：</label><CheckboxGroup value={secretDetail.tags.map(item => item.tagId)} options={tagsForSecret} onChange={this.handleTagsChange}></CheckboxGroup></Col>
+                <Col span={24}><label className="label">标签：</label><CheckboxGroup value={tags} options={tagsForSecret} onChange={this.handleTagsChange}></CheckboxGroup></Col>
               </Row>
               <Row>
                 <Col span={10}><label className="label">阅读数量：</label>{secretDetail.viewNum}</Col>
