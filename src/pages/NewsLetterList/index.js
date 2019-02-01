@@ -95,7 +95,7 @@ export default class index extends Component {
       {
         dataIndex: 'status',
         title: '状态',
-        render: text => getSecretStatus(text)
+        render: text => text === 1 ? '发布中' : '已发布'
       },
       {
         dataIndex: 'publishTime',
