@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
-import { Button, Input, message, Icon,Modal } from 'antd'
+import { Button, Input, message, Icon,Modal, Checkbox } from 'antd'
 import { observer, inject } from 'mobx-react'
 import { STATUS } from '../../common/constant'
 import './index.less'
 @inject('loginStore', 'rootStore', 'authenticateStore')
 @observer
 export default class index extends Component {
+  state = {
+    checked: false,
+  };
   handleInputChange = (name, e) => {
     this.props.loginStore.setValue(name, e.target.value)
   }
@@ -32,8 +35,18 @@ export default class index extends Component {
     }
   }
 
+  handleAgree = (e) => {
+    this.setState({
+      checked: e.target.checked,
+    });
+  }
+
   // todo 校验表单数据
   valid = () => {
+    if (!this.state.checked) {
+      message.error('请同意“秘密说网服务协议及免责条款”')
+      return false
+    }
     if (!this.props.loginStore.user.userName) {
       message.error('请输入用户名')
       return false
@@ -84,6 +97,9 @@ export default class index extends Component {
               >
                 登录
               </Button>
+            </li>
+            <li>
+              <Checkbox onChange={this.handleAgree} checked={this.state.checked} /> 我接受 <a href="static/agree.html" target="_blank">秘密说网服务协议 及 免责条款</a>
             </li>
             <li className="pright"><Link to="/forget">忘记密码？</Link></li>
           </ul>

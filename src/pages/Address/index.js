@@ -101,6 +101,12 @@ export default class index extends Component {
     return (
       <div>
         <h2>公司地址管理</h2>
+        <div style={{background:'#ffffcc', padding: '15px',margin: '10px 0'}}>
+        <p>1.您可以在此页面增加一个或多个您的公司地址。</p>
+<p>2.当您开启系统设置中的“员工加入时GPS验证”开关时，您公司员工的GPS位置必须位于您所维护的且状态为启用的公司地址其中之一，才能通过扫描二维码加入公司组织。</p>
+
+
+        </div>
         <Divider />
         <div>
         <Button type="primary" onClick={() => this.props.history.push({pathname: '/address/add'})}>新增地址</Button>

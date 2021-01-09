@@ -38,15 +38,15 @@ export default class index extends Component {
       return
     }
     if(this.props.pendingListStore.title.length > 20){
-      message.error('newsletter的标题不能超过20个字')
+      message.error('周刊的标题不能超过20个字')
       return
     }
     if(!this.props.pendingListStore.content){
-      message.error('请输入newsletter的内容')
+      message.error('请输入周刊的内容')
       return
     }
     if(this.props.pendingListStore.content.length > 200){
-      message.error('newsletter的标题不能超过200个字')
+      message.error('周刊的标题不能超过200个字')
       return
     }
     if(this.props.pendingListStore.pendingList.length === 0){
@@ -93,7 +93,7 @@ export default class index extends Component {
     return (
       <Drawer
         width={500}
-        title={`NewsLetter发布清单(${dataSource.length})`}
+        title={`周刊发布清单(${dataSource.length})`}
         placement="right"
         closable={false}
         visible={this.props.rootStore.newsletterModal}
@@ -102,8 +102,8 @@ export default class index extends Component {
         <div className="news-letter-pending-list">
           <Button type="primary" onClick={this.handleSubmit}>确定发布</Button><Button className="clear" onClick={this.handleClearAll}>清除全部</Button>
           <Divider/>
-          <Input placeholder="请输入newsletter的标题" onChange={this.handleInputChange.bind(this, 'title')}/>
-          <TextArea rows={3} placeholder="请输入newsletter内容,200字以内" onChange={this.handleInputChange.bind(this, 'content')}></TextArea>
+          <Input placeholder="请输入周刊的标题" onChange={this.handleInputChange.bind(this, 'title')}/>
+          <TextArea rows={3} placeholder="请输入周刊内容,200字以内" onChange={this.handleInputChange.bind(this, 'content')}></TextArea>
           <Table
             dataSource={dataSource}
             columns={columns}

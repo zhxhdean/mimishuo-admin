@@ -133,7 +133,7 @@ export default class index extends Component {
     ]
     return (
       <div className="secret-list">
-        <h2>NewsLetter列表</h2>
+        <h2>周刊列表</h2>
         <Divider />
         <div>
           <Search

@@ -24,7 +24,7 @@ export default class index extends Component {
         {this.slider && this.slider.slickGoTo(this.props.rootStore.carouseIndex)}
         <Modal width={800} closable={false} bodyStyle={{background: 'rgba(0,0,0,.7)', paddingLeft: '40px', paddingRight: '40px'}} footer={null} visible={this.props.rootStore.carouselModal} onCancel={this.props.rootStore.hideCarouse}>
         <Slider {...settings} ref={slider => (this.slider = slider)}>
-          {this.props.img.map((item,index) =>{
+          {this.props.img && this.props.img.map((item,index) =>{
             return (<div key={`preview-${index}`}>
              <h3><img src={item} alt="图片描述" width='100%' title={`当前是第${this.props.rootStore.carouseIndex+1}张图片`}/></h3> 
             </div>)

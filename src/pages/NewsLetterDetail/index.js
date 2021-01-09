@@ -66,7 +66,7 @@ export default class index extends Component {
     return (
       <div className="secret-detail-page">
         <h2>
-          newsletter详情
+        周刊详情
           {/*eslint-disable no-script-url*/}
           <a
             href="javascript:void(0);"
@@ -78,6 +78,13 @@ export default class index extends Component {
         </h2>
         <Divider />
         <Spin spinning={loading}>
+          <Row style={{background:'#ffffcc', padding: '15px',margin: '10px 0'}}>
+            <Col span={24}>
+            <p>1.周刊未发布前，您可以随时撤回周刊，或者周刊中的某个秘密。</p>
+            <p>2.未发布的周刊会在每周五下午由系统统一发布。所有关注秘密说微信公众号的员工会在发布后收到微信推送消息，点开后可查看您本次发布的秘密以及您的回复内容。</p>
+
+            </Col>
+          </Row>
           <Row>
             <Col span={18}>
               <h3>{newsLetterDetail.title}</h3>

@@ -113,7 +113,7 @@ class index extends Component {
           </Menu.Item>
           {/* <Menu.Item key="22">搜索</Menu.Item> */}
           <Menu.Item key="23">
-            <Link to="/newsletter" onClick={this.handlePageIndex.bind(this, 'newsletter')}>newsletter</Link>
+            <Link to="/newsletter" onClick={this.handlePageIndex.bind(this, 'newsletter')}>周刊管理</Link>
           </Menu.Item>
         </SubMenu>
         <SubMenu

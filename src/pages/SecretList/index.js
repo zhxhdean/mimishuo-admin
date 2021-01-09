@@ -188,7 +188,7 @@ export default class index extends Component {
           return getSecretStatus(text)
         },
         filters: [
-          { text: '初始', value: SECRET_STATUS.INIT },
+          { text: '未发布', value: SECRET_STATUS.INIT },
           { text: '待发布', value: SECRET_STATUS.PRE_PUBLISH },
           { text: '发布中', value: SECRET_STATUS.PUBLISHING },
           { text: '已发布', value: SECRET_STATUS.PUBLISHED }
@@ -213,7 +213,7 @@ export default class index extends Component {
           return (
             /*eslint-disable no-script-url*/
             <span>
-              <Tooltip title="快速回复问题">
+              {/* <Tooltip title="快速回复问题">
                 <a
                   href="javascript:;"
                   onClick={this.props.secretListStore.showQuickReply.bind(
@@ -225,7 +225,7 @@ export default class index extends Component {
                   回复
                 </a>
               </Tooltip>
-              <Divider type="vertical" />
+              <Divider type="vertical" /> */}
               {record.status === 1 ? <Tooltip title="加入发布清单">
                 <a
                   href="javascript:;"
@@ -282,7 +282,7 @@ export default class index extends Component {
             className="ml20"
             onClick={this.props.rootStore.showNewsLetter}
           >
-            清单
+            本期周刊
           </Button>
           <Button className="ml20" onClick={this.handleExport}>
             导出

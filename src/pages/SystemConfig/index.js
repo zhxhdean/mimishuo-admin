@@ -43,7 +43,7 @@ export default class index extends Component {
             <Switch
               onChange={this.onChange.bind(this, 'replace')}
               checked={replace}
-            />
+            />&nbsp;&nbsp;开启此项设置，系统将自动把所有秘密内容和回复内容中涉及到屏蔽词的语句替换成*。
           </Col>
         </Row>
 
@@ -51,6 +51,7 @@ export default class index extends Component {
           <Col span={4}>员工加入时GPS验证：</Col>
           <Col span={20}>
             <Switch onChange={this.onChange.bind(this, 'gps')} checked={gps} />
+            &nbsp;&nbsp;开启此项设置，所有您公司的员工在扫描公司二维码后，将验证其当前的GPS位置是否位于您设置的公司范围内，若不在，则无法加入。
           </Col>
         </Row>
       </div>

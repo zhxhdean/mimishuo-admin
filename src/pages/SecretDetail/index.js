@@ -33,7 +33,8 @@ export default class index extends Component {
         if (rsp.code !== 0) {
           message.error('数据加载失败')
         }
-        this.props.secretDetailStore.setTags(this.props.secretDetailStore.secretDetail.tags.map(item => item.tagId))
+        const t = this.props.secretDetailStore.secretDetail.tags || []
+        this.props.secretDetailStore.setTags(t.map(item => item.tagId))
         this.props.rootStore.hideLoading()
       })
       .catch(err => {
@@ -88,7 +89,7 @@ export default class index extends Component {
           <ul>
             <li>
     <h3>{secretDetail.burnAfterReading ? <span className="red"><CountDown endTime ={secretDetail.burnTime}/>【阅后即焚】</span>: ''}<span className="orange">【{getSecretStatus(secretDetail.status)}】</span>{secretDetail.subject}</h3>
-              <Button type="primary" onClick={this.handleJoinNewsLetter.bind(this, secretDetail)}>加入发布清单</Button>
+              <Button type="primary" onClick={this.handleJoinNewsLetter.bind(this, secretDetail)}>加入本期周刊</Button>
             </li>
             <li>
               <Row>
@@ -108,7 +109,7 @@ export default class index extends Component {
               </Row>
               <Row>
                 <Col span={2}><label className="label">图片：</label></Col>
-                <Col span={18}>{secretDetail.imageUrls.map((item,index) => {
+                <Col span={18}>{secretDetail.imageUrls && secretDetail.imageUrls.map((item,index) => {
                   return <img src={item} key={index} className="small-image" title="点击查看大图" alt="图片描述" onClick={this.props.rootStore.showCarouse.bind(this, index)}/>
                 })}</Col>
               </Row>
