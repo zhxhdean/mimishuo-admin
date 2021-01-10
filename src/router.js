@@ -24,6 +24,7 @@ import AddressAdd from './pages/AddressAdd'
 import Payment from './pages/Recharge/payment'
 import OrderList from './pages/OrderList'
 import CssComponent from './components/Css'
+import Topic from './pages/Topic'
 // store
 import loginStore from './pages/Login/store'
 import rootStore from './store'
@@ -44,6 +45,7 @@ import addressStore from './pages/Address/store'
 import rechargeStore from './pages/Recharge/store'
 import orderListStore from './pages/OrderList/store'
 import suggestStore from './components/Suggest/store'
+
 import { BackTop } from 'antd'
 
 const stores = {
@@ -106,6 +108,7 @@ export const router = (
         <Route path="/systemconfig" component={SystemConfig} />
         <Route path="/payment" exact component={Payment} />
         <Route path="/order" component={OrderList} />
+        <Route path="/topic" component={Topic} />
         <Route component={Index} />
       </Switch>
     </Router>

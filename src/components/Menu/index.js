@@ -66,6 +66,15 @@ class index extends Component {
       case '/systemconfig':
         key = '44'
         break
+      case '/topic/1':
+        key = '51'
+        break
+      case '/topic/2':
+        key = '52'
+        break
+      case '/topic/3':
+        key = '53'
+        break
       default:
         key = '11'
         break
@@ -83,7 +92,7 @@ class index extends Component {
       <Menu
         theme="dark"
         mode="inline"
-        defaultOpenKeys={['sub1', 'sub2', 'sub3', 'sub4']}
+        defaultOpenKeys={['sub1', 'sub2', 'sub3', 'sub4', 'sub5']}
         selectedKeys={[key]}
       >
         <SubMenu
@@ -114,6 +123,25 @@ class index extends Component {
           {/* <Menu.Item key="22">搜索</Menu.Item> */}
           <Menu.Item key="23">
             <Link to="/newsletter" onClick={this.handlePageIndex.bind(this, 'newsletter')}>周刊管理</Link>
+          </Menu.Item>
+        </SubMenu>
+        <SubMenu
+          key="sub5"
+          title={
+            <span>
+              <Icon type="sound" />
+              <span>话题管理</span>
+            </span>
+          }
+        >
+          <Menu.Item key="51">
+            <Link to="/topic/1" >已发布</Link>
+          </Menu.Item>
+          <Menu.Item key="52">
+            <Link to="/topic/2">已下架</Link>
+          </Menu.Item>
+          <Menu.Item key="53">
+            <Link to="/topic/3">已过期</Link>
           </Menu.Item>
         </SubMenu>
         <SubMenu

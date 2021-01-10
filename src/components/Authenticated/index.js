@@ -16,7 +16,7 @@ export default class index extends Component {
 
   render() {
     const status = this.props.authenticateStore.status
-    if(status === STATUS.LOGINED){
+    if(status === STATUS.LOGINED || window.location.href.includes('.html')){
       return (this.props.children)
     }else if(status === STATUS.UNLOGIN){
       return <Redirect to="/login" />
