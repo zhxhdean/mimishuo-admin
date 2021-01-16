@@ -135,13 +135,7 @@ class index extends Component {
           }
         >
           <Menu.Item key="51">
-            <Link to="/topic/1" >已发布</Link>
-          </Menu.Item>
-          <Menu.Item key="52">
-            <Link to="/topic/2">已下架</Link>
-          </Menu.Item>
-          <Menu.Item key="53">
-            <Link to="/topic/3">已过期</Link>
+            <Link to="/topic/1" >话题列表</Link>
           </Menu.Item>
         </SubMenu>
         <SubMenu

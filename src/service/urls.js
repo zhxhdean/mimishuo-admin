@@ -95,3 +95,11 @@ export const SUGGEST_ADD = '/basic-info/suggestion/add'
 
 export const QRCODE = '/account/wxacode'
 
+export const TOPIC_ADD = '/secret/topic/publish'
+
+export const TOPIC_LIST = '/secret/topic/search'
+
+export const TOPIC_REPLY = '/secret/topic/reply/'
+
+export const TOPIC_REPLY_STATUS = '/secret/topic/reply/show-status'
+
