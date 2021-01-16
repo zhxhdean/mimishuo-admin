@@ -99,7 +99,7 @@ export default class index extends Component {
               </Button>
             </li>
             <li>
-              <Checkbox onChange={this.handleAgree} checked={this.state.checked} /> 我接受 <a href="/static/agree.html" target="_blank">秘密说网服务协议 及 免责条款</a>
+              <Checkbox onChange={this.handleAgree} checked={this.state.checked} /> 我接受 <a href="./static/agree.html" target="_blank">秘密说网服务协议 及 免责条款</a>
             </li>
             <li className="pright"><Link to="/forget">忘记密码？</Link></li>
           </ul>
