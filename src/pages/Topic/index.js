@@ -181,7 +181,8 @@ export default class index extends Component {
             onChange={this.onChangeStatus.bind(this)}
           >
             <Option value="1">已发布</Option>
-            <Option value="0">已结束</Option>
+            <Option value="5">已下架</Option>
+            <Option value="9">已结束</Option>
           </Select>
           &nbsp;&nbsp;发布时间：
           <RangePicker onChange={this.onChangeRangeDate.bind(this)} />
