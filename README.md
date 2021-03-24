@@ -9,6 +9,14 @@
 ### `yarn run build`
 打包发布
 
+name: zhxh@163.com
+pwd: Aa111111
+
+后台
+https://www.mimishuo.net/management/swagger-ui.html
+
+前台
+https://www.mimishuo.net/api/swagger-ui.html
 # 目录结构
 ### /public 静态目录
 ### /src 源码目录

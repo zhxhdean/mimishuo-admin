@@ -103,3 +103,5 @@ export const TOPIC_REPLY = '/secret/topic/reply/'
 
 export const TOPIC_REPLY_STATUS = '/secret/topic/reply/show-status'
 
+export const TOPIC_CLOSE = '/secret/topic/close'
+

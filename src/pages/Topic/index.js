@@ -130,6 +130,21 @@ export default class index extends Component {
     })
     item.show = !item.show
   }
+
+  async closeTopic(topicId) {
+    this.props.topicStore.close(topicId).then((rsp) => {
+      this.props.rootStore.hideLoading()
+      if (rsp.code === 0) {
+        message.success('话题已关闭')
+      } else {
+        message.error(rsp.content)
+      }
+    })
+    .catch((err) => {
+      this.props.rootStore.hideLoading()
+      message.error('话题关闭遇到错误')
+    });
+  }
   render() {
     let items = this.props.topicStore.topic
     return (
@@ -211,7 +226,7 @@ export default class index extends Component {
                 >
                   {item.show ? '收起' : '展开'}
                 </div>
-                <div>
+                <div  onClick={() => this.closeTopic(item.topicId)}>
                   <Icon type="poweroff" />
                 </div>
               </div>

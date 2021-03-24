@@ -2,7 +2,7 @@
 import {observable, action} from 'mobx'
 import {post,del,get} from '../../service/request'
 
-import {TOPIC_ADD, TOPIC_LIST} from '../../service/urls'
+import {TOPIC_ADD, TOPIC_LIST, TOPIC_CLOSE} from '../../service/urls'
 /*eslint no-undef: "off"*/
 class TopicStore {
   @observable //秘密详情页使用
@@ -21,7 +21,9 @@ class TopicStore {
     const rsp = await post({url: TOPIC_ADD, data})
     if(rsp.code === 0){
       this.tag = ''
-      this.getList()
+      this.getList({
+        pageIndex: 1,
+        pageSize: 100})
     }
     return rsp
   }
@@ -33,6 +35,18 @@ class TopicStore {
      this.topic = rsp.data.items && rsp.data.items.map((item) => ({ show: false, ...item, reply: [] })) || [];
    }
    return rsp
+  }
+
+  @action
+  async close(id){
+    const rsp = await get({url: TOPIC_CLOSE + '/' + id})
+    if(rsp.code === 0){
+      this.tag = ''
+      this.getList({
+        pageIndex: 1,
+        pageSize: 100})
+    }
+    return rsp
   }
 
 }
