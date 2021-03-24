@@ -3,6 +3,7 @@ import {observable, action} from 'mobx'
 import {post,del,get} from '../../service/request'
 
 import {TOPIC_ADD, TOPIC_LIST} from '../../service/urls'
+/*eslint no-undef: "off"*/
 class TopicStore {
   @observable //秘密详情页使用
   tagsForSecret = []

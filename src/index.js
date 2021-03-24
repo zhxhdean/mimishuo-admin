@@ -5,7 +5,7 @@ import { rootRouter } from './router'
 import * as serviceWorker from './serviceWorker'
 import { LocaleProvider } from 'antd'
 import zhCN from 'antd/lib/locale-provider/zh_CN'
-
+/*eslint no-undef: "off"*/ 
 ReactDOM.render(
   <LocaleProvider locale={zhCN}>{rootRouter}</LocaleProvider>,
   document.getElementById('root')

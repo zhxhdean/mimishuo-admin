@@ -1,3 +1,4 @@
+/*eslint no-undef: "off"*/ 
 import React from 'react'
 import { Route, HashRouter as Router, Switch } from 'react-router-dom'
 import { Provider } from 'mobx-react'

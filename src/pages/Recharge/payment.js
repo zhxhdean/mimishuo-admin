@@ -1,3 +1,4 @@
+/*eslint no-undef: "off"*/ 
 import React, { Component } from 'react'
 import { Divider, Row, Col, Tabs, Icon } from 'antd'
 import './index.less'

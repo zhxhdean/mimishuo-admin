@@ -1,3 +1,4 @@
+/*eslint no-undef: "off"*/ 
 import React, { Component } from 'react'
 import { Modal } from 'antd'
 import Slider from "react-slick"

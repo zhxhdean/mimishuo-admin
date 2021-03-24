@@ -1,3 +1,4 @@
+/*eslint no-undef: "off"*/ 
 import React, { Component } from 'react'
 import {Row,Col,Button,Input,message} from 'antd'
 import { inject } from 'mobx-react';

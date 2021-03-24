@@ -1,6 +1,7 @@
 import { observable, action } from 'mobx'
 import { post,get } from '../../service/request'
 import { SYSTEM_CONFIG, SYSTEM_CONFIG_EDIT } from '../../service/urls'
+/*eslint no-undef: "off"*/
 class SystemConfigStore {
   @observable
   replace = false

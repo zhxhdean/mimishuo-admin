@@ -2,6 +2,7 @@ import { observable, action } from 'mobx'
 import { message } from 'antd'
 import { post } from '../../service/request'
 import { NEWS_LETTER_CACHE_PUBLISH, NEWS_LETTER_CACHE_ADD, NEWS_LETTER_CACHE_DELETE,NEWS_LETTER_CACHE_LIST,SECRECT_CLEAR } from '../../service/urls'
+/*eslint no-undef: "off"*/
 class NewsLetterPendingListStore {
   //发布清单集合
   @observable pendingList = []

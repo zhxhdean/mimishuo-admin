@@ -2,6 +2,7 @@
 import {observable, action} from 'mobx'
 import {post,get} from '../../service/request'
 import {SECRET_DETAIL,SECRET_DETAIL_EDIT,SECRECT_SAVE} from '../../service/urls'
+/*eslint no-undef: "off"*/
 class SecretDetailStore {
   @observable
   secretDetail = {imageUrls: [],tags: []}

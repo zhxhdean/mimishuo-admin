@@ -1,3 +1,5 @@
+/*eslint no-undef: "off"*/ 
+/*eslint no-undef: "off"*/ 
 import React, { Component } from 'react'
 import { Button, Input, message, Icon,Row,Col,Divider } from 'antd'
 import { observer, inject } from 'mobx-react'

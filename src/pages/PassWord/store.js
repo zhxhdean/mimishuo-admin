@@ -1,6 +1,7 @@
 import { observable, action } from 'mobx'
 import { post } from '../../service/request'
 import { USER_CHANGE_PASSWORD } from '../../service/urls'
+/*eslint no-undef: "off"*/
 class PassWordStore {
   @observable
   oldPassword = ''

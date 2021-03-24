@@ -1,3 +1,4 @@
+/*eslint no-undef: "off"*/ 
 import React, { Component } from 'react'
 import { Drawer, Table, Divider,message,Button,Input,Modal } from 'antd'
 import { Link } from 'react-router-dom'

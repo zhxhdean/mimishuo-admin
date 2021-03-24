@@ -1,3 +1,4 @@
+/*eslint no-undef: "off"*/ 
 import React, { Component } from 'react'
 import { Modal, Input, Button,message } from 'antd'
 import { inject, observer } from 'mobx-react'

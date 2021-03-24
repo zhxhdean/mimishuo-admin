@@ -1,3 +1,5 @@
+/*eslint no-undef: "off"*/ 
+/*eslint no-undef: "off"*/ 
 import React, { Component } from 'react'
 import {Layout, Icon, Tooltip} from 'antd'
 import {router} from './router'

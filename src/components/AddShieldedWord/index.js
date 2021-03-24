@@ -1,3 +1,4 @@
+/*eslint no-undef: "off"*/ 
 import React, { Component } from 'react'
 import { Modal, Select, Col, Row,Input,Button,message } from 'antd'
 import { CATEGORY, getCategory } from '../../common/constant'

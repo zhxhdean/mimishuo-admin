@@ -4,6 +4,7 @@ import {post} from '../../service/request'
 import util from '../../common/util'
 import {DEFAULT_PAGESIZE} from '../../common/constant'
 import {SECRET_LIST,SECRET_REPLY_CONTENT} from '../../service/urls'
+/*eslint no-undef: "off"*/
 class SecretListStore {
 
   @observable

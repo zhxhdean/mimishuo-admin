@@ -31,10 +31,22 @@
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-app-rewired eject"
   },
-  "proxy":{
+  "proxy": {
     "/management": {
       "target": "https://www.mimishuo.net/",
       "changeOrigin": true
+    }
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "extends": "react-app",
+    "rules": {
+      "no-undef": "off",
+      "no-restricted-globals": "off",
+      "no-unused-vars": "off"
     }
   }
 }

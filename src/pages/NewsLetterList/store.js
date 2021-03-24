@@ -1,6 +1,7 @@
 import { action, observable } from 'mobx'
 import {post,get} from '../../service/request'
 import {NEWS_LETTER_LIST,NEWS_LETTER_WITHDRAW} from '../../service/urls'
+/*eslint no-undef: "off"*/
 class NewsLetterStore {
   @observable
   newsLetterList = []

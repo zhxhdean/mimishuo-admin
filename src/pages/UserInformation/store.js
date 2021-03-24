@@ -1,6 +1,7 @@
 import { observable, action } from 'mobx'
 import { USER_EMAIL_CHANGE,USER_PHONE_CHANGE,QRCODE } from '../../service/urls'
 import {post,get } from '../../service/request'
+/*eslint no-undef: "off"*/
 class UserInformationStore {
 
   // 修改时候需要用的

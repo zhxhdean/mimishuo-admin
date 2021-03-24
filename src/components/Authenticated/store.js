@@ -2,6 +2,9 @@ import { observable, action } from 'mobx'
 import { STATUS } from '../../common/constant'
 import { get } from '../../service/request'
 import {USER_INFORMATION} from '../../service/urls'
+/*eslint no-undef: "off"*/
+/*eslint no-restricted-globals: "off"*/
+
 class AuthenticateStore {
   @observable status = STATUS.CHECKING
   @observable

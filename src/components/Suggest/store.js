@@ -3,6 +3,7 @@ import { get, put, post } from '../../service/request';
 import {UPLOAD,SUGGEST_ADD} from '../../service/urls'
 import { clear } from 'size-sensor';
 
+/*eslint no-undef: "off"*/
 class SuggestStore{
   @observable fileList = []
 

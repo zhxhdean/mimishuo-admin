@@ -1,6 +1,7 @@
 import { observable, action } from 'mobx'
 import { WORD_LIBRARY_LIST,WORD_LIBRARY_IMPORT, WORD_LIBRARY_BATCH_IMPORT} from '../../service/urls'
 import { post,get } from '../../service/request'
+/*eslint no-undef: "off"*/
 class WordLibraryStore {
   @observable
   wordLibraryList = []

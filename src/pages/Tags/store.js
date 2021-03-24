@@ -3,6 +3,7 @@ import {observable, action} from 'mobx'
 import {post,del,get} from '../../service/request'
 import {DEFAULT_SECRET_TAGS} from '../../common/constant'
 import {TAGS_ADD,TAGS_LIST,TAGS_DELETE} from '../../service/urls'
+/*eslint no-undef: "off"*/
 class TagsStore {
   @observable //秘密详情页使用
   tagsForSecret = []

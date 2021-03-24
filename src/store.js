@@ -1,10 +1,11 @@
 // 全局sotre
-
+/*eslint no-undef: "off"*/ 
 import { observable, action } from 'mobx'
 import { CONFIG_KEY } from './common/constant'
 import { VERIFY_CODE_BY_EMAIL } from './service/urls'
 import { post } from './service/request'
 import md5 from 'js-md5'
+/*eslint no-undef: "off"*/
 class RootStore {
   // 加载提示
   @observable loading = false

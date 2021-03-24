@@ -1,3 +1,4 @@
+/*eslint no-undef: "off"*/ 
 import axios from 'axios'
 import {message} from 'antd'
 

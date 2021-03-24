@@ -1,3 +1,4 @@
+/*eslint no-undef: "off"*/ 
 import React, { Component } from 'react'
 import {Redirect} from 'react-router-dom'
 import {STATUS} from '../../common/constant'

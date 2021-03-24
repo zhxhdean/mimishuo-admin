@@ -1,5 +1,5 @@
 // 请求接口地址
-
+/*eslint no-undef: "off"*/ 
 export const LOGIN = '/account/login'
 
 export const LOGOUT = '/account/logout'

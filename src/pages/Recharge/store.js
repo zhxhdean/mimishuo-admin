@@ -1,6 +1,7 @@
 import {action,observable} from 'mobx'
 import {post} from '../../service/request'
 import {ORDER_CREATE,ORDER_STATUS} from '../../service/urls'
+/*eslint no-undef: "off"*/
 class RechargeStore{
   // 订单信息
   @observable

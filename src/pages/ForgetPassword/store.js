@@ -1,6 +1,7 @@
 import { observable,action } from "mobx";
 import {USER_FORGET_PASSWORD} from '../../service/urls'
 import { post } from "../../service/request";
+/*eslint no-undef: "off"*/
 class ForgetPasswordStore{
 
   @observable user = {

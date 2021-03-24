@@ -1,6 +1,7 @@
 import { observable, action } from 'mobx'
 import { SHIELDED_WORD_LIST, SHIELDED_WORD_DELETE,SHIELDED_WORD_BATCH_DELETE,SHIELDED_WORD_BATCH_ADD } from '../../service/urls'
 import { post } from '../../service/request'
+/*eslint no-undef: "off"*/
 class ShieldedWordStore {
   @observable
   shieldedWordList = []

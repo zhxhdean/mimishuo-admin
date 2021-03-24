@@ -1,3 +1,4 @@
+/*eslint no-undef: "off"*/ 
 import React, { Component } from 'react'
 import { Menu, Icon } from 'antd'
 import { Link, withRouter } from 'react-router-dom'

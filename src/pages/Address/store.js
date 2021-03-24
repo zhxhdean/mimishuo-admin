@@ -2,6 +2,7 @@ import {ADDRESS_LIST, ADDRESS_ADD} from '../../service/urls'
 import {post,get,del} from '../../service/request'
 import { observable,action } from 'mobx';
 
+/*eslint no-undef: "off"*/
 class AddressStore {
   @observable
   addressList = []
