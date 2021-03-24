@@ -212,7 +212,7 @@ export default class index extends Component {
           {items.map((item) => (
             <div key={item.topicId} className="topic-list">
               <div className="topic-list-item">
-                <div>{item.subject}</div>
+                <div>{item.subject}{item.status === 9 ? '【已结束】' : ''}</div>
                 <div>
                   {moment(item.publishTime).format('YYYY年MM月DD日 HH:mm:ss')}-
                   {moment(item.expireDate).format('YYYY年MM月DD日 HH:mm:ss')}
